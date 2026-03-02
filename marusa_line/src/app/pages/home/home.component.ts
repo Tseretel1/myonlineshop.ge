@@ -11,6 +11,7 @@ import { escapeRegExp } from '@angular/compiler';
 import { Footer, FooterComponent } from '../../layout/footer/footer.component';
 import { Followers, ShopCard } from '../main/main.component';
 import { AuthorizationService } from '../authorization/authorization.service';
+import { Title } from '@angular/platform-browser';
 
 
 
@@ -49,7 +50,7 @@ export class HomeComponent {
   user:any = null;
   userId:number = 0;
   shopId:number=0;
-  constructor(private postService:PostService,private route: ActivatedRoute, private authService:AuthorizationService){
+  constructor(private postService:PostService,private route: ActivatedRoute, private authService:AuthorizationService,private titleService: Title){
     const user = localStorage.getItem('user');
     if(user){
       this.user =JSON.parse(user);
@@ -70,7 +71,6 @@ export class HomeComponent {
     }
   }
   footer!: Footer;
-  
   loadShop(shopId: number): void {
     this.postService.getShopById(shopId).subscribe({
       next: (data: any) => {
@@ -82,11 +82,19 @@ export class HomeComponent {
           shopPhoto:this.shop.logo,
           shopTitle:this.shop.name,
         }     
+        this.titleService.setTitle(this.shop.name);
+        if(this.shop.logo)
+        this.changeFavicon(this.shop.logo);
         console.log(this.shop)  
       },
     });
   }
-
+changeFavicon(iconUrl: string) {
+  const link = document.querySelector('#appFavicon') as HTMLLinkElement;
+  if (link) {
+    link.href = iconUrl;
+  }
+}
   getShopStats(shopId: number): void {
     this.postService.getShopStats(shopId).subscribe(
      (resp) => {

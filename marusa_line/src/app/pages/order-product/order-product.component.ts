@@ -12,6 +12,7 @@ import { Lnglat, MapConfig, MapPickerComponent } from "./map/map.component";
 import { ReloadService } from '../../shared/services/ReloadService';
 import { Subscription } from 'rxjs';
 import { PhotoAlbumComponent, PhotoConfig } from '../../shared/components/photo-album/photo-album.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-order-product',
@@ -42,7 +43,8 @@ export class OrderProductComponent implements OnInit{
     private route :ActivatedRoute,
     private authServise:AuthorizationService,
     private router:Router,private http:HttpClient,
-    private reloadService:ReloadService
+    private reloadService:ReloadService,
+    private titleService: Title
   ){
     const id = this.route.snapshot.paramMap.get('id');
     this.productId = Number(id);
@@ -55,6 +57,10 @@ export class OrderProductComponent implements OnInit{
       (resp)=>{
         this.posts = resp;
         console.log(this.posts)
+        this.titleService.setTitle('შეკვეთა : '+this.posts.title);
+        // if(this.posts.photos[0].photoUrl){
+        //   this.changeFavicon(this.posts.photos[0].photoUrl);
+        // }
         this.posts.photos.forEach(item => {
           this.photosArray.push(item);
         });
@@ -73,6 +79,12 @@ export class OrderProductComponent implements OnInit{
       }
     );
   }
+changeFavicon(iconUrl: string) {
+  const link = document.querySelector('#appFavicon') as HTMLLinkElement;
+  if (link) {
+    link.href = iconUrl;
+  }
+}
   reloadSubscription!: Subscription;
 
   ngOnInit(): void {
