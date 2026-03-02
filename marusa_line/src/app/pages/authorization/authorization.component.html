@@ -12,13 +12,13 @@
                 <p>{{modalName}}</p>
             </div>
             <div class="stage-oAuth" *ngIf="stageNumber==0">
-                <div class="link-button google" data-aos="fade-down" (click)="loginWithGoogle()">
+                <div class="link-button google" (click)="loginWithGoogle()">
                     <div style="display: flex; align-items: center; gap: 10px;">
                         <img src="assets/icons/google.svg" alt="" width="30px">
                         Google -ით ავტორიზაცია
                    </div>
                 </div>
-               <div class="link-button facebook" data-aos="fade-up"(click)="loginWithFacebook()">
+               <div class="link-button facebook" (click)="loginWithFacebook()">
                   <div style="display: flex; align-items: center; gap: 10px;">
                           <img src="assets/icons/facebook.svg" alt="" width="35px">
                           Facebook -ით ავტორიზაცია

@@ -94,8 +94,8 @@ export class OrderDetailsComponent implements OnInit{
       
   loadShop(shopId: number): void {
     this.postService.getShopById(shopId).subscribe({
-      next: (data: Shop) => {
-        this.shop = { ...data };        
+      next: (data: any) => {
+        this.shop = data.shop;        
       },
     });
   }
