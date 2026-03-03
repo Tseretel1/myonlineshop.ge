@@ -101,7 +101,6 @@ export class HomeComponent implements OnInit{
       next: (data: ShopDto) => {
         this.shop = { ...data.shop }; 
         this.isShopFollowed = data.isFollowed;
-        console.log(data)
         this.toggleFollew();
         this.footer={
           instagram: this.shop.instagram,
@@ -165,7 +164,6 @@ export class HomeComponent implements OnInit{
     this.getuserFitler.shopId = this.shopId;
     this.postService.GetFollowersList(this.getuserFitler).subscribe((resp)=>{
       this.users = resp;
-      console.log(this.getuserFitler)
     })
   }
 

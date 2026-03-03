@@ -58,6 +58,17 @@ export class AuthorizationService {
           this.userNotAuthorized();
           this.router.navigate([AppRoutes.home])
         }
-      });
+    });
+
   }
+  forceLogout(){
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+      this.userNotAuthorized();
+      const shopId =localStorage.getItem('shopId')
+      if(shopId){
+        this.router.navigate([AppRoutes.shop+'/'+shopId]);
+      }
+      this.show();
+   }
 }

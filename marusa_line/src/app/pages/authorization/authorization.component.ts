@@ -40,7 +40,7 @@ export class AuthorizationComponent implements OnInit{
   }
 
   insertautomaticaly(){
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiZW1haWwiOiJnaW9yZ2l0c2VyZXRlbGk1NDFAZ21haWwuY29tIiwibmFtZSI6Ikdpb3JnaSBUc2VyZXRlbGkiLCJleHAiOjE3NzE0MDYyNTUsImlzcyI6Im1hcnVzYV9saW5lIiwiYXVkIjoibWFydXNhX2xpbmVfdXNlcnMifQ.00K4E2mBFaIKW6J2xhpp9dnqQAj1JF8SYWfxyUFo6PA';
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwiZW1haWwiOiJnaW9yZ2l0c2VyZXRlbGk1NDFAZ21haWwuY29tIiwibmFtZSI6Ikdpb3JnaSBUc2VyZXRlbGkiLCJleHAiOjE3NzUxMTk2OTcsImlzcyI6Im1hcnVzYV9saW5lIiwiYXVkIjoibWFydXNhX2xpbmVfdXNlcnMifQ.WKrga0S7qTMe6Y3F54_Ke5hK66hRYbbWT_66uK-7CPs';
     const user = '{"Id":1,"Email":"giorgitsereteli541@gmail.com","Name":"Giorgi Tsereteli","Picture":"https://lh3.googleusercontent.com/a/ACg8ocJmMegnkrntyj898pJL7oF9c3s4rNn5gNJFUvGoiCq7mQOtq3Jj=s96-c"}'
     localStorage.setItem('user', user);
     localStorage.setItem('token', token);
