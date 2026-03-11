@@ -1,11 +1,11 @@
 <div class="gallery-align">
     <div class="filters-align">
          <div class="section-filters-align">
-            <!-- <b class="section-title">
+            <b class="section-title">
                 <i class="fas fa-circle"></i> 
                 მოძებნე ფილტრით
                 <button class="open-filter" [ngClass]="{'active-filter': activeFilterNum == 0}" (click)="showFilterModal()"><i class="fas fa-sliders-h"></i> </button>
-            </b> -->
+            </b>
             <div class="filters-align">
                 <div class="filters" [ngClass]="{'active-filter': activeFilterNum == 0}"  (click)="ApplyFitler(null)"  [attr.data-id]="0">ყველა</div>
                 <div class="filters" [ngClass]="{'active-filter': activeFilterNum == i.id}"  *ngFor="let i of productTypesList" (click)="ApplyFitler(i.id)" >
@@ -24,19 +24,18 @@
                 </div>
                 <div class="modal-body">
                     <div class="header"> 
-                        <p>აირჩიე სასურველი კატეგორია</p>
                     </div>
                     <div class="stage-oAuth" >
                         <button class="filter-button" [ngClass]="{'active-filter': activeFilterNum == 0}" (click)="ApplyFitler(null)">ყველა</button>
                         <button class="filter-button" *ngFor="let product of productTypesList" [ngClass]="{'active-filter': activeFilterNum == product.id}" (click)="ApplyFitler(product.id)">{{product.productType}}</button>
                     </div>
-                    <div class="header"> 
+                    <!-- <div class="header"> 
                         <p>დაალაგე ფასის მიხედვით</p>
                     </div>
                     <div class="stage-oAuth" >
                         <button class="filter-button" [ngClass]="{'active-filter': sortNum == 2}"(click)="sortByPriceLowToHigh()">ზრდადობით</button>
                         <button class="filter-button" [ngClass]="{'active-filter': sortNum == 1}"(click)="sortByPriceHighToLow()">კლებადობით</button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

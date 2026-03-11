@@ -163,13 +163,13 @@
         width: 90%;
         max-width: 500px;
         border-radius: 10px;
-        backdrop-filter: blur(40px);
+        background-color: rgba(5, 10, 22, 0.897);
         z-index: 2;
         padding: 20px;
         display: flex;
         flex-direction: column;
         position: relative;
-        border: 1px solid gray;
+        border: 1px dashed grey;
         animation: modalPopup 0.5s;
         justify-content: center;
         align-items: center;
