@@ -11,7 +11,7 @@
               >
                 <p class="order-status">შეკვეთა</p>
                 <p class="order-id">
-                  {{ order.orderId }}
+                  #{{ order.orderId }}
                 </p>
               </div>
             </div>
@@ -152,7 +152,7 @@
                     <p style="line-height: 25px;">
                       გადახდის შემდეგ მოგვწერეთ შეკვეთის ნომერი
                       <b class="order-num-text" style="text-wrap: nowrap; padding: 2px 5px; background-color: rgb(255, 121, 0); border-radius: 5px;cursor: pointer; position: relative;" >
-                         {{ order.orderId }}  
+                        #{{ order.orderId }}  
                         <span class="ordernumcopied" *ngIf="copiedNumber ==3"> ✅</span>
                         <i class="fas fa-copy  copy-style" style="color: white"></i>
                       </b>

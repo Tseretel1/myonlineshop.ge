@@ -1,11 +1,11 @@
 <div class="gallery-align">
     <div class="filters-align">
          <div class="section-filters-align">
-            <b class="section-title">
+            <!-- <b class="section-title">
                 <i class="fas fa-circle"></i> 
                 მოძებნე ფილტრით
                 <button class="open-filter" [ngClass]="{'active-filter': activeFilterNum == 0}" (click)="showFilterModal()"><i class="fas fa-sliders-h"></i> </button>
-            </b>
+            </b> -->
             <div class="filters-align">
                 <div class="filters" [ngClass]="{'active-filter': activeFilterNum == 0}"  (click)="ApplyFitler(null)"  [attr.data-id]="0">ყველა</div>
                 <div class="filters" [ngClass]="{'active-filter': activeFilterNum == i.id}"  *ngFor="let i of productTypesList" (click)="ApplyFitler(i.id)" >
