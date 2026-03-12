@@ -13,6 +13,7 @@ import { Followers, ShopCard } from '../main/main.component';
 import { AuthorizationService } from '../authorization/authorization.service';
 import { ReloadService } from '../../shared/services/ReloadService';
 import { Subscription } from 'rxjs';
+import { Title } from '@angular/platform-browser';
 
 
 
@@ -51,7 +52,7 @@ export class HomeComponent implements OnInit{
   user:any = null;
   userId:number = 0;
   shopId:number=0;
-  constructor(private postService:PostService,private route: ActivatedRoute, private authService:AuthorizationService,private reloadService:ReloadService){
+  constructor(private postService:PostService,private route: ActivatedRoute, private authService:AuthorizationService,private reloadService:ReloadService,private titleService: Title){
     const user = localStorage.getItem('user');
     if(user){
       this.user =JSON.parse(user);
@@ -82,6 +83,12 @@ export class HomeComponent implements OnInit{
     }
   }
 
+  changeFavoriteicon(iconUrl: string) {
+  const link = document.querySelector('#appFavicon') as HTMLLinkElement;
+  if (link) {
+    link.href = iconUrl;
+  }
+}
   ReloadSub!:Subscription;
   ngOnInit(): void {
     this.ReloadSub= this.reloadService.alert$.subscribe(
@@ -108,7 +115,12 @@ export class HomeComponent implements OnInit{
           tiktok: this.shop.titkok,
           shopPhoto:this.shop.logo,
           shopTitle:this.shop.name,
-        }   
+        } 
+        this.titleService.setTitle(this.shop.name);
+           if(this.shop.logo){
+            console.log('sss')
+             this.changeFavicon(this.shop.logo);  
+           }
         // this.getUsers();    
       },
     });

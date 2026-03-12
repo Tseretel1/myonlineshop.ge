@@ -58,9 +58,9 @@ export class OrderProductComponent implements OnInit{
         this.posts = resp;
         console.log(this.posts)
         this.titleService.setTitle('შეკვეთა : '+this.posts.title);
-        // if(this.posts.photos[0].photoUrl){
-        //   this.changeFavicon(this.posts.photos[0].photoUrl);
-        // }
+        if(this.posts.photos[0].photoUrl){
+          this.changeFavicon(this.posts.photos[0].photoUrl);
+        }
         this.posts.photos.forEach(item => {
           this.photosArray.push(item);
         });
