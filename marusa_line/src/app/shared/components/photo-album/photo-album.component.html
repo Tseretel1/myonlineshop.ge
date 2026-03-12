@@ -30,14 +30,16 @@
 
 <div class="photo-container mobile">
     <div class="information-align"(click)="NavigateToDetails()" >
-        <div class="navigate"  (click)="NavigateToDetails()" *ngIf="PhotoCongif.navigationAvailable"></div>
-        <b class="title" >
+        <div class="navigate"  (click)="NavigateToDetails()" *ngIf="PhotoCongif.navigationAvailable">
+        <b class="titles" >
             {{products.title}}
-        </b>
+           </b>
+        </div>
+   
     </div>
     <app-discount-mark *ngIf="products.discountedPrice!=null&&products.discountedPrice>0 &&PhotoCongif.priceVisible" class="discount-procent" [discount]="products"></app-discount-mark>
   
-    <div class="mobile-router" (click)="NavigateToDetails()" *ngIf="PhotoCongif.navigationAvailable"></div>
+    <!-- <div class="mobile-router" (click)="NavigateToDetails()" *ngIf="PhotoCongif.navigationAvailable"></div> -->
     
     <div class="discount-price-mobile" *ngIf="PhotoCongif.priceVisible" >
         <b [ngClass]="{'discounted-price': products.discountedPrice>0}" >{{products.price}}₾</b>
