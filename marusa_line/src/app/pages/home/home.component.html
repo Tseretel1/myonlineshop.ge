@@ -4,7 +4,7 @@
         <div class="shop-header">
             <div class="shop-title-container">
                 <div class="logo-title-align">
-                    <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 5px;" *ngIf="shop">
                         <div class="shop-logo-container">
                             <img [src]="shop.logo" alt="" class="shop-logo">
                         </div>
@@ -37,16 +37,6 @@
         </div>
     </div>
     <div class="header-container">
-       <!-- <div class="photo-align align-3">
-           <div *ngFor="let p of soldProducts; let index = index;" class="container" [ngClass]="{'hide-album':index==2}">
-               <app-photo-album [products]="p" [PhotoCongif]="PhotoConfig" class="album" ></app-photo-album>
-           </div>
-       </div> -->
-       <!-- <div class="photo-align align-4">
-           <div *ngFor="let p of soldProducts2; let index = index;" class="container" [ngClass]="{'hide-album': index==2}">
-               <app-photo-album [products]="p" [PhotoCongif]="PhotoConfig" class="album" ></app-photo-album>
-           </div>
-       </div> -->
     </div>
     <div class="gallery">
         <app-gallery *ngIf="shopId!=0" [ShopId]="shopId"></app-gallery>

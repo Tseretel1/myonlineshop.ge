@@ -6,7 +6,7 @@
                 მოძებნე ფილტრით
                 <button class="open-filter" [ngClass]="{'active-filter': activeFilterNum == 0}" (click)="showFilterModal()"><i class="fas fa-sliders-h"></i> </button>
             </b> -->
-            <div class="filters-align">
+            <div class="filters-align" *ngIf="productTypesList.length>0">
                 <div class="filters" [ngClass]="{'active-filter': activeFilterNum == 0}"  (click)="ApplyFitler(null)"  [attr.data-id]="0">ყველა</div>
                 <div class="filters" [ngClass]="{'active-filter': activeFilterNum == i.id}"  *ngFor="let i of productTypesList" (click)="ApplyFitler(i.id)" >
                     {{i.productType}}

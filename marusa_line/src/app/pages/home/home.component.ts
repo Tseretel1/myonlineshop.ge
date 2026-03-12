@@ -113,7 +113,12 @@ export class HomeComponent implements OnInit{
       },
     });
   }
-
+changeFavicon(iconUrl: string) {
+  const link = document.querySelector('#appFavicon') as HTMLLinkElement;
+  if (link) {
+    link.href = iconUrl;
+  }
+}
   getShopStats(shopId: number): void {
     this.postService.getShopStats(shopId).subscribe(
      (resp) => {

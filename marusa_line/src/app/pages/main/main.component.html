@@ -5,7 +5,7 @@
                 <div class="top-align scrollable-top" #container>
                     <ng-container  *ngFor="let i of shopList;">
                         <div class="shop-card">
-                            <!-- <div class="shop-card-top">Top <i class="fas fa-star"></i> </div> -->
+                            <div class="shop-card-top">Top <i class="fas fa-star"></i> </div>
                             <div class="shop-header" [routerLink]="AppRoutes.shop+i.id">
                                 <div class="shop-title-container">
                                     <div class="logo-title-align">
@@ -29,8 +29,8 @@
                                                     <img [src]="f.profilePhoto" alt="" class="follower-img">
                                                 </div>
                                                 <div class="followers" style="display: flex; align-items: center; gap:5px; margin-left: 5px; color: grey; flex-wrap: wrap;">
-                                                    <p>Followed by</p> 
-                                                    <p style="max-width: 70px; overflow: hidden;">{{i.lastFollowers[0].userName}}</p>
+                                                    <p style="max-width: 70px; overflow: hidden;">{{i.lastFollowers[0].userName}} </p>
+                                                    <p>and others</p>
                                                 </div>
                                             </div>
                                         </div>
