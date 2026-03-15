@@ -11,7 +11,7 @@ import { GetUserFilteredDto, GetusersDto } from '../pages/home/home.component';
 })
 export class PostService {
   AppUrl= AppUrl;
-  private apiUrl = AppUrl.development;
+  private apiUrl = AppUrl.network;
   constructor(public http : HttpClient)
   {
     

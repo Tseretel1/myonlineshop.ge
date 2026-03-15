@@ -221,4 +221,5 @@ export interface OrderDetailsDto {
   lng: string|null;
   lat: string|null;
   address: string|null;
+  orderNumber:number;
 }
