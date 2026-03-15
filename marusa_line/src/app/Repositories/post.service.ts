@@ -65,10 +65,8 @@ export class PostService {
   }
   getShopStats(shopId:number): Observable<any> {
     return this.http.get<any>(this.apiUrl+`Product/get-shop-stats?shopId=${shopId}`);
-    return this.http.get<any>(this.apiUrl+`Product/get-shop-stats?shopId=${shopId}`);
   }
   getShopById(shopId:number): Observable<any> {
-    return this.http.get<any>(this.apiUrl+`Product/get-shop-by-id?shopId=${shopId}`);
     return this.http.get<any>(this.apiUrl+`Product/get-shop-by-id?shopId=${shopId}`);
   }
   followShop(userid:number,shopId:number): Observable<any> {

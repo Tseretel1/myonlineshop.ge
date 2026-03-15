@@ -118,7 +118,6 @@ export class HomeComponent implements OnInit{
         } 
         this.titleService.setTitle(this.shop.name);
            if(this.shop.logo){
-            console.log('sss')
              this.changeFavicon(this.shop.logo);  
            }
         // this.getUsers();    

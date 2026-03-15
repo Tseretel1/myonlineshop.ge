@@ -23,6 +23,8 @@
                 </div>
             </div>
            <div class="card-information" *ngIf="postsLoaded" >
+                <app-discount-mark *ngIf="posts.discountedPrice!=null&&posts.discountedPrice>0" class="discount-procent" [discount]="posts"></app-discount-mark>
+
                 <div class="header-title">
                      <p class="title" style="width: 100%; display: flex; justify-content: center;">{{posts.title}}</p>     
                 </div> 

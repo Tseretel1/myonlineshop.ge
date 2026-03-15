@@ -61,13 +61,19 @@ export class GalleryComponent implements OnInit {
       }
     )
   }
-  @ViewChild('scrollToStart') scrollToStart!: ElementRef;
+@ViewChild('scrollToStart') scrollToStart!: ElementRef;
 
-  scrollToStartMethod() {
-    this.scrollToStart.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    setTimeout(() => {
-  }, 500);
-  }
+scrollToStartMethod() {
+  const element = this.scrollToStart.nativeElement;
+
+  const yOffset = -80;
+  const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+  window.scrollTo({
+    top: y,
+    behavior: 'smooth'
+  });
+}
 
   getAllPosts() {
     const user = localStorage.getItem('user');
@@ -127,7 +133,6 @@ export class GalleryComponent implements OnInit {
     localStorage.setItem('PageNum','1');
     this.getAllPosts();
     this.hideFilterModal();
-    // this.scrollToStartMethod();
 
     if(this.sortNum==1){
       this.sortByPriceHighToLow()

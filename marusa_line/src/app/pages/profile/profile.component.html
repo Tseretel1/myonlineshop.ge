@@ -51,13 +51,13 @@
                     <div class="stage-oAuth" >
                         <button *ngFor="let i of orderStatuses" class="filter-button" [ngClass]="{'active-filter': sortNum == i.id +5}"(click)="sortByStatus(i.id)">{{i.statusName}}</button>
                     </div> -->
-                    <div class="header"> 
+                    <!-- <div class="header"> 
                         <p>ფასის მიხედვით</p>
                     </div>
                     <div class="stage-oAuth" >
                         <button class="filter-button" [ngClass]="{'active-filter': sortNum == 1}"(click)="sortByPriceHighToLow()">კლებადობით</button>
                         <button class="filter-button" [ngClass]="{'active-filter': sortNum == 2}"(click)="sortByPriceLowToHigh()">ზრდადობით</button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -69,9 +69,10 @@
                         <div class="card-title-align">                         
                             <div class="detail" >
                                 <p> 
-                                    შეკვეთა
+                                    შეკვეთა 
                                     <b>
-                                    {{p.orderId}}
+                                    #
+                                    {{p.orderNumber}}
                                     </b>
                                 </p>
                             </div>
