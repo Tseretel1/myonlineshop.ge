@@ -1,0 +1,88 @@
+<div class="reviews-page">
+  <div class="reviews-container">
+
+    <!-- Summary panel -->
+    <!-- <div class="summary-panel">
+      <div class="summary-score">
+        <span class="score-number">{{ averageRating }}</span>
+        <div class="score-meta">
+          <div class="stars-row">
+            <span
+              *ngFor="let filled of getStars(averageRating)"
+              class="star"
+              [ngClass]="{'star--filled': filled}"
+            >★</span>
+          </div>
+          <span class="score-count">{{ reviews.length }} შეფასება</span>
+        </div>
+      </div>
+
+      <div class="rating-bars">
+        <div
+          class="bar-row"
+          *ngFor="let n of [5,4,3,2,1]"
+          (click)="filterBy(n)"
+          [ngClass]="{'bar-row--active': activeFilter === n}"
+        >
+          <span class="bar-label">{{ n }}</span>
+          <span class="bar-star">★</span>
+          <div class="bar-track">
+            <div class="bar-fill" [style.width.%]="getBarWidth(n)"></div>
+          </div>
+          <span class="bar-count">{{ ratingCounts[n - 1] }}</span>
+        </div>
+      </div>
+
+      <button
+        class="filter-clear"
+        *ngIf="activeFilter !== 0"
+        (click)="filterBy(0)"
+      >
+        ყველა ნახვა
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div> -->
+
+    <!-- Reviews list -->
+    <div class="reviews-list">
+
+      <div class="list-header">
+        <span class="list-title">
+          {{ activeFilter === 0 ? 'ყველა შეფასება' : activeFilter + ' ★ შეფასება' }}
+        </span>
+        <span class="list-showing">{{ filteredReviews.length }} / {{ reviews.length }}</span>
+      </div>
+
+      <div class="review-card" *ngFor="let r of filteredReviews">
+        <div class="review-header">
+          <div class="avatar">{{ r.avatar }}</div>
+          <div class="review-meta">
+            <div class="reviewer-name">
+              {{ r.name }}
+              <span class="verified-badge" *ngIf="r.verified">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                დადასტურებული
+              </span>
+            </div>
+            <div class="review-date">{{ formatDate(r.date) }}</div>
+          </div>
+          <div class="review-stars">
+            <span
+              *ngFor="let filled of getStars(r.rating)"
+              class="star star--sm"
+              [ngClass]="{'star--filled': filled}"
+            >★</span>
+          </div>
+        </div>
+        <p class="review-comment">{{ r.comment }}</p>
+      </div>
+
+      <div class="empty-state" *ngIf="filteredReviews.length === 0">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <p>ამ რეიტინგით შეფასება არ მოიძებნა</p>
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -9,9 +9,10 @@ import { Conditional } from '@angular/compiler';
 import { AuthorizationService } from '../authorization/authorization.service';
 import Swal from 'sweetalert2';
 import { AppRoutes } from '../../shared/AppRoutes/AppRoutes';
+import { ReviewsComponent } from "./reviews/reviews.component";
 @Component({
   selector: 'app-card-details',
-  imports: [CommonModule, DiscountMarkComponent],
+  imports: [CommonModule, DiscountMarkComponent, ReviewsComponent],
   templateUrl: './card-details.component.html',
   styleUrl: './card-details.component.scss'
 })

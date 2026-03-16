@@ -1,3 +1,4 @@
+
 <div class="center-component" >
     <div class="component">
         <div class="header-grid">
@@ -22,6 +23,7 @@
                     </div>
                 </div>
             </div>
+
            <div class="card-information" *ngIf="postsLoaded" >
                 <app-discount-mark *ngIf="posts.discountedPrice!=null&&posts.discountedPrice>0" class="discount-procent" [discount]="posts"></app-discount-mark>
 
@@ -62,8 +64,10 @@
                 </div>
             </div>
          </div>
+        </div>
+        
     </div>
-</div>
+    <app-reviews></app-reviews>
 
 <div class="big-photo-container" *ngIf="bigPhotoVisible">
     <div class="whole-screen-img">

@@ -29,15 +29,15 @@
 </div>
 
 <div class="photo-container mobile">
-    <div class="information-align"(click)="NavigateToDetails()" >
-        <div class="navigate"  (click)="NavigateToDetails()" *ngIf="PhotoCongif.navigationAvailable">
+    <div class="information-align"(click)="NavigateToDetails()" *ngIf="PhotoCongif.navigationAvailable">
+        <div class="navigate"  (click)="NavigateToDetails()" >
         <b class="titles" >
             {{products.title}}
            </b>
         </div>
    
     </div>
-    <app-discount-mark *ngIf="products.discountedPrice!=null&&products.discountedPrice>0 &&PhotoCongif.priceVisible" class="discount-procent" [discount]="products"></app-discount-mark>
+    <app-discount-mark *ngIf="products.discountedPrice!=null&&products.discountedPrice>0 &&PhotoCongif.priceVisible " class="discount-procent" [discount]="products"></app-discount-mark>
   
     <!-- <div class="mobile-router" (click)="NavigateToDetails()" *ngIf="PhotoCongif.navigationAvailable"></div> -->
     
