@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../../../Repositories/post.service';
+import { AuthorizationService } from '../../authorization/authorization.service';
+import { Subscription } from 'rxjs';
 
 export interface Review {
   id: number;
@@ -44,9 +46,11 @@ export class ReviewsComponent implements OnInit {
 
   constructor(
     private postservice: PostService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService:AuthorizationService,
   ) {}
-
+ 
+  AuthSub!:Subscription;
   productId: number = 0;
   reviews: Review[] = [];
   currentUser: LocalUser | null = null;
@@ -71,6 +75,19 @@ export class ReviewsComponent implements OnInit {
       this.productId = +params['id'];
       this.loadReviews();
     });
+    this.AuthSub = this.authService.authorized$.subscribe(
+      (isVisible) => {
+        if(isVisible){
+           const raw = localStorage.getItem('user');
+          if (raw) {
+            try { this.currentUser = JSON.parse(raw); } catch {}
+          }
+        }
+        else{
+          this.currentUser= null;
+        }
+      }
+    );
   }
 
   loadReviews(): void {

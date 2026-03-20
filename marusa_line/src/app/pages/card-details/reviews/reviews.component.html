@@ -1,16 +1,16 @@
 <div class="reviews-page">
   <div class="reviews-container">
     <div>
-      <p style="font-size: 20px;">შეფასებები <b >{{reviews.length}}</b> </p>
+      <p style="font-size: 20px; padding: 20px 0px;">შეფასებები <b >{{reviews.length}}</b> </p>
     </div> 
     <!-- Write Review Section -->
-    <div class="write-section" *ngIf="currentUser" style="margin-top: 10px;">
-      <div class="user-row">
+    <div class="write-section" *ngIf="currentUser" >
+      <div class="user-row" style="flex-wrap: wrap;">
         <img class="user-avatar" [src]="currentUser.Picture" [alt]="currentUser.Name" />
         <div class="user-info">
           <span class="user-name">{{ currentUser.Name }}</span>
         </div>
-        <button class="add-btn" (click)="toggleForm()" *ngIf="!showForm">
+        <button class="add-btn" style="width: 100%;" (click)="toggleForm()" *ngIf="!showForm">
           დაამატე შეფასება <span style="color: orange;">★</span>
         </button>
       </div>
