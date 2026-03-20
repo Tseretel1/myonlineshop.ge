@@ -1,179 +1,174 @@
-// ─── Tokens ───────────────────────────────────────────────────────────────────
-$bg-base:       #0d0d0f;
+// ─── Tokens (keep in sync with your existing tokens) ─────────────────────────
 $bg-surface:    #131317;
 $bg-card:       #1a1a20;
 $border-dim:    rgba(255,255,255,0.07);
 $border-mid:    rgba(255,255,255,0.12);
-$border-accent: rgba(139,92,246,0.45);
+$border-accent: rgba(139,92,246,0.35);
 
 $accent:        #8b5cf6;
 $accent-light:  #a78bfa;
-$accent-glow:   rgba(139,92,246,0.15);
+$accent-glow:   rgba(139,92,246,0.12);
 
 $text-primary:  #f0eef8;
 $text-secondary:#9490a8;
 $text-muted:    #4f4d5c;
 
+$star-on:       #f59e0b;
+$star-off:      #2e2d38;
 $success:       #22c55e;
-$star-color:    #f59e0b;
+$error:         #ef4444;
 
 $radius-sm:     6px;
 $radius-md:     10px;
 $radius-lg:     16px;
-$radius-xl:     22px;
+$font:          'DM Sans', system-ui, sans-serif;
 
-$font:          'DM Sans', 'SF Pro Display', system-ui, sans-serif;
-
-// ─── Base ─────────────────────────────────────────────────────────────────────
 * { box-sizing: border-box; }
 
+// ─── Page shell ───────────────────────────────────────────────────────────────
 .reviews-page {
-  min-height: 100vh;
-//   background: $bg-base;
-background: linear-gradient(180deg, rgba(0, 0, 0, 0.233) ,black );
-backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: center;
-  padding: 48px 20px 80px;
+  padding: 32px 0;
   font-family: $font;
   color: $text-primary;
+  // box-shadow: 0px 5px 10px black inset;
+  backdrop-filter: blur(20px);
+  background: linear-gradient(180deg,rgba(34, 33, 33, 0.747),transparent);
 }
 
 .reviews-container {
-  display: grid;
-  gap: 24px;
-  width: 100%;
-  max-width: 960px;
-  align-items: start;
-}
-
-// ─── Summary panel ────────────────────────────────────────────────────────────
-.summary-panel {
-  position: sticky;
-  top: 32px;
-  background: $bg-surface;
-  border: 1px solid $border-dim;
-  border-radius: $radius-xl;
-  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  animation: fadeUp 0.35s ease both;
+  gap: 0;
+  width: 90%;
+  max-width: 680px;
+  margin: 0 auto;
 }
 
-.summary-score {
+// ─── Write section ────────────────────────────────────────────────────────────
+.write-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  background: $bg-card;
+  border: 1px solid $border-dim;
+  border-radius: $radius-lg;
+  animation: fadeUp 0.25s ease both;
+}
+
+.user-row {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 
-.score-number {
-  font-size: 52px;
-  font-weight: 800;
-  color: $text-primary;
-  letter-spacing: -0.04em;
-  line-height: 1;
+.user-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid $border-mid;
+  flex-shrink: 0;
 }
 
-.score-meta {
+.user-info {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 5px;
-}
-
-.stars-row {
-  display: flex;
   gap: 2px;
 }
 
-.star {
-  font-size: 18px;
-  color: $text-muted;
-  line-height: 1;
-
-  &--sm { font-size: 14px; }
-  &--filled { color: $star-color; }
+.user-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: $text-primary;
 }
 
-.score-count {
+.user-sub {
   font-size: 12px;
-  color: $text-secondary;
-  font-weight: 500;
+  color: $text-muted;
 }
 
-// ─── Rating bars ──────────────────────────────────────────────────────────────
-.rating-bars {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.bar-row {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  cursor: pointer;
+.add-btn {
+  padding: 7px 14px;
   border-radius: $radius-sm;
-  padding: 4px 6px;
-  margin: 0 -6px;
-  transition: background 0.15s;
+  border: 1px solid $border-accent;
+  background: $accent-glow;
+  color: $accent-light;
+  font-family: $font;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  white-space: nowrap;
 
-  &:hover { background: rgba(255,255,255,0.04); }
-
-  &--active {
-    background: $accent-glow;
-    .bar-fill { background: $accent; }
-    .bar-label, .bar-star { color: $accent-light; }
+  &:hover {
+    background: rgba(139,92,246,0.22);
+    border-color: $accent;
+    color: #fff;
   }
 }
 
-.bar-label {
-  font-size: 12px;
-  font-weight: 600;
-  color: $text-secondary;
-  width: 10px;
-  text-align: right;
-  flex-shrink: 0;
-}
-
-.bar-star {
-  font-size: 12px;
-  color: $star-color;
-  flex-shrink: 0;
-}
-
-.bar-track {
-  flex: 1;
-  height: 6px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 99px;
-  overflow: hidden;
-}
-
-.bar-fill {
-  height: 100%;
-  background: $star-color;
-  border-radius: 99px;
-  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.bar-count {
-  font-size: 12px;
-  color: $text-muted;
-  width: 14px;
-  text-align: right;
-  flex-shrink: 0;
-}
-
-// ─── Filter clear ─────────────────────────────────────────────────────────────
-.filter-clear {
+// ─── Inline form ──────────────────────────────────────────────────────────────
+.inline-form {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 14px;
+  animation: fadeUp 0.2s ease both;
+}
+
+// ─── Star input ───────────────────────────────────────────────────────────────
+.stars-input {
+  display: flex;
   gap: 6px;
+}
+
+.star-input {
+  font-size: 30px;
+  line-height: 1;
+  color: white;
+  cursor: pointer;
+  transition: color 0.1s, transform 0.1s;
+  user-select: none;
+
+  &.active {
+    color: $star-on;
+  }
+
+  &:hover {
+    transform: scale(1.18);
+  }
+}
+
+// ─── Comment textarea ─────────────────────────────────────────────────────────
+.comment-input {
   width: 100%;
-  padding: 9px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid $border-mid;
   border-radius: $radius-md;
+  color: $text-primary;
+  font-family: $font;
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 10px 13px;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s;
+
+  &::placeholder { color: $text-muted; }
+  &:focus { border-color: $border-accent; }
+}
+
+// ─── Form actions ─────────────────────────────────────────────────────────────
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cancel-btn {
+  padding: 8px 16px;
+  border-radius: $radius-sm;
   border: 1px solid $border-mid;
   background: transparent;
   color: $text-secondary;
@@ -181,14 +176,68 @@ backdrop-filter: blur(10px);
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.18s;
-  animation: fadeUp 0.2s ease;
+  transition: all 0.15s;
 
   &:hover {
-    border-color: rgba(239,68,68,0.4);
-    color: #ef4444;
-    background: rgba(239,68,68,0.07);
+    border-color: rgba($error, 0.4);
+    color: $error;
+    background: rgba($error, 0.06);
   }
+}
+
+.submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 90px;
+  padding: 8px 20px;
+  border-radius: $radius-sm;
+  border: none;
+  background: $accent;
+  color: #fff;
+  font-family: $font;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+
+  &:hover:not(:disabled) { background: $accent-light; }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+// ─── Feedback ─────────────────────────────────────────────────────────────────
+.form-success {
+  font-size: 13px;
+  font-weight: 500;
+  color: $success;
+}
+
+.form-error {
+  font-size: 13px;
+  font-weight: 500;
+  color: $error;
+}
+
+// ─── Divider ──────────────────────────────────────────────────────────────────
+.divider {
+  height: 1px;
+  background: $border-dim;
+  margin: 24px 0;
 }
 
 // ─── Reviews list ─────────────────────────────────────────────────────────────
@@ -196,66 +245,37 @@ backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
   gap: 12px;
-  animation: fadeUp 0.35s ease 0.06s both;
-  width: 100%;
 }
 
-.list-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 4px;
-  margin-bottom: 4px;
-}
-
-.list-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: $text-secondary;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.list-showing {
-  font-size: 12px;
-  color: $text-muted;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid $border-dim;
-  border-radius: $radius-sm;
-  padding: 2px 8px;
-}
-
-// ─── Review card ──────────────────────────────────────────────────────────────
 .review-card {
-  background: $bg-surface;
-  border: 1px solid $border-dim;
-  border-radius: $radius-lg;
-  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  transition: border-color 0.2s;
-  animation: fadeUp 0.3s ease both;
+  gap: 8px;
+  padding: 16px 20px;
+  background: $bg-card;
+  border: 1px solid $border-dim;
+  border-radius: $radius-lg;
+  transition: border-color 0.15s;
 
   &:hover { border-color: $border-mid; }
 }
 
 .review-header {
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
+  align-items: center;
+  gap: 10px;
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: $accent-glow;
   border: 1px solid $border-accent;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   color: $accent-light;
   letter-spacing: 0.03em;
@@ -263,96 +283,54 @@ backdrop-filter: blur(10px);
 }
 
 .review-meta {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
 }
 
 .reviewer-name {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   color: $text-primary;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.verified-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 11px;
-  font-weight: 500;
-  color: $success;
-  background: rgba($success, 0.1);
-  border: 1px solid rgba($success, 0.2);
-  border-radius: 4px;
-  padding: 1px 7px;
-
-  svg { flex-shrink: 0; }
-}
-
-.review-date {
-  font-size: 12px;
-  color: $text-muted;
 }
 
 .review-stars {
   display: flex;
   gap: 2px;
-  flex-shrink: 0;
+}
+
+.star-display {
+  font-size: 13px;
+  color: white;
+
+  &.filled { color: $star-on; }
 }
 
 .review-comment {
   margin: 0;
   font-size: 14px;
-  color: white;
-  line-height: 1.7;
+  color: $text-secondary;
+  line-height: 1.65;
+  padding-left: 44px; // aligns under name, past avatar
 }
 
-// ─── Empty state ──────────────────────────────────────────────────────────────
-.empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 48px 20px;
+// ─── No reviews ───────────────────────────────────────────────────────────────
+.no-reviews {
+  margin: 0;
+  font-size: 14px;
   color: $text-muted;
-  background: $bg-surface;
-  border: 1px solid $border-dim;
-  border-radius: $radius-lg;
-
-  p { margin: 0; font-size: 14px; }
+  padding: 8px 4px;
 }
 
 // ─── Animation ────────────────────────────────────────────────────────────────
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 // ─── Responsive ───────────────────────────────────────────────────────────────
-@media (max-width: 860px) {
-  .reviews-container {
-    grid-template-columns: 1fr;
-    max-width: 600px;
-  }
-  .summary-panel {
-    position: static;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .summary-score { flex: 1; min-width: 140px; }
-  .rating-bars   { flex: 2; min-width: 200px; }
-}
-
 @media (max-width: 560px) {
-  .reviews-page { padding: 20px 14px 60px; }
-  .summary-panel { flex-direction: column; }
+  .reviews-page { padding: 16px 0; }
+  .star-input { font-size: 26px; }
   .review-comment { padding-left: 0; }
-  .score-number { font-size: 42px; }
 }

@@ -6,6 +6,7 @@ import { AppUrl } from '../shared/Url/Appurl';
 import { orderPostObj } from '../pages/order-product/order-product.component';
 import { GetPostsDto } from '../pages/gallery/gallery.component';
 import { GetUserFilteredDto, GetusersDto } from '../pages/home/home.component';
+import { InsertReview, ReviewDto } from '../pages/card-details/reviews/reviews.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -74,6 +75,17 @@ export class PostService {
   }
   GetFollowersList(filter:GetUserFilteredDto): Observable<GetusersDto[]> {
     return this.http.post<GetusersDto[]>(this.apiUrl+`ControlPanel/get-shop-followers`,filter);
+  }
+
+
+
+
+  //Reviews
+  InsertReviews(review:InsertReview): Observable<any> {
+    return this.http.post<any>(this.apiUrl+`Review/insert-reviews`,review);
+  }
+  GetReviews(productId:number): Observable<ReviewDto[]> {
+    return this.http.get<ReviewDto[]>(this.apiUrl+`Review/get-reviews?productId=${productId}`,);
   }
 }
 export interface Photo {
