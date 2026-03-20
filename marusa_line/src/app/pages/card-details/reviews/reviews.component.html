@@ -17,19 +17,20 @@
 
       <!-- Inline form -->
       <div class="inline-form" *ngIf="showForm">
-        <div class="stars-input" (mouseleave)="clearHover()">
+        <div class="stars-input" (mouseleave)="clearHover()" style="align-items: center;">
           <span
             *ngFor="let n of [1,2,3,4,5]"
             class="star-input"
             [class.active]="n <= (hoveredStar || newRate)"
             (mouseenter)="hoveredStar = n"
             (click)="newRate = n"
-          >★</span>
+          >★</span> {{newRate}}
+          <span>/5</span>
         </div>
 
-        <p style="font-size: 16px; color: grey;">დატოვე კომენტარი</p>
         <textarea
           class="comment-input" style="color: white;"
+          placeholder="კომენტარი ... "
           [(ngModel)]="newComment"
           rows="3"
         ></textarea>
@@ -55,7 +56,9 @@
     <div class="reviews-list" *ngIf="reviews.length > 0">
       <div class="review-card" *ngFor="let r of reviews">
         <div class="review-header">
-          <div class="avatar">{{ r.avatar }}</div>
+          <div class="avatar" style="display: flex; justify-content: center; align-items: center; border-radius: 50%; overflow: hidden;">
+            <img style="width: 100%; height: 100%; object-fit: cover;" [src]="r.avatar" alt="">
+          </div>
           <div class="review-meta">
             <span class="reviewer-name">{{ r.name }}</span>
             <div class="review-stars">

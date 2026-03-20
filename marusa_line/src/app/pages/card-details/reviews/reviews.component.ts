@@ -90,7 +90,7 @@ export class ReviewsComponent implements OnInit {
       return {
         id: dto.id,
         name: dto.name,
-        avatar: initials,
+        avatar: dto.photo,
         rating: dto.rate,
         comment: dto.comment ?? ''
       };

@@ -28,7 +28,7 @@ export class AuthorizationComponent implements OnInit{
     });
   }
   ngOnInit(): void {
-  this.insertautomaticaly();
+  // this.insertautomaticaly();
   }
   hideModalExecute:boolean = false;
   closeModal(){
