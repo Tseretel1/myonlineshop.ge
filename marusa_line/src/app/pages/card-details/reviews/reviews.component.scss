@@ -92,9 +92,9 @@ $font:          'DM Sans', system-ui, sans-serif;
 .add-btn {
   padding: 7px 14px;
   border-radius: $radius-sm;
-  border: 1px solid $border-accent;
-  background: $accent-glow;
-  color: $accent-light;
+  border: 1px solid green;
+  background: green;
+  color: white;
   font-family: $font;
   font-size: 13px;
   font-weight: 600;
@@ -103,9 +103,9 @@ $font:          'DM Sans', system-ui, sans-serif;
   white-space: nowrap;
 
   &:hover {
-    background: rgba(139,92,246,0.22);
-    border-color: $accent;
-    color: #fff;
+    background: greenyellow;
+    border-color: greenyellow;
+    color: black;
   }
 }
 

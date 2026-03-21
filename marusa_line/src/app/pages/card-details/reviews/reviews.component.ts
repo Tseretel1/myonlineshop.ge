@@ -154,10 +154,8 @@ export class ReviewsComponent implements OnInit {
         this.newRate = 0;
         this.newComment = '';
         this.loadReviews();
-        setTimeout(() => {
-          this.showForm = false;
-          this.submitSuccess = false;
-        }, 1800);
+        this.showForm = false;
+        this.submitSuccess = false;
       },
       error: () => {
         this.isSubmitting = false;

@@ -24,7 +24,7 @@ export class GalleryComponent implements OnInit {
   @Input() ShopId!:number;
   getPosts:GetPostsDto={
     pageNumber : 1,
-    pageSize: 10,
+    pageSize: 20,
     userId: 0,
     productTypeId :null,
     shopId : 0

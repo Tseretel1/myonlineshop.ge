@@ -63,7 +63,8 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
   flex-direction: column;
   gap: 18px;
   transition: border-color 0.2s;
-
+  background-color: rgba(0, 0, 0, 0.486);
+  border: 1px solid rgba(128, 128, 128, 0.267);
   &:focus-within {
     border-color: $border-accent;
   }
@@ -130,6 +131,8 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
   width: 100%;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: rgba(0, 0, 0, 0.158);
+  border: 1px solid rgba(128, 128, 128, 0.267);
 
   &::placeholder { color: $text-muted; }
 
@@ -268,6 +271,8 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.486);
+  border: 1px solid rgba(128, 128, 128, 0.267);
 }
 
 .product-image-wrap {
