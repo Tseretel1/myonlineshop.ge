@@ -440,6 +440,9 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
 .product-card { animation: fadeUp 0.35s ease 0.08s both; }
 .order-cta    { animation: fadeUp 0.35s ease 0.14s both; }
 
+.coment-mobile{
+  display: none;
+}
 // ─── Responsive ───────────────────────────────────────────────────────────────
 @media (max-width: 860px) {
   .order-container {
@@ -456,6 +459,12 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
     width: 180px;
     flex-shrink: 0;
     aspect-ratio: unset;
+  }
+  .coment-mobile{
+     display: flex;
+  }
+  .coment-desktop{
+    display: none;
   }
   .product-meta { justify-content: center; }
 }

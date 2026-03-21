@@ -304,72 +304,101 @@ changeFavicon(iconUrl: string) {
 
 
   orderObj!:orderPostObj;
-  insertOrder(){
-    if(this.posts.orderNotAllowed&& this.posts.quantity<=0){
-        Swal.fire({
-          text: 'დროებით ამ პროდუქტის შეკვეთა შეზღუდულია',
-          icon:'error',
-          showCancelButton: false,
-          showConfirmButton:false,
-          background:'rgb(25, 26, 25)',
-          color: '#ffffff',       
-          customClass: {
-            popup: 'custom-swal-popup',
-          },
-          timer:5000,
-      });
-      return;
-    }
-    this.getMapLocation();
-    if(this.validateFields()){
-      let lng= '';
-      let lat= '';
-      let address= '';
-      if(this.locationOrMap){
-        lng = this.location.lng;
-        lat = this.location.lat;
-      }
-      else{
-        address = this.address;
-      }
-      const shopId = localStorage.getItem('shopId') 
-        this.orderObj= {
-          userId:this.userId,
-          productId : this.productId,
-          productQuantity : this.productQuantity,
-          deliveryType : this.deliveryString, 
-          comment :this.comment,
-          finalPrice : this.productPrice,
-          lng:lng,
-          lat:lat,
-          address:address,
-          shopId : Number(shopId),
-      }
-      if(!this.locationOrMap){
-        this.insertLocation();
-      }
-      this.postService.insertOrder(this.orderObj).subscribe(
-        (resp)=>{
-          if(resp!=null){
-            Swal.fire({
-                text: 'შეკვეთა მიღებულია!',
-                icon:'success',
-                showCancelButton: false,
-                showConfirmButton:false,
-                confirmButtonText: 'კი',
-                cancelButtonText: 'არა',
-                background:'rgb(25, 26, 25)',
-                color: '#ffffff',       
-                customClass: {
-                  popup: 'custom-swal-popup',
-                },
-                timer:3000,
-            }),
-            this.router.navigate([AppRoutes.order_details + resp])
-          }
-      })
-    }
+  isSubmitting:boolean = false;
+
+  insertOrder() {
+
+  if (this.isSubmitting) return;
+
+  if (this.posts.orderNotAllowed && this.posts.quantity <= 0) {
+    Swal.fire({
+      text: 'პროდუქტი მარაგში არაა',
+      icon: 'error',
+      showConfirmButton: false,
+      background: 'rgb(25, 26, 25)',
+      color: '#ffffff',
+      timer: 5000,
+    });
+    return;
   }
+
+  this.getMapLocation();
+
+  if (this.validateFields()) {
+
+    this.isSubmitting = true;
+
+    let lng = '';
+    let lat = '';
+    let address = '';
+
+    if (this.locationOrMap) {
+      lng = this.location.lng;
+      lat = this.location.lat;
+    } else {
+      address = this.address;
+    }
+
+    const shopId = localStorage.getItem('shopId');
+
+    this.orderObj = {
+      userId: this.userId,
+      productId: this.productId,
+      productQuantity: this.productQuantity,
+      deliveryType: this.deliveryString,
+      comment: this.comment,
+      finalPrice: this.productPrice,
+      lng: lng,
+      lat: lat,
+      address: address,
+      shopId: Number(shopId),
+    };
+
+    if (!this.locationOrMap) {
+      this.insertLocation();
+    }
+
+    this.postService.insertOrder(this.orderObj).subscribe({
+      next: (resp) => {
+        this.isSubmitting = false;
+
+        if (resp!=null) {
+          Swal.fire({
+            text: 'შეკვეთა მიღებულია!',
+            icon: 'success',
+            showConfirmButton: false,
+            background: 'rgb(25, 26, 25)',
+            color: '#ffffff',
+            timer: 3000,
+          });
+
+          this.router.navigate([AppRoutes.order_details + resp]);
+        }
+      },
+      error: (err) => {
+        this.isSubmitting = false; 
+        if (err.error?.message === 'Product is no longer available') {
+          this.posts.quantity = 0;
+          Swal.fire({
+            text: 'სამწუხაროდ მარაგი ამოიწურა!',
+            icon: 'error',
+            background: 'rgb(25, 26, 25)',
+            color: '#ffffff',
+            timer: 3000,
+          });
+        } else {
+          Swal.fire({
+            text: 'დაფიქსირდა შეცდომა',
+            icon: 'error',
+            timer: 3000,  
+            background: 'rgb(25, 26, 25)',
+            color: '#ffffff',
+          });
+        }
+      }
+    });
+  }
+}
   location : Lnglat = {
     lng:'',
     lat:''
