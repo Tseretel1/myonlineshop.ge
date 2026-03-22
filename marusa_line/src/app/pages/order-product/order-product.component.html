@@ -97,7 +97,7 @@
 
         <div class="product-meta">
           <!-- Quantity control -->
-            <div class="qty-row">
+            <div class="qty-row" *ngIf="posts.orderNotAllowed && posts.quantity>=0">
             <span class="qty-label" style="color: white;">მარაგში</span>
             <div class="qty-controls">
               <span class="qty-value">{{ posts.quantity }}</span>
