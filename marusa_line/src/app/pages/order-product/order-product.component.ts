@@ -76,6 +76,13 @@ export class OrderProductComponent implements OnInit{
           this.oldProductPrice = this.productPrice;
           this.oneProductPrice = this.productPrice;
         }
+        
+        const shopIdLocal = localStorage.getItem('shopId');
+        if(shopIdLocal==null){
+          const shopId = this.posts.shopId;
+          localStorage.setItem('shopId',shopId.toString());
+          this.reloadService.reload();
+        }
       }
     );
   }
@@ -377,7 +384,7 @@ changeFavicon(iconUrl: string) {
       },
       error: (err) => {
         this.isSubmitting = false; 
-        if (err.error?.message === 'Product is no longer available') {
+        if (err.error?.quantity === 0) {
           this.posts.quantity = 0;
           Swal.fire({
             text: 'სამწუხაროდ მარაგი ამოიწურა!',
@@ -386,7 +393,17 @@ changeFavicon(iconUrl: string) {
             color: '#ffffff',
             timer: 3000,
           });
-        } else {
+        }
+        else  if (err.error?.blocked == true) {
+          Swal.fire({
+            text: 'დროებით პროდუქტის შეძენა შეზღუდულია!',
+            icon: 'error',
+            background: 'rgb(25, 26, 25)',
+            color: '#ffffff',
+            timer: 3000,
+          });
+        } 
+        else {
           Swal.fire({
             text: 'დაფიქსირდა შეცდომა',
             icon: 'error',

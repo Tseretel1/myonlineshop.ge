@@ -10,6 +10,7 @@ import { AuthorizationService } from '../authorization/authorization.service';
 import Swal from 'sweetalert2';
 import { AppRoutes } from '../../shared/AppRoutes/AppRoutes';
 import { ReviewsComponent } from "./reviews/reviews.component";
+import { ReloadService } from '../../shared/services/ReloadService';
 @Component({
   selector: 'app-card-details',
   imports: [CommonModule, DiscountMarkComponent, ReviewsComponent],
@@ -25,7 +26,7 @@ export class CardDetailsComponent implements OnInit{
 
   user:any = null;
   userId:number = 0;
-  constructor(private postService:PostService, private route :ActivatedRoute,private authServise:AuthorizationService,private Router:Router){
+  constructor(private postService:PostService, private route :ActivatedRoute,private authServise:AuthorizationService,private Router:Router,private reloadService:ReloadService){
     const id = this.route.snapshot.paramMap.get('id');
     this.productId = Number(id);
     const user = localStorage.getItem('user');
@@ -41,6 +42,12 @@ export class CardDetailsComponent implements OnInit{
         });
         if(this.posts.discountedPrice!=null&& this.posts.discountedPrice>0){
           this.calculatediscountProcentage();
+        }
+        const shopIdLocal = localStorage.getItem('shopId');
+        if(shopIdLocal==null){
+            const shopId = this.posts.shopId;
+            localStorage.setItem('shopId',shopId.toString());
+            this.reloadService.reload();
         }
         this.postsLoaded = true;
       }

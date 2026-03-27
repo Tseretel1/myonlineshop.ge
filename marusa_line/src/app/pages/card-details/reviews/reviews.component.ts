@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../../../Repositories/post.service';
 import { AuthorizationService } from '../../authorization/authorization.service';
 import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 
 export interface Review {
   id: number;
@@ -157,9 +158,18 @@ export class ReviewsComponent implements OnInit {
         this.showForm = false;
         this.submitSuccess = false;
       },
-      error: () => {
+      error: (err) => {
         this.isSubmitting = false;
         this.submitError = true;
+          if (err.error?.blocked == true) {
+            Swal.fire({
+              text: 'დროებით შეფასების დაწერა შეზღუდულია!',
+              icon: 'error',
+              background: 'rgb(25, 26, 25)',
+              color: '#ffffff',
+              timer: 3000,
+            });
+          } 
       }
     });
   }

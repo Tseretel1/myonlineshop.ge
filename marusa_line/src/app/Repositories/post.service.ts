@@ -113,6 +113,7 @@ export interface Post {
   isLiked:boolean;  
   quantity:number; 
   orderNotAllowed:boolean;   
+  shopId:number;   
   photos: Photo[];
 }
 export interface ProductTypes{
