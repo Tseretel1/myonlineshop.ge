@@ -114,6 +114,7 @@ export interface Post {
   quantity:number; 
   orderNotAllowed:boolean;   
   shopId:number;   
+  mobileNumber:string;   
   photos: Photo[];
 }
 export interface ProductTypes{

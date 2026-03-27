@@ -56,7 +56,6 @@ export class OrderProductComponent implements OnInit{
     this.postService.getPostWithId(this.productId,this.userId).subscribe(
       (resp)=>{
         this.posts = resp;
-        console.log(this.posts)
         this.titleService.setTitle('შეკვეთა : '+this.posts.title);
         if(this.posts.photos[0].photoUrl){
           this.changeFavicon(this.posts.photos[0].photoUrl);
@@ -359,12 +358,13 @@ changeFavicon(iconUrl: string) {
       lat: lat,
       address: address,
       shopId: Number(shopId),
+      mobileNumber: this.posts.mobileNumber,
     };
 
     if (!this.locationOrMap) {
       this.insertLocation();
     }
-
+    console.log(this.orderObj)
     this.postService.insertOrder(this.orderObj).subscribe({
       next: (resp) => {
         this.isSubmitting = false;
@@ -451,6 +451,7 @@ export interface orderPostObj{
   lng: string|null;
   lat: string|null;
   address: string|null;
+  mobileNumber:string;
 }
  interface Photo {
   Id?: number;
