@@ -99,13 +99,13 @@
               display: flex;
               align-items: center;
               .followers-container {
-                  width: 20px;
-                  height: 20px;
+                  width: 25px;
+                  height: 25px;
                   border-radius: 50%;
                   overflow: hidden;
-                  border: 1px solid grey; 
                   margin-left: -9px; 
-
+                  border: 1px solid transparent;
+                  background: linear-gradient(#fff, #fff) padding-box, linear-gradient(45deg, #ffeb3b 18%, #ff0065, #f900ff) border-box;
                   &:first-child {
                   margin-left: 0;
                   }
@@ -123,6 +123,7 @@
                 gap: 5px;
                 color: white;
                 font-size: 14px;
+                
                 p{
                     text-wrap: nowrap;
                 }
