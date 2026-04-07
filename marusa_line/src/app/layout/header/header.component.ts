@@ -103,7 +103,7 @@ export class HeaderComponent implements OnInit{
   loadShop(shopId: number): void {
     this.postService.getShopById(shopId).subscribe({
       next: (data: any) => {
-        this.shop = data.shop ; 
+        this.shop = data.shop; 
       },
     });
   }

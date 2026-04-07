@@ -69,7 +69,6 @@ export class ProfileComponent implements OnInit{
     return this.postService.getUserOrders(this.userId).subscribe(
       (resp)=>{
         this.MyOrders = resp;
-        console.log(resp);
       }
     );
   }
@@ -196,6 +195,7 @@ export interface OrderProduct {
   orderNumber:number;
   likeCount: number;
   isLiked: boolean;
-
+  shopId:number;   
+  mobileNumber:string;   
   photos: Photo[];
 }

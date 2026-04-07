@@ -9,7 +9,6 @@ import { GalleryComponent } from '../gallery/gallery.component';
 import { ActivatedRoute } from '@angular/router';
 import { escapeRegExp } from '@angular/compiler';
 import { Footer, FooterComponent } from '../../layout/footer/footer.component';
-import { Followers, ShopCard } from '../main/main.component';
 import { AuthorizationService } from '../authorization/authorization.service';
 import { ReloadService } from '../../shared/services/ReloadService';
 import { Subscription } from 'rxjs';
@@ -27,20 +26,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class HomeComponent implements OnInit{
 
-  shop: Shop = {
-    id: 0,
-    name: '',
-    logo: null,
-    location: null,
-    gmail: '',
-    subscription: 0,
-    instagram: null,
-    facebook: null,
-    titkok: null,
-    bog: null,
-    tbc: null,
-    receiver: null,
-  };
+  shop!: Shop;
 
   shopStats: ShopStats={
     productCount :'',
@@ -68,6 +54,7 @@ export class HomeComponent implements OnInit{
     if(shopId){
       localStorage.setItem('shopId',shopId);
       this.shopId = Number(shopId);
+      this.shop = {}as Shop;
       this.loadShop(this.shopId);
       this.getShopStats(this.shopId);
       this.reloadService.reload();
@@ -120,7 +107,6 @@ export class HomeComponent implements OnInit{
            if(this.shop.logo){
              this.changeFavicon(this.shop.logo);  
            }
-        // this.getUsers();    
       },
     });
   }
@@ -133,7 +119,8 @@ changeFavicon(iconUrl: string) {
   getShopStats(shopId: number): void {
     this.postService.getShopStats(shopId).subscribe(
      (resp) => {
-        this.shopStats = resp;
+        this.shopStats = resp.shopStats;
+        this.followers = resp.shopFollowers.follower;
       },
     );
   }
@@ -175,14 +162,7 @@ changeFavicon(iconUrl: string) {
     pageSize:3,
   }
 
-  users:GetusersDto[]= [];
-  getUsers(){
-    this.getuserFitler.shopId = this.shopId;
-    this.postService.GetFollowersList(this.getuserFitler).subscribe((resp)=>{
-      this.users = resp;
-    })
-  }
-
+  followers:Followers[]= [];
   
   
   PhotoConfig:PhotoConfig={
@@ -239,4 +219,10 @@ export interface Shop {
 export interface ShopDto {
   shop:Shop;
   isFollowed:boolean;
+}
+
+export interface Followers{
+  email :string;
+  name :string;
+  picture :string;
 }
