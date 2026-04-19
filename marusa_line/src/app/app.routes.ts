@@ -10,7 +10,7 @@ import { MainComponent } from './pages/main/main.component';
 
 export const routes: Routes = [
     { path:'home', component: HomeComponent},
-    { path:'shop/:id', component: HomeComponent},
+    { path:'shop/:shopId', component: HomeComponent},
     { path:'card-details/:id', component: CardDetailsComponent},
     { path:'order-product/:id', component: OrderProductComponent},
     { path:'order-details/:id', component: OrderDetailsComponent},

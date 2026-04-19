@@ -48,7 +48,8 @@ export class CardDetailsComponent implements OnInit{
             const shopId = this.posts.shopId;
             localStorage.setItem('shopId',shopId.toString());
             this.reloadService.reload();
-        }
+          }
+        this.reloadService.reload();
         this.postsLoaded = true;
       }
     );

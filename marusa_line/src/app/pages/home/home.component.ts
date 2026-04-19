@@ -38,7 +38,11 @@ export class HomeComponent implements OnInit{
   user:any = null;
   userId:number = 0;
   shopId:number=0;
-  constructor(private postService:PostService,private route: ActivatedRoute, private authService:AuthorizationService,private reloadService:ReloadService,private titleService: Title){
+  constructor(  private postService: PostService,
+  private route: ActivatedRoute,
+  private authService: AuthorizationService,
+  private reloadService: ReloadService,
+  private titleService: Title){
     const user = localStorage.getItem('user');
     if(user){
       this.user =JSON.parse(user);
@@ -50,24 +54,6 @@ export class HomeComponent implements OnInit{
     //     this.soldProducts2 = resp.slice(3);
     //   }
     // )
-    const shopId = this.route.snapshot.paramMap.get('id');
-    if(shopId){
-      localStorage.setItem('shopId',shopId);
-      this.shopId = Number(shopId);
-      this.shop = {}as Shop;
-      this.loadShop(this.shopId);
-      this.getShopStats(this.shopId);
-      this.reloadService.reload();
-    }
-    else{
-        const shopId = localStorage.getItem('shopId');
-        if(shopId){
-          this.shopId = Number(shopId);
-          this.loadShop(this.shopId);
-          this.getShopStats(this.shopId);
-          this.reloadService.reload();
-        }
-    }
   }
 
   changeFavoriteicon(iconUrl: string) {
@@ -85,9 +71,35 @@ export class HomeComponent implements OnInit{
         }
       }
     )
+  const user = localStorage.getItem('user');
+  if (user) {
+    this.user = JSON.parse(user);
+    this.userId = this.user.Id;
   }
+  this.route.paramMap.subscribe(params => {
+    const shopId = params.get('shopId');
+    if (shopId) {
+      this.shopId = Number(shopId);
+      localStorage.setItem('shopId', shopId);
+
+      this.initShopData();
+    } else {
+      const storedId = localStorage.getItem('shopId');
+      if (storedId) {
+        this.shopId = Number(storedId);
+        this.initShopData();
+      }
+    }
+  });
+}
 
 
+private initShopData() {
+  this.shop = {} as Shop;
+  this.loadShop(this.shopId);
+  this.getShopStats(this.shopId);
+  this.reloadService.reload();
+}
   footer!: Footer;
   isShopFollowed:boolean = false;
   loadShop(shopId: number): void {

@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 import { AppRoutes } from '../../shared/AppRoutes/AppRoutes';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthorizationService } from '../../pages/authorization/authorization.service';
 import { Subscription } from 'rxjs';
 import { ReloadService } from '../../shared/services/ReloadService';
 import { PostService } from '../../Repositories/post.service';
 import { Shop, ShopDto } from '../../pages/home/home.component';
+import { Input } from '@angular/core';
 @Component({
   selector: 'app-header',
   imports: [RouterLink, RouterLinkActive, CommonModule],
@@ -15,8 +16,14 @@ import { Shop, ShopDto } from '../../pages/home/home.component';
 })
 export class HeaderComponent implements OnInit{
 
-  constructor(private authService:AuthorizationService, private route :Router,private reloadService:ReloadService,private postService:PostService){
-
+  shopId:number=0;
+  constructor(private authService:AuthorizationService, private router :Router,private reloadService:ReloadService,private postService:PostService,private route: ActivatedRoute,  ){
+    const shopId = localStorage.getItem('shopId');
+      if(shopId){
+        this.shopId = Number(shopId);
+        localStorage.setItem('shopId',shopId);
+      this.loadShop(this.shopId);
+    }
   }
   AuthSub!:Subscription;
   ReloadSub!:Subscription;
@@ -33,22 +40,20 @@ export class HeaderComponent implements OnInit{
           this.Authorised = isVisible;
           this.user = null;
         }
-
       }
     );
-    const shopId = localStorage.getItem('shopId');
-    if(shopId){
-      localStorage.setItem('shopId',shopId);
-      this.loadShop(Number(shopId));
-    }
+    console.log('this trigered')
     this.ReloadSub= this.reloadService.alert$.subscribe(
       (e)=>{
-        this.getUser();
+        if(e){
+          this.getUser();
           const shopId = localStorage.getItem('shopId');
-          if(shopId){
-            localStorage.setItem('shopId',shopId);
-            this.loadShop(Number(shopId));
-          }
+            if(shopId){
+              this.shopId = Number(shopId)
+              localStorage.setItem('shopId',shopId);
+              this.loadShop(this.shopId);
+            }
+        }
       }
     )
   }
@@ -94,9 +99,14 @@ export class HeaderComponent implements OnInit{
   }
 
   goTospecialRoute(){
-    const shopRoute = localStorage.getItem('shopId');
-    if(shopRoute){
-      this.route.navigate([AppRoutes.shop + Number(shopRoute)]);
+    if(this.shopId==0){
+      const shopRoute = localStorage.getItem('shopId');
+      if(shopRoute){
+        this.router.navigate([AppRoutes.shop + Number(shopRoute)]);
+      }
+    }
+    else{
+        this.router.navigate([AppRoutes.shop + Number(this.shopId)]);
     }
     this.scrollTotop();
   }

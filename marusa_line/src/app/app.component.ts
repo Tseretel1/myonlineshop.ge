@@ -1,10 +1,10 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from "./layout/footer/footer.component";
 import { LoaderComponent } from "./shared/components/loader/loader.component";
 import { AuthorizationComponent } from "./pages/authorization/authorization.component";
-import { Observable, Subscription } from 'rxjs';
+import { filter, Observable, Subscription } from 'rxjs';
 import { AuthorizationService } from './pages/authorization/authorization.service';
 import { CommonModule } from '@angular/common';
 import { BackgroundComponent } from "./shared/components/background/background.component";
@@ -18,7 +18,10 @@ import { BackgroundComponent } from "./shared/components/background/background.c
 export class AppComponent implements OnInit{
   title = 'marusa_line';
 
-  constructor(private authService: AuthorizationService){
+  shopId:number = 0;
+  constructor(private authService: AuthorizationService,private route :ActivatedRoute,private router: Router,){
+    const shopId = this.route.snapshot.paramMap.get('id');
+ 
   }
 
   private AuthSub!: Subscription;
@@ -30,6 +33,18 @@ export class AppComponent implements OnInit{
         this.authorizationVisible = isVisible;
       }
     );
+    this.router.events
+    .pipe(filter(event => event instanceof NavigationEnd))
+    .subscribe(() => {
+      let currentRoute = this.route;
+      while (currentRoute.firstChild) {
+        currentRoute = currentRoute.firstChild;
+      }
+      const id = currentRoute.snapshot.paramMap.get('shopId');
+      if(id!=null){
+        this.shopId = Number(id);
+      }
+    });
   }
 
   ngOnDestroy(): void {
