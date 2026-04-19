@@ -78,8 +78,7 @@ export class OrderProductComponent implements OnInit{
         
         const shopIdLocal = localStorage.getItem('shopId');
         if(shopIdLocal==null){
-          const shopId = this.posts.shopId;
-          localStorage.setItem('shopId',shopId.toString());
+          localStorage.setItem('shopId',this.posts.shopId.toString());
           this.reloadService.reload();
         }
       }
@@ -364,7 +363,6 @@ changeFavicon(iconUrl: string) {
     if (!this.locationOrMap) {
       this.insertLocation();
     }
-    console.log(this.orderObj)
     this.postService.insertOrder(this.orderObj).subscribe({
       next: (resp) => {
         this.isSubmitting = false;

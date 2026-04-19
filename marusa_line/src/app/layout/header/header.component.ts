@@ -16,6 +16,26 @@ import { Input } from '@angular/core';
 })
 export class HeaderComponent implements OnInit{
 
+  
+
+  shop: Shop = {
+    id: 0,
+    name: '',
+    logo: null,
+    location: null,
+    gmail: '',
+    subscription: 0,
+    instagram: null,
+    facebook: null,
+    titkok: null,
+    bog: null,
+    tbc: null,
+    receiver: null,
+  };
+  shopDto:ShopDto={
+    shop : this.shop,
+    isFollowed : false,
+  }
   shopId:number=0;
   constructor(private authService:AuthorizationService, private router :Router,private reloadService:ReloadService,private postService:PostService,private route: ActivatedRoute,  ){
     const shopId = localStorage.getItem('shopId');
@@ -49,9 +69,12 @@ export class HeaderComponent implements OnInit{
           this.getUser();
           const shopId = localStorage.getItem('shopId');
             if(shopId){
-              this.shopId = Number(shopId)
-              localStorage.setItem('shopId',shopId);
-              this.loadShop(this.shopId);
+              if(this.shop.name==''){
+                this.shopId = Number(shopId)
+                localStorage.setItem('shopId',shopId);
+                this.loadShop(this.shopId);
+              }
+              return;
             }
         }
       }
@@ -116,25 +139,5 @@ export class HeaderComponent implements OnInit{
         this.shop = data.shop; 
       },
     });
-  }
-
-
-  shop: Shop = {
-    id: 0,
-    name: '',
-    logo: null,
-    location: null,
-    gmail: '',
-    subscription: 0,
-    instagram: null,
-    facebook: null,
-    titkok: null,
-    bog: null,
-    tbc: null,
-    receiver: null,
-  };
-  shopDto:ShopDto={
-    shop : this.shop,
-    isFollowed : false,
   }
 }
