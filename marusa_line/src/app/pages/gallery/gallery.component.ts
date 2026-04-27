@@ -7,7 +7,7 @@ import { DiscountMarkComponent } from '../../shared/components/discount-mark/dis
 
 @Component({
   selector: 'app-gallery',
-  imports: [CommonModule, PhotoAlbumComponent],
+  imports: [CommonModule, PhotoAlbumComponent, DiscountMarkComponent],
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.scss'
 })
@@ -38,6 +38,7 @@ export class GalleryComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getAllPosts();
+    this.startBillboardTimer();
   }
   moveProductTypeTOFirst(){
     const TypeId = localStorage.getItem('TypeId');
@@ -87,6 +88,7 @@ scrollToStartMethod() {
     this.postService.getPosts(this.getPosts).subscribe(
       (resp)=>{
         this.Cards = resp.products;
+        this.buildBillboardGroups();
         this.totalCount = resp.totalCount;
         this.totalPages = Math.ceil(this.totalCount / this.getPosts.pageSize);
         this.lastPage = Math.ceil(this.totalCount / this.getPosts.pageSize);
@@ -201,6 +203,34 @@ scrollToStartMethod() {
       return;
     }
   }
+
+  billboardIndex = 0;
+billboardGroups: Post[][] = [];
+private billboardTimer: any;
+
+  startBillboardTimer() {
+  // this.billboardTimer = setInterval(() => this.billboardNext(), 7000);
+}
+
+buildBillboardGroups() {
+  const items = this.Cards.slice(0, 9); 
+  this.billboardGroups = [];
+  for (let i = 0; i < items.length; i += 1) {
+    this.billboardGroups.push(items.slice(i, i + 1));
+  }
+}
+
+billboardNext() {
+  this.billboardIndex = (this.billboardIndex + 1) % this.billboardGroups.length;
+}
+
+billboardPrev() {
+  this.billboardIndex = (this.billboardIndex - 1 + this.billboardGroups.length) % this.billboardGroups.length;
+}
+
+billboardGo(i: number) {
+  this.billboardIndex = i;
+}
 }
 
 export interface GetPostsDto{

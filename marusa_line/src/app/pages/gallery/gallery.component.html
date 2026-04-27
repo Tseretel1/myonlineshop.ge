@@ -1,4 +1,40 @@
-<div class="gallery-align" >
+<div class="gallery-align">
+ <!-- <div class="billboard-wrap">
+  <button class="billboard-arrow left" (click)="billboardPrev()">&#9664;</button>
+
+  <div class="billboard-track" [style.transform]="'translateX(-' + billboardIndex * 100 + '%)'">
+    <div class="billboard-slide" *ngFor="let group of billboardGroups">
+      <div class="billboard-card" *ngFor="let p of group">
+          <app-discount-mark
+            *ngIf="p.discountedPrice != null && p.discountedPrice > 0"
+            class="discount-procent"
+            [discount]="p">
+          </app-discount-mark>
+        <div class="billboard-card-img">
+          <img [src]="p.photoUrl" [alt]="p.title" />
+            <div class="discount-price-mobile">
+                <b [ngClass]="{'discounted-price': p.discountedPrice > 0}">{{p.price}}₾</b>
+                <b *ngIf="p.discountedPrice > 0">{{p.discountedPrice}}₾</b>
+            </div>
+        </div>
+        <div class="billboard-card-info">
+          <span class="billboard-card-title">{{ p.description }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="billboard-arrow right" (click)="billboardNext()">&#9654;</button>
+
+  <div class="billboard-dots">
+    <span
+      class="dot"
+      *ngFor="let g of billboardGroups; let i = index"
+      [class.active]="billboardIndex === i"
+      (click)="billboardGo(i)">
+    </span>
+  </div>
+</div> -->
     <div class="filters-align"  #scrollToStart>
          <div class="section-filters-align">
             <!-- <b class="section-title">
