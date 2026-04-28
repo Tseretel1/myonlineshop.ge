@@ -4,7 +4,7 @@
       <div class="user-row" style="display: flex; align-items: center;" *ngIf="!showForm">
         <img class="user-avatar" [src]="currentUser?.Picture" [alt]="currentUser?.Name" />
         <button class="add-btn" style="width: 100%;" (click)="toggleForm()" *ngIf="!showForm">
-          + Review <span style="color: orange;">★</span>
+          + შეფასება 
         </button>
       </div>
     </div> 
@@ -53,6 +53,7 @@
     </div>
 
     <div class="divider" *ngIf="reviews.length > 0 && currentUser"></div>
+    <p style="padding: 10px 0px;">შეფასებები : {{reviews.length}}</p>
     <div class="reviews-list" *ngIf="reviews.length > 0">
       <div class="review-card" *ngFor="let r of reviews">
         <div class="review-header">
