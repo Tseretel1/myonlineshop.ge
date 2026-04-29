@@ -149,7 +149,7 @@
            <div class="user-information" *ngIf="!order.isPaid" style="padding: 20px;">
             <div class="rules-align">
                 <div class="rules" style="display: flex; flex-direction: column; gap: 30px;" >
-                    <p style="line-height: 25px;" (click)="copyToClipboard(`შეკვეთის ნომერი ${order.orderId }`,3)"> 
+                    <p style="line-height: 25px;" (click)="copyToClipboard(`#${order.orderNumber}`,3)"> 
                       გადახდის შემდეგ მოგვწერეთ შეკვეთის ნომერი
                       <b class="order-num-text" style="text-wrap: nowrap; padding: 2px 5px; background-color: rgb(255, 121, 0); border-radius: 5px;cursor: pointer; position: relative;" >
                         #{{ order.orderNumber }}  
