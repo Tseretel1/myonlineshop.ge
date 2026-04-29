@@ -1,4 +1,7 @@
 
+.header-title::-webkit-scrollbar{
+    display: none;
+}
 .component{
     color: #e8e8e8;
     position: fixed;

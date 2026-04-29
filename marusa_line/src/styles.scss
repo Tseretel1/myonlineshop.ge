@@ -192,7 +192,17 @@ label {
     z-index: 1 !important;
 }
 
-
+*::-webkit-scrollbar {
+  width: 8px;
+  background-color: rgb(31, 31, 31);
+}
+*::-webkit-scrollbar-thumb {
+   background-color: rgb(175, 173, 173);
+   border-radius: 10px;
+}
+*::-webkit-scrollbar-button {
+  display: none;
+}
 
 
 @media screen and (max-width: 600px) {
