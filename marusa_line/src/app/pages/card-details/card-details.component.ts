@@ -103,6 +103,9 @@ export class CardDetailsComponent implements OnInit{
   showBigPhoto(){
     this.bigPhotoVisible = true;
   }
+  Slide(index:number){
+    this.photoVisibleNum = index;
+  }
   hideBigPhoto(){
     this.bigPhotoVisible = false;
   }

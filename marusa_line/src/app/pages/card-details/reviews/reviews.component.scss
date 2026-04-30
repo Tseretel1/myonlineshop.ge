@@ -27,12 +27,11 @@ $font:          'DM Sans', system-ui, sans-serif;
 
 // ─── Page shell ───────────────────────────────────────────────────────────────
 .reviews-page {
-  padding: 32px 0;
   font-family: $font;
   color: $text-primary;
   // box-shadow: 0px 5px 10px black inset;
-    backdrop-filter: blur(20px);
-    background-color: rgba(0, 0, 0, 0.426);
+    border-radius: 10px;
+    padding: 50px 0px;
 }
 
 .reviews-container {
@@ -40,7 +39,7 @@ $font:          'DM Sans', system-ui, sans-serif;
   flex-direction: column;
   gap: 0;
   width: 90%;
-  max-width: 680px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -245,6 +244,12 @@ $font:          'DM Sans', system-ui, sans-serif;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  max-height: 800px;
+  overflow-y: scroll;
+  // max-width: 700px;
+}
+.reviews-list::-webkit-scrollbar{
+  display: none;
 }
 
 .review-card {

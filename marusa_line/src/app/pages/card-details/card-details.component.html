@@ -1,92 +1,80 @@
+<div class="page">
+  <div class="top-section">
 
-<div class="center-component" >
-    <div class="component">
-        <div class="header-grid">
-          
-            <div class="photo-align" >
-                <div class="photo-container"  >
-                    <div *ngFor="let p of photosArray; let i = index" >
-                        <img [src]="p.photoUrl" alt="" class="photo" *ngIf="i==photoVisibleNum" [ngClass]="{'pop-up':i==photoVisibleNum}">
-                        <div class="next-photo-align">
-                            <div class="next-photo previous" (click)="previousPhoto()"><i class="fas fa-chevron-left chevron"></i></div>
-                            <div class="camera-button" (click)="showBigPhoto()">
-                                <i class="fas fa-expand"></i>
-                            </div>
-                            <div  class="next-photo" (click)="nextPhoto()"><i class="fas fa-chevron-right chevron"></i></div>
-                        </div>
-                        <!-- <div class="unordered-list" >
-                            <span *ngFor="let p of photosArray;let photoNum = index">
-                                <i class="far" *ngIf="photoNum != photoVisibleNum" (click)="getOnTheClickedPhoto(photoNum)"></i>
-                                <i class="fas" *ngIf="photoNum == photoVisibleNum"(click)="getOnTheClickedPhoto(photoNum)"></i>
-                            </span>
-                        </div> -->
-                    </div>
-                </div>
-            </div>
-
-           <div class="card-information" *ngIf="postsLoaded" >
-                <app-discount-mark *ngIf="posts.discountedPrice!=null&&posts.discountedPrice>0" class="discount-procent" [discount]="posts"></app-discount-mark>
-
-                <div class="header-title">
-                     <p class="title" style="width: 100%; display: flex; justify-content: center;">{{posts.title}}</p>     
-                </div> 
-                <div class="header-title" style="margin-top: 20px;">
-                    <div class="price-tag-align info-background" >
-                        <div class="">
-                            ფასი:
-                        </div>
-                        <div class="price-align"> 
-                            <b class="bold-price" [ngClass]="{'red-price':posts.discountedPrice>0}" >{{posts.price}}₾</b>
-                            <b class="bold-price" *ngIf="posts.discountedPrice>0">{{posts.discountedPrice}}₾</b>
-                        </div>
-                    </div>
-                </div> 
-                <div class="header-title" *ngIf="posts.quantity>0">
-                    <div class="price-tag-align info-background" >
-                        <div class="">
-                            მარაგში: 
-                        </div>
-                        <div class="price-align"> 
-                            <b class="bold-price">{{posts.quantity}}</b>
-                            <i *ngIf="posts.quantity>0">✅</i> 
-                        </div>
-                    </div>
-                </div> 
-                <div class="header-title" *ngIf="posts.description">
-                    <div class="price-tag-align" >
-                        <div class="price-align description" > 
-                            <b class="bold-price">{{posts.description}}</b>
-                        </div>
-                    </div>
-                </div> 
-                <div style="width: 100%; display: flex; justify-content: center;">
-                    <button class="order-button" (click)="insertOrder()">შეკვეთის დაწყება</button>
-                </div>
-            </div>
-         </div>
-        </div>
-    </div>
-    <div style="margin-top: 50px;">
-        <app-reviews></app-reviews>
-    </div>
-
-<div class="big-photo-container" *ngIf="bigPhotoVisible">
-    <div class="whole-screen-img">
-        <button class="x-button" (click)="hideBigPhoto()" >
-          <i class="fas fa-times"></i>
+    <!-- Photo block -->
+    <div class="photo-block">
+      <div class="photo-main">
+        <img [src]="photosArray[photoVisibleNum]?.photoUrl" alt="" class="main-img" >
+        <button class="zoom-button"  (click)="showBigPhoto()">
+            <i class="fas fa-expand"></i>
         </button>
-        <ng-container *ngFor="let p of photosArray; let i = index" >
-            <img [src]="p.photoUrl" alt="" class="photo" [ngClass]="{'pop-up':i==photoVisibleNum}">
-            <div class="next-photo-align">
-                <div class="next-photo previous-photo" (click)="previousPhoto()"><i class="fas fa-chevron-left"></i></div>
-                <div  class="next-photo" (click)="nextPhoto()"><i class="fas fa-chevron-right"></i></div>
-            </div>
-            <div class="unordered-list" >
-                <span *ngFor="let p of photosArray;let photoNum = index">
-                    <i class="far" *ngIf="photoNum != photoVisibleNum" (click)="getOnTheClickedPhoto(photoNum)"></i>
-                    <i class="fas" *ngIf="photoNum == photoVisibleNum"(click)="getOnTheClickedPhoto(photoNum)"></i>
-                </span>
-            </div>
-        </ng-container>
+      </div>
+      <div class="photo-thumbnails">
+        <div
+          class="thumb"
+          *ngFor="let p of photosArray; let i = index"
+          [class.active]="i === photoVisibleNum"
+          (click)="Slide(i)"
+        >
+          <img [src]="p.photoUrl" alt="">
+        </div>
+      </div>
     </div>
+
+    <!-- Info card -->
+    <div class="info-card" *ngIf="postsLoaded">
+        <p class="product-title">{{ posts.title }}</p>
+        
+        <div class="divider"></div>
+        
+        <div class="info-row">
+            <div class="price-row">
+                <app-discount-mark *ngIf="posts.discountedPrice!=null&&posts.discountedPrice>0" class="discount-procent" [discount]="posts"></app-discount-mark>
+          <span class="price-current" [class.crossed]="posts.discountedPrice > 0">{{ posts.price }}₾</span>
+          <span class="price-discounted" *ngIf="posts.discountedPrice > 0">{{ posts.discountedPrice }}₾</span>
+        </div>
+      </div>
+
+      <div class="info-row" *ngIf="posts.quantity > 0">
+        <div class="stock-row">
+            <span>მარაგში {{ posts.quantity }}</span>
+            <span class="stock-dot"></span>
+        </div>
+      </div>
+
+      <div class="info-row" *ngIf="posts.description">
+        <p class="row-label">აღწერა</p>
+        <div class="description-box">{{ posts.description }}</div>
+      </div>
+
+      <button class="order-btn" (click)="insertOrder()">შეკვეთის დაწყება</button>
+    </div>
+  </div>
+
+  <!-- Reviews at the bottom -->
+</div>
+<div class="reviews-section">
+  <app-reviews></app-reviews>
+</div>
+
+<!-- Fullscreen lightbox -->
+<div class="big-photo-container" *ngIf="bigPhotoVisible">
+  <div class="whole-screen-img">
+    <button class="x-button" (click)="hideBigPhoto()">
+      <i class="fas fa-times"></i>
+    </button>
+    <ng-container *ngFor="let p of photosArray; let i = index">
+      <img [src]="p.photoUrl" class="photo" [ngClass]="{'pop-up': i === photoVisibleNum}" alt="">
+    </ng-container>
+    <div class="next-photo-align">
+      <div class="next-photo previous-photo" (click)="previousPhoto()"><i class="fas fa-chevron-left"></i></div>
+      <div class="next-photo" (click)="nextPhoto()"><i class="fas fa-chevron-right"></i></div>
+    </div>
+    <div class="unordered-list">
+      <span *ngFor="let p of photosArray; let photoNum = index" (click)="getOnTheClickedPhoto(photoNum)">
+        <i class="far" *ngIf="photoNum !== photoVisibleNum"></i>
+        <i class="fas" *ngIf="photoNum === photoVisibleNum"></i>
+      </span>
+    </div>
+  </div>
 </div>
