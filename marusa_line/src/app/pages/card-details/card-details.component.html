@@ -1,4 +1,4 @@
-<div class="page">
+<div class="page" *ngIf="posts">
   <div class="top-section">
 
     <!-- Photo block -->
@@ -53,7 +53,7 @@
 
   <!-- Reviews at the bottom -->
 </div>
-<div class="reviews-section">
+<div class="reviews-section"  *ngIf="posts">
   <app-reviews></app-reviews>
 </div>
 
