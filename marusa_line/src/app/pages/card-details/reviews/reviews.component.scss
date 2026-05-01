@@ -31,7 +31,6 @@ $font:          'DM Sans', system-ui, sans-serif;
   color: $text-primary;
   // box-shadow: 0px 5px 10px black inset;
     border-radius: 10px;
-    padding: 50px 0px;
 }
 
 .reviews-container {
@@ -91,8 +90,9 @@ $font:          'DM Sans', system-ui, sans-serif;
 .add-btn {
   padding: 7px 14px;
   border-radius: $radius-sm;
-  border: 1px solid green;
-  background: green;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: transparent;
   color: white;
   font-family: $font;
   font-size: 13px;
@@ -100,12 +100,6 @@ $font:          'DM Sans', system-ui, sans-serif;
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s, color 0.15s;
   white-space: nowrap;
-
-  &:hover {
-    background: greenyellow;
-    border-color: greenyellow;
-    color: black;
-  }
 }
 
 // ─── Inline form ──────────────────────────────────────────────────────────────
@@ -335,7 +329,6 @@ $font:          'DM Sans', system-ui, sans-serif;
 
 // ─── Responsive ───────────────────────────────────────────────────────────────
 @media (max-width: 560px) {
-  .reviews-page { padding: 16px 0; }
   .star-input { font-size: 26px; }
   .review-comment { padding-left: 0; }
 }

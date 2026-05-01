@@ -1,7 +1,6 @@
 <div class="page" *ngIf="posts">
   <div class="top-section">
 
-    <!-- Photo block -->
     <div class="photo-block">
       <div class="photo-main">
         <img [src]="photosArray[photoVisibleNum]?.photoUrl" alt="" class="main-img" >
@@ -21,15 +20,14 @@
       </div>
     </div>
 
-    <!-- Info card -->
     <div class="info-card" *ngIf="postsLoaded">
+        <app-discount-mark *ngIf="posts.discountedPrice!=null&&posts.discountedPrice>0" class="discount-procent" [discount]="posts"></app-discount-mark>
         <p class="product-title">{{ posts.title }}</p>
         
         <div class="divider"></div>
         
         <div class="info-row">
-            <div class="price-row">
-                <app-discount-mark *ngIf="posts.discountedPrice!=null&&posts.discountedPrice>0" class="discount-procent" [discount]="posts"></app-discount-mark>
+        <div class="price-row">
           <span class="price-current" [class.crossed]="posts.discountedPrice > 0">{{ posts.price }}₾</span>
           <span class="price-discounted" *ngIf="posts.discountedPrice > 0">{{ posts.discountedPrice }}₾</span>
         </div>
@@ -43,7 +41,7 @@
       </div>
 
       <div class="info-row" *ngIf="posts.description">
-        <p class="row-label">აღწერა</p>
+        <!-- <p class="row-label">აღწერა</p> -->
         <div class="description-box">{{ posts.description }}</div>
       </div>
 
@@ -51,13 +49,11 @@
     </div>
   </div>
 
-  <!-- Reviews at the bottom -->
 </div>
 <div class="reviews-section"  *ngIf="posts">
   <app-reviews></app-reviews>
 </div>
 
-<!-- Fullscreen lightbox -->
 <div class="big-photo-container" *ngIf="bigPhotoVisible">
   <div class="whole-screen-img">
     <button class="x-button" (click)="hideBigPhoto()">
