@@ -93,12 +93,20 @@
         </div>
 
         <div class="product-meta">
-            <div class="qty-row" *ngIf="posts.quantity>0">
-            <span class="qty-label" style="color: white;">მარაგში</span>
-            <div class="qty-controls">
-              <span class="qty-value">{{ posts.quantity }}</span>
+          <div class="qty-row  additional-params" *ngFor="let a of AdditionalParameters">
+            <p  style="color: white; padding: 5px 0px;">{{a.paramName}}</p>
+            <div class="additonal-buttons">
+              <div class="qty-controls "  *ngFor="let i of a.values">
+                <button class="qty-btn" [ngClass]="{'selected-param':i.valueId==selectedParam}" (click)="selectParam( a.parameterId ,i.valueId)">{{i.value}}</button>
+              </div>
             </div>
           </div>
+
+          <div class="qty-row" *ngIf="posts.quantity>0"  style="margin-top: 10px;" >
+            <span class="qty-label" style="color: white;">მარაგში</span>
+            <span >{{ posts.quantity }}</span>
+          </div>
+          
           <div class="qty-row">
             <span class="qty-label" style="color: white;">რაოდენობა</span>
             <div class="qty-controls">
@@ -107,19 +115,7 @@
               <button class="qty-btn" (click)="plusQuantity()">+</button>
             </div>
           </div>
-          <div class="qty-row  additional-params" *ngFor="let a of AdditionalParameters">
-            <p  style="color: white;">{{a.paramName}}</p>
 
-<<<<<<< Updated upstream
-            <div class="additonal-buttons">
-              <div class="qty-controls "  *ngFor="let i of a.values">
-                <button class="qty-btn" [ngClass]="{'selected-param':i.valueId==selectedParam}" (click)="selectParam( a.parameterId ,i.valueId)">{{i.value}}</button>
-              </div>
-            </div>
-          </div>
-          <!-- Price -->
-=======
->>>>>>> Stashed changes
           <div class="price-row">
             <span class="price-label" style="color: white;">ჯამი</span>
             <div class="price-value">

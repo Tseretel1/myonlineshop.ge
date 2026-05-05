@@ -58,6 +58,7 @@ export class OrderProductComponent implements OnInit{
       (resp)=>{
         this.posts = resp.posts;
         this.AdditionalParameters = resp.parameters;
+        console.log(resp)
         this.titleService.setTitle('შეკვეთა : '+this.posts.title);
         if(this.posts.photos[0].photoUrl){
           this.changeFavicon(this.posts.photos[0].photoUrl);

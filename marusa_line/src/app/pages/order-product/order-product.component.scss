@@ -319,7 +319,7 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
 .qty-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 10px;
 }
 .additional-params{
   display: flex;
