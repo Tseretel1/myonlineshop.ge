@@ -36,6 +36,7 @@ export class OrderProductComponent implements OnInit{
   posts:Post = {} as Post;
   photosArray:Photo[]= [];
   postsLoaded:boolean = false;
+  AdditionalParameters:ProductAdditionalParam[]=[];
 
   user:any = null;
   userId:number = 0;
@@ -55,7 +56,8 @@ export class OrderProductComponent implements OnInit{
     }
     this.postService.getPostWithId(this.productId,this.userId).subscribe(
       (resp)=>{
-        this.posts = resp;
+        this.posts = resp.posts;
+        this.AdditionalParameters = resp.parameters;
         this.titleService.setTitle('შეკვეთა : '+this.posts.title);
         if(this.posts.photos[0].photoUrl){
           this.changeFavicon(this.posts.photos[0].photoUrl);
@@ -65,13 +67,13 @@ export class OrderProductComponent implements OnInit{
         });
         if(this.posts.discountedPrice==0|| this.posts.discountedPrice==null){
           this.postsLoaded = true;
-          this.productPrice = resp.price;
+          this.productPrice = resp.posts.price;
           this.oldProductPrice = this.productPrice;
           this.oneProductPrice = this.productPrice;
         }
         else{
           this.postsLoaded = true;
-          this.productPrice = resp.discountedPrice;
+          this.productPrice = resp.posts.discountedPrice;
           this.oldProductPrice = this.productPrice;
           this.oneProductPrice = this.productPrice;
         }
@@ -210,8 +212,7 @@ changeFavicon(iconUrl: string) {
       });
       return false;
     }
-    if(!this.locationOrMap){
-      if(this.address==''){
+    else if(this.address==''){
         this.addressInvalid = true;
         this.editFieldNum =2;
         setTimeout(() => {
@@ -222,37 +223,12 @@ changeFavicon(iconUrl: string) {
           behavior: 'smooth' 
         });
         return false;
-      }
+    }
+    else if(!this.checkIfEveryParameterIsSelected() ){
+      return false;
+    }
       return true;
     }
-    if(this.locationOrMap){
-      if(this.location.lat=='' && this.location.lng==''){
-        Swal.fire({
-            text: 'გთხოვთ მონიშნოთ მისამართი რუკაზე🙏',
-            icon:'error',
-            showCancelButton: false,
-            showConfirmButton:false,
-            confirmButtonText: 'კი',
-            cancelButtonText: 'არა',
-            background:'rgb(25, 26, 25)',
-            color: '#ffffff',       
-            customClass: {
-              popup: 'custom-swal-popup',
-            },
-            timer:3000,
-        });
-         window.scrollTo({
-          top: 0,
-          behavior: 'smooth' 
-        });
-        return false;
-      }
-      this.addressInvalid = false;
-      this.mobileInvalid = false;
-      return true;
-    }
-    return false;
-  }
   editFieldNum:number = 0;
   editField(num:number){
     this.editFieldNum = num;
@@ -330,9 +306,7 @@ changeFavicon(iconUrl: string) {
   this.getMapLocation();
 
   if (this.validateFields()) {
-
     this.isSubmitting = true;
-
     let lng = '';
     let lat = '';
     let address = '';
@@ -345,7 +319,6 @@ changeFavicon(iconUrl: string) {
     }
 
     const shopId = localStorage.getItem('shopId');
-
     this.orderObj = {
       userId: this.userId,
       productId: this.productId,
@@ -358,6 +331,7 @@ changeFavicon(iconUrl: string) {
       address: address,
       shopId: Number(shopId),
       mobileNumber: this.posts.mobileNumber,
+      paramValues :this.selectedParamvaluesArray,
     };
 
     if (!this.locationOrMap) {
@@ -436,6 +410,42 @@ changeFavicon(iconUrl: string) {
   }
 
 
+  selectedParam:number = 0;
+  selectParam(paramId:number,valueId:number){
+    this.selectedParam = valueId; 
+    this.updateParam(paramId, valueId);
+  }
+  selectedParamvaluesArray: ParamValue[]=[];
+  updateParam(paramId: number, valueId: number) {
+    const index = this.selectedParamvaluesArray.findIndex(x => x.paramId === paramId);
+    if (index !== -1) {
+      this.selectedParamvaluesArray[index].valueId = valueId;
+    } else {
+      this.selectedParamvaluesArray.push({ paramId, valueId });
+    }
+  }
+
+  checkIfEveryParameterIsSelected(): boolean {
+    for (const element of this.AdditionalParameters) {
+      if (!this.isParamValid(element.parameterId)) {
+        Swal.fire({
+          text: `გთხოვთ მონიშნოთ ${element.paramName}`,
+          icon: 'error',
+          background: 'rgb(25, 26, 25)',
+          color: '#ffffff',
+          timer: 3000,
+          showConfirmButton:false,
+        });
+
+        return false;
+      }
+    }
+
+    return true; 
+  }
+  isParamValid(paramId: number): boolean {
+    return this.selectedParamvaluesArray.some(x => x.paramId === paramId);
+  }
 }
 
 export interface orderPostObj{
@@ -450,10 +460,27 @@ export interface orderPostObj{
   lat: string|null;
   address: string|null;
   mobileNumber:string;
+  paramValues:ParamValue[];
 }
  interface Photo {
   Id?: number;
   photoId?: number;
   photoUrl?: string;
   postId?: number;
+}
+
+export interface AdditionalParamValue {
+  valueId: number;
+  value: string;
+}
+
+export interface ProductAdditionalParam {
+  parameterId: number;
+  paramName: string;
+  values: AdditionalParamValue[];
+}
+
+export interface ParamValue {
+  paramId: number;
+  valueId: number;
 }

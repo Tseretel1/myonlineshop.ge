@@ -319,7 +319,19 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
   align-items: center;
   justify-content: space-between;
 }
-
+.additional-params{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+}
+.additonal-buttons{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 5px;
+  flex: 1;
+}
 .qty-label {
   font-size: 13px;
   color: $text-secondary;
@@ -350,10 +362,12 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
   justify-content: center;
   transition: background 0.15s;
 
-  &:hover { background: rgba($accent, 0.12); color: $accent-light; }
+  &:hover {     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);}
   &:active { background: rgba($accent, 0.2); }
 }
-
+.selected-param{
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
 .qty-value {
   min-width: 32px;
   text-align: center;

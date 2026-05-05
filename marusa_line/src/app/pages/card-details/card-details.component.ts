@@ -36,7 +36,7 @@ export class CardDetailsComponent implements OnInit{
     }
     this.postService.getPostWithId(this.productId,this.userId).subscribe(
       (resp)=>{
-        this.posts = resp;
+        this.posts = resp.posts;
         this.posts.photos.forEach(item => {
           this.photosArray.push(item);
         });
@@ -158,4 +158,15 @@ export class CardDetailsComponent implements OnInit{
   photoId?: number;
   photoUrl?: string;
   postId?: number;
+}
+
+export interface AdditionalParamValue {
+  valueId: number;
+  value: string;
+}
+
+export interface ProductAdditionalParam {
+  parameterId: number;
+  paramName: string;
+  values: AdditionalParamValue[];
 }

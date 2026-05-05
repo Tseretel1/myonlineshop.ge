@@ -111,7 +111,15 @@
               <button class="qty-btn" (click)="plusQuantity()">+</button>
             </div>
           </div>
+          <div class="qty-row  additional-params" *ngFor="let a of AdditionalParameters">
+            <p  style="color: white;">{{a.paramName}}</p>
 
+            <div class="additonal-buttons">
+              <div class="qty-controls "  *ngFor="let i of a.values">
+                <button class="qty-btn" [ngClass]="{'selected-param':i.valueId==selectedParam}" (click)="selectParam( a.parameterId ,i.valueId)">{{i.value}}</button>
+              </div>
+            </div>
+          </div>
           <!-- Price -->
           <div class="price-row">
             <span class="price-label" style="color: white;">ჯამი</span>
