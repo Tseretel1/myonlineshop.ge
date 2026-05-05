@@ -21,6 +21,12 @@
     </div>
 
     <div class="info-card" *ngIf="postsLoaded">
+      <!-- <div class="info-row stock-top" *ngIf="posts.quantity > 0">
+        <div class="stock-row">
+          
+            <div>მარაგში <span class="stock-dot" ></span>{{ posts.quantity }}</div>
+        </div>
+      </div> -->
         <app-discount-mark *ngIf="posts.discountedPrice!=null&&posts.discountedPrice>0" class="discount-procent" [discount]="posts"></app-discount-mark>
         <p class="product-title">{{ posts.title }}</p>
         
@@ -33,12 +39,7 @@
         </div>
       </div>
 
-      <div class="info-row" *ngIf="posts.quantity > 0">
-        <div class="stock-row">
-            <span>მარაგში {{ posts.quantity }}</span>
-            <span class="stock-dot"></span>
-        </div>
-      </div>
+
 
       <div class="info-row" *ngIf="posts.description">
         <!-- <p class="row-label">აღწერა</p> -->

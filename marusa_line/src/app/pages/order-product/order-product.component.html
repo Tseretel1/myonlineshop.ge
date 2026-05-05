@@ -24,7 +24,6 @@
               [(ngModel)]="mobileNumber"
               [ngClass]="{'field-input--invalid': mobileInvalid}"
               maxlength="30"
-              placeholder="5XX XXX XXX" 
             />
             <div class="edit-actions">
               <button class="icon-btn" (click)="editField(1)" *ngIf="editFieldNum!=1" title="რედაქტირება">
@@ -85,10 +84,8 @@
 
     </div>
 
-    <!-- Right column: product + order -->
     <div class="order-sidebar">
 
-      <!-- Product card -->
       <div class="product-card">
         <div class="product-image-wrap">
           <div class="quantity-badge">×{{ productQuantity }}</div>
@@ -96,7 +93,6 @@
         </div>
 
         <div class="product-meta">
-          <!-- Quantity control -->
             <div class="qty-row" *ngIf="posts.quantity>0">
             <span class="qty-label" style="color: white;">მარაგში</span>
             <div class="qty-controls">
@@ -114,6 +110,7 @@
           <div class="qty-row  additional-params" *ngFor="let a of AdditionalParameters">
             <p  style="color: white;">{{a.paramName}}</p>
 
+<<<<<<< Updated upstream
             <div class="additonal-buttons">
               <div class="qty-controls "  *ngFor="let i of a.values">
                 <button class="qty-btn" [ngClass]="{'selected-param':i.valueId==selectedParam}" (click)="selectParam( a.parameterId ,i.valueId)">{{i.value}}</button>
@@ -121,6 +118,8 @@
             </div>
           </div>
           <!-- Price -->
+=======
+>>>>>>> Stashed changes
           <div class="price-row">
             <span class="price-label" style="color: white;">ჯამი</span>
             <div class="price-value">
@@ -130,7 +129,6 @@
           </div>
         </div>
       </div>
-            <!-- Section: Comment -->
       <div class="form-section coment-mobile">
         <div class="section-label">
           <span class="section-num">03</span>

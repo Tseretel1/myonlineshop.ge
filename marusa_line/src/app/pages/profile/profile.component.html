@@ -15,16 +15,14 @@
         <p (click)="changeProductSource(1)" [ngClass]="{'active':likesOrOrders ==1}">
             შეკვეთები
             <i class="fas fa-receipt"></i>       
-            <!-- <i class="fas fa-truck"></i> -->
         </p>
-        <p (click)="changeProductSource(2)" [ngClass]="{'active':likesOrOrders ==2}">
+        <!-- <p (click)="changeProductSource(2)" [ngClass]="{'active':likesOrOrders ==2}">
             მოწონებული
-            <!-- <i class="fas fa-bookmark" ></i>    -->
             <i class="fas fa-heart" ></i>   
-        </p>
+        </p> -->
     </div>
 
-      <div class="filters-align" *ngIf="likesOrOrders ==1">
+      <div class="filters-align" *ngIf="likesOrOrders ==1&&MyOrders.length>0">
          <div class="section-title-align">
             <b class="section-title">
                 <i class="fas fa-circle"></i> 

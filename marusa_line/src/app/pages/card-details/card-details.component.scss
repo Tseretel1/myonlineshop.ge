@@ -90,6 +90,11 @@
   position: relative;
   color: white;
 }
+.stock-top{
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
 .discount-procent{
   position: absolute;
   top: -5px;
@@ -155,25 +160,21 @@
   align-items: center;
   gap: 8px;
   font-size: 14px;
+  span{
+
+    .stock-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #4caf50;
+      padding: 2px;
+    }
+  }
 }
 
-.stock-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: #4caf50;
-  flex-shrink: 0;
-}
 
 .description-box {
-  background-color: rgba(0, 0, 0, 0.25);
-  border-radius: 8px;
-  padding: 0.75rem 1rem;
-  font-size: 14px;
-  line-height: 1.6;
   color: white;
-  max-height: 300px;
-  overflow-y: scroll;
 }
 
 .order-btn {

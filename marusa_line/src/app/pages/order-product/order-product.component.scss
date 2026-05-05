@@ -63,8 +63,8 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
   flex-direction: column;
   gap: 18px;
   transition: border-color 0.2s;
-  background-color: rgba(0, 0, 0, 0.486);
-  border: 1px solid rgba(128, 128, 128, 0.267);
+  background-color: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(128, 128, 128, 0.25);
   &:focus-within {
     border-color: $border-accent;
   }
@@ -195,7 +195,7 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
   height: 36px;
   border-radius: $radius-md;
   border: 1px solid $border-mid;
-  background: $bg-card;
+  background: white;
   color: $text-secondary;
   cursor: pointer;
   transition: all 0.18s;
@@ -209,13 +209,15 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
 
   &--danger {
     border-color: rgba($danger, 0.35);
-    color: $danger;
-    &:hover { background: rgba($danger, 0.15); border-color: $danger; }
+    color: white;
+    background-color:$danger ;
+    &:hover { background: rgba(red, 0.15); border-color: $danger; }
   }
 
   &--success {
     border-color: rgba($success, 0.35);
-    color: $success;
+    color:white;
+    background-color: $success ;
     &:hover { background: rgba($success, 0.15); border-color: $success; }
   }
 }
@@ -271,8 +273,8 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.486);
-  border: 1px solid rgba(128, 128, 128, 0.267);
+  background-color: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(128, 128, 128, 0.25);
 }
 
 .product-image-wrap {

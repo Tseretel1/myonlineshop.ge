@@ -78,7 +78,9 @@ export class ProfileComponent implements OnInit {
       return this.MyOrders;
     }
     return this.postService.getUserOrders(this.userId).subscribe((resp) => {
-      this.MyOrders = resp;
+      if(resp!=null){
+        this.MyOrders = resp;
+      }
     });
   }
 
