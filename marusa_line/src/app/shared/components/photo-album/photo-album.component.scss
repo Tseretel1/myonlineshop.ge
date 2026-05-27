@@ -146,10 +146,6 @@
       display: flex;
       opacity: 1;
     }
-
-    .discount-price-mobile {
-      transform: translateY(-2px);
-    }
   }
 
   .discount-price-mobile {
@@ -245,10 +241,6 @@
       animation: informationAlign 0.5s;
       display: flex;
       opacity: 1;
-    }
-
-    .discount-price-mobile {
-      transform: translateY(-2px);
     }
   }
   .title {
@@ -398,15 +390,6 @@
   }
 }
 
-@keyframes informationAlign {
-  0% {
-    display: flex;
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 
 @keyframes slideInLeft {
   0% {

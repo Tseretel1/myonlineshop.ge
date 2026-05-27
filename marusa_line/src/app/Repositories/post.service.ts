@@ -12,7 +12,7 @@ import { InsertReview, ReviewDto } from '../pages/card-details/reviews/reviews.c
 })
 export class PostService {
   AppUrl= AppUrl;
-  private apiUrl = AppUrl.network;
+  private apiUrl = AppUrl.development;
   constructor(public http : HttpClient)
   {
     
