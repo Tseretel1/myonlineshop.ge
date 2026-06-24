@@ -35,6 +35,8 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
   padding: 40px 20px 80px;
   font-family: $font-display;
   color: $text-primary;
+  flex-direction: column;
+  align-items: center;
 }
 
 // ─── Layout ───────────────────────────────────────────────────────────────────
