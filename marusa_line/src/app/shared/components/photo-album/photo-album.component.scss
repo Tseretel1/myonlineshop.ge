@@ -43,84 +43,6 @@
     left:6px;
     z-index: 6;
   }
-
-  .information-align {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
-    justify-content: center;
-    flex-direction: column;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    align-items: center;
-    opacity: 0;
-    background-color: rgba(0, 0, 0, 0.349);
-    .navigate {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: 2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .titles{
-        color: white;
-        text-align: center;
-      }
-    }
-
-    .text-align {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      position: relative;
-
-      .description-price {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .discount-price {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
-        gap: 10px;
-        font-size: 18px;
-        align-items: center;
-        z-index: 20;
-
-        .discounted-price {
-          color: rgb(255, 70, 70);
-          text-decoration: line-through;
-          font-style: italic;
-          font-size: 12px;
-        }
-      }
-    }
-
-    .title {
-      color: white;
-      text-align: center;
-      font-weight: 600;
-      font-size: 16px;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-      overflow-x: scroll;
-      
-    }
-    .title::-webkit-scrollbar{
-      display: none;
-    }
-  }
 }
 
 .desktop {
@@ -139,12 +61,6 @@
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
     .photo {
       transform: scale(1.15);
-    }
-
-    .information-align {
-      animation: informationAlign 0.5s;
-      display: flex;
-      opacity: 1;
     }
   }
 
@@ -198,24 +114,6 @@
     }
   }
 
-  .likes {
-    color: white;
-    display: flex;
-    gap: 5px;
-    font-weight: 600;
-
-    .far {
-      color: white;
-    }
-  }
-
-  .information-align {
-    z-index: 1;
-
-    .heart-align {
-      z-index: 8;
-    }
-  }
 }
 
 .mobile {
@@ -235,12 +133,6 @@
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
     .photo {
       transform: scale(1.15);
-    }
-
-    .information-align {
-      animation: informationAlign 0.5s;
-      display: flex;
-      opacity: 1;
     }
   }
   .title {
@@ -328,90 +220,6 @@
       z-index: 2;
     }
   }
-  .information-align {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    .title {
-      color: white;
-      text-align: center;
-      font-weight: 600;
-      font-size: 16px;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-      overflow-x: scroll;
-      
-    }
-    .title::-webkit-scrollbar{
-      display: none;
-    }
-    .navigate{
-      position: absolute;
-      z-index: 1;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-  }
-}
-
-.liked-post {
-  animation: likeAnim 0.3s;
-  color: rgb(247, 65, 65);
-  filter: drop-shadow(0 0 8px rgba(247, 65, 65, 0.6));
-}
-
-@keyframes likeAnim {
-  0% {
-    color: white;
-    transform: scale(1);
-  }
-  25% {
-    transform: rotate(20deg) scale(1.1);
-  }
-  50% {
-    transform: rotate(-20deg) scale(1.3);
-  }
-  75% {
-    transform: rotate(10deg) scale(1.2);
-  }
-  100% {
-    color: rgb(247, 65, 65);
-    transform: scale(1);
-  }
-}
-
-
-@keyframes slideInLeft {
-  0% {
-    transform: translateX(-20px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@media screen and (max-width: 1000px) {
-  .photo-container {
-    .information-align {
-      padding: 10px;
-
-      .title {
-        font-size: 15px;
-      }
-    }
-  }
 }
 
 @media screen and (max-width: 600px) {
@@ -430,10 +238,6 @@
 
     .heart-align {
       display: flex;
-    }
-
-    .information-align {
-      display: none;
     }
   }
 }

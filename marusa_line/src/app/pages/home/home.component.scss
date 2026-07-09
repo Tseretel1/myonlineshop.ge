@@ -129,15 +129,6 @@
                 }
             }
         }
-        .rate-align{
-            display: flex;
-            gap: 5px;
-            align-items: center;
-            .rate{
-                color: gold;
-            }
-        }
-        
         }
     }
     }
@@ -147,35 +138,6 @@
       flex-direction: column;
       align-items: center;
     }
-    .photo-align{
-      width: 80%;
-      display: grid;
-      grid-template-columns: 40% 25% 35%;
-      grid-template-rows: auto auto auto; 
-      .container{
-          flex: auto;
-          height: 300px;
-          margin: 2px;
-          position: relative;
-          .discount-mark{
-              position: absolute;
-              top: -10px;
-              left: -20px;
-              z-index: 10;
-          }
-      }
-    }
-    .align-2{
-      grid-template-columns: 30% 35% 35%;
-      grid-template-rows: auto auto auto; 
-    }
-    .align-3{
-       grid-template-columns: 35% 25% 40%;
-       grid-template-rows: auto auto auto; 
-    }
-    .align-4{
-       grid-template-columns: 45% 25% 30%;
-    }
 }
 .gallery{
     display: flex;
@@ -184,90 +146,11 @@
     align-items: center;    
 }
 
-@media screen and (max-width:1500px){
-    .gallery-align{
-       .photo-align{
-         .container{
-           height: 280px;
-           
-        }
-    }
-  }
-}
-@media screen and (max-width:1200px){
-    .gallery-align{
-       .photo-align{
-         .container{
-           height: 250px;
-        }
-    }
-  }
-}
-@media screen and (max-width:1000px){
-    .gallery-align{
-       .photo-align{
-         .container{
-           height: 180px;
-        }
-    }
-  }
-}
-@media screen and (max-width:800px){
-   .gallery-align{
-       .photo-align{
-         .container{
-           height: 150px;
-            .discount-mark{
-               top: -10px;
-               left: -10px;
-           }
-        }
-    }
-  }
-}
 @media screen and (max-width:600px){
     .gallery-align{
-        .section-title-align{
-            width: 90%;
-        }
-        .photos-align{
-          width: 90%;
-          display: flex;
-        }
-        .gallery{
-            .filters-align{
-                width: 90%;
-            }
-        }
         .shop-align{
           width: 90%;
         }
-       .photo-align{
-          width: 90%;
-
-        .hide-album{
-          display: none;
-        }
-        .container{
-           height: 120px;
-           margin: 2px;
-             .discount-mark{
-               top: -5px;
-               left: 0px;
-           }
-        }
-      }
-      .align-2{
-        grid-template-columns: 55% 45%;
-        grid-template-rows: auto auto; 
-      }
-    .align-3{
-       grid-template-columns: 55% 45%;
-       grid-template-rows: auto auto auto; 
-    }
-    .align-4{
-       grid-template-columns: 45% 55%;
-    }
   }
   .gallery-align  {
     .shop-align  {

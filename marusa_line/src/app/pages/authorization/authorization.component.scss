@@ -100,19 +100,6 @@
                     background: #1456ab ;
                     border: 1px solid transparent;
                 }
-                .registration{
-                    background-color: transparent;
-                    border: 1px solid white;
-                    display: flex;
-                    justify-content: center;
-                }
-                .registration:hover{
-                    background: white;
-                    border: 1px solid #ffffff80;
-                    box-shadow: 0 0 5px #ffffff80, 0 0 20px #ffffff80, 0 0 50px #ffffff80,
-                    0 0 100px #ffffff80;
-                    color: black;
-                }
                 .facebook:hover  {
                     color: #ffffff;
                     background: #1456ab ;
@@ -127,64 +114,6 @@
                     0 0 100px #ffffff80;
                 }
 
-            }
-            .stage-registration{
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                gap: 20px;
-                align-items: center;
-                justify-content: center;
-                .form{
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    width: 100%;
-                    gap: 20px; 
-                   .input-group {
-                        position: relative;
-                        width: 100%;
-                        .input {
-                            border: solid 1.5px white;
-                            border-radius: 1rem;
-                            background: none;
-                            padding: 1rem;
-                            font-size: 1rem;
-                            width: 100%;
-                            color: white;
-                            transition: border 150ms cubic-bezier(0.4,0,0.2,1);
-                        }
-                    .user-label {
-                        position: absolute;
-                        left: 15px;
-                        color: white;
-                        pointer-events: none;
-                        transform: translateY(1rem);
-                        transition: 150ms cubic-bezier(0.4,0,0.2,1);
-                    }
-                    
-                    .input:focus, input:valid {
-                        outline: none;
-                    }
-                    
-                    .input:focus ~ label, input:valid ~ label {
-                        transform: translateY(-50%) scale(0.8);
-                        padding: 0 .2em;
-                    }
-                }
-                .send-application-align{
-                    display: flex;
-                    justify-content: center;
-                    width: 100%;
-                    .send-application{
-                        padding: 10px 20px;
-                        width: 100%;
-                        border-radius: 10px;
-                        border: none;
-                        cursor: pointer;
-                    }
-                }
-              }
             }
         }
     }

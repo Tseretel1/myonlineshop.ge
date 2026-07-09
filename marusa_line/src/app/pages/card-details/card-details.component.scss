@@ -90,27 +90,11 @@
   position: relative;
   color: white;
 }
-.stock-top{
-  position: absolute;
-  top: 5px;
-  right: 10px;
-}
 .discount-procent{
   position: absolute;
   top: -5px;
   left: -10px;
   transform: rotate(-25deg);
-}
-
-.discount-badge {
-  display: inline-block;
-  font-size: 12px;
-  padding: 3px 10px;
-  border-radius: 8px;
-  background-color: rgba(255, 80, 0, 0.2);
-  color: orangered;
-  font-weight: 500;
-  align-self: flex-start;
 }
 
 .product-title {
@@ -126,11 +110,6 @@
 }
 
 .info-row { display: flex; flex-direction: column; gap: 4px; }
-
-.row-label {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.5);
-}
 
 .price-row {
   display: flex;
@@ -154,24 +133,6 @@
   font-size: 22px;
   font-weight: 500;
 }
-
-.stock-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  span{
-
-    .stock-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background-color: #4caf50;
-      padding: 2px;
-    }
-  }
-}
-
 
 .description-box {
   color: white;

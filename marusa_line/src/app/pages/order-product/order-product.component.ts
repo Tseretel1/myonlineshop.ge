@@ -411,9 +411,7 @@ changeFavicon(iconUrl: string) {
   }
 
 
-  selectedParam:number = 0;
   selectParam(paramId:number,valueId:number){
-    this.selectedParam = valueId; 
     this.updateParam(paramId, valueId);
   }
   selectedParamvaluesArray: ParamValue[]=[];
@@ -424,6 +422,9 @@ changeFavicon(iconUrl: string) {
     } else {
       this.selectedParamvaluesArray.push({ paramId, valueId });
     }
+  }
+  isValueSelected(paramId:number, valueId:number):boolean{
+    return this.selectedParamvaluesArray.some(x => x.paramId === paramId && x.valueId === valueId);
   }
 
   checkIfEveryParameterIsSelected(): boolean {
