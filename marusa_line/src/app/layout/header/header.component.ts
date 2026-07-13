@@ -69,9 +69,9 @@ export class HeaderComponent implements OnInit{
           this.getUser();
           const shopId = localStorage.getItem('shopId');
             if(shopId){
-              if(this.shop.name==''){
-                this.shopId = Number(shopId)
-                localStorage.setItem('shopId',shopId);
+              const newShopId = Number(shopId);
+              if(this.shop.name=='' || newShopId!==this.shopId){
+                this.shopId = newShopId;
                 this.loadShop(this.shopId);
               }
               return;

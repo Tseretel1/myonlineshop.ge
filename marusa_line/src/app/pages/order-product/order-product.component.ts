@@ -80,8 +80,9 @@ export class OrderProductComponent implements OnInit{
         }
         
         const shopIdLocal = localStorage.getItem('shopId');
-        if(shopIdLocal==null){
-          localStorage.setItem('shopId',this.posts.shopId.toString());
+        const currentShopId = this.posts.shopId.toString();
+        if(shopIdLocal!==currentShopId){
+          localStorage.setItem('shopId',currentShopId);
           this.reloadService.reload();
         }
       }

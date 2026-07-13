@@ -80,8 +80,31 @@ export class ProfileComponent implements OnInit {
     return this.postService.getUserOrders(this.userId).subscribe((resp) => {
       if(resp!=null){
         this.MyOrders = resp;
+        this.currentPage = 1;
       }
     });
+  }
+
+  currentPage: number = 1;
+  pageSize: number = 10;
+
+  get totalPages(): number {
+    return Math.max(1, Math.ceil(this.MyOrders.length / this.pageSize));
+  }
+
+  get pageNumbers(): number[] {
+    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+  }
+
+  get paginatedOrders(): OrderProduct[] {
+    const start = (this.currentPage - 1) * this.pageSize;
+    return this.MyOrders.slice(start, start + this.pageSize);
+  }
+
+  goToPage(page: number): void {
+    if (page < 1 || page > this.totalPages || page === this.currentPage) return;
+    this.currentPage = page;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   orderStatuses: orderStatuses[] = [];
@@ -128,11 +151,13 @@ export class ProfileComponent implements OnInit {
   sortByPriceHighToLow(): void {
     this.MyOrders = [...this.MyOrders].sort((a, b) => b.price - a.price);
     this.sortNum = 1;
+    this.currentPage = 1;
     this.hideFilterModal();
   }
   sortByPriceLowToHigh(): void {
     this.MyOrders = [...this.MyOrders].sort((a, b) => a.price - b.price);
     this.sortNum = 2;
+    this.currentPage = 1;
     this.hideFilterModal();
   }
 
@@ -149,11 +174,13 @@ export class ProfileComponent implements OnInit {
       this.MyOrders = myOrders;
     }, 1);
     this.sortNum = statusId + 5;
+    this.currentPage = 1;
     this.hideFilterModal();
   }
 
   sortByIsPaied(paid: boolean) {
     this.hideFilterModal();
+    this.currentPage = 1;
     this.MyOrders.sort((a, b) => {
       if (paid) {
         this.sortNum = 3;

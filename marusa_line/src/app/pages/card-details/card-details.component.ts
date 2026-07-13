@@ -44,10 +44,9 @@ export class CardDetailsComponent implements OnInit{
           this.calculatediscountProcentage();
         }
         const shopIdLocal = localStorage.getItem('shopId');
-        if(shopIdLocal==null){
-            const shopId = this.posts.shopId;
-            localStorage.setItem('shopId',shopId.toString());
-            this.reloadService.reload();
+        const currentShopId = this.posts.shopId.toString();
+        if(shopIdLocal!==currentShopId){
+            localStorage.setItem('shopId',currentShopId);
           }
         this.reloadService.reload();
         this.postsLoaded = true;
