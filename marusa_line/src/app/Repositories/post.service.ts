@@ -84,8 +84,8 @@ export class PostService {
   InsertReviews(review:InsertReview): Observable<any> {
     return this.http.post<any>(this.apiUrl+`Review/insert-reviews`,review);
   }
-  GetReviews(productId:number): Observable<ReviewDto[]> {
-    return this.http.get<ReviewDto[]>(this.apiUrl+`Review/get-reviews?productId=${productId}`,);
+  GetReviews(productId:number, pageNumber:number, pageSize:number): Observable<ReviewDto[]> {
+    return this.http.get<ReviewDto[]>(this.apiUrl+`Review/get-reviews?productId=${productId}&pageNumber=${pageNumber}&pageSize=${pageSize}`,);
   }
 }
 export interface Photo {

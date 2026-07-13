@@ -39,13 +39,34 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
   align-items: center;
 }
 
+// ─── Window (single surface tying every section together) ────────────────────
+.order-window {
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px;
+  background: $bg-surface;
+  border: 1px solid $border-dim;
+  border-radius: $radius-xl;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  animation: fadeUp 0.35s ease both;
+}
+
+.order-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 // ─── Layout ───────────────────────────────────────────────────────────────────
 .order-container {
   display: grid;
   grid-template-columns: 1fr 340px;
   gap: 24px;
   width: 100%;
-  max-width: 960px;
   align-items: start;
 }
 
@@ -369,6 +390,11 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
   &:hover {     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);}
   &:active { background: rgba($accent, 0.2); }
 }
+.parameter{
+  width: auto;
+  height: auto;
+  padding: 5px 10px;
+}
 .selected-param{
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
@@ -489,6 +515,7 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
 
 @media (max-width: 560px) {
   .order-page { padding: 20px 14px 60px; }
+  .order-window { padding: 18px; border-radius: $radius-lg; gap: 18px; }
   .form-section { padding: 18px 16px; }
   .product-card { flex-direction: column; }
   .product-image-wrap { width: 100%; aspect-ratio: 4/3; }

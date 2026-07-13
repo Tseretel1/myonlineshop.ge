@@ -28,6 +28,7 @@ export interface ReviewDto {
   photo: string;
   rate: number;
   comment: string;
+  totalCount: number;
 }
 
 interface LocalUser {
@@ -55,6 +56,11 @@ export class ReviewsComponent implements OnInit {
   productId: number = 0;
   reviews: Review[] = [];
   currentUser: LocalUser | null = null;
+
+  pageNumber: number = 1;
+  pageSize: number = 10;
+  totalCount: number = 0;
+  loadingMore: boolean = false;
 
   // Form state
   showForm: boolean = false;
@@ -92,11 +98,35 @@ export class ReviewsComponent implements OnInit {
   }
 
   loadReviews(): void {
-    this.postservice.GetReviews(this.productId).subscribe({
+    this.pageNumber = 1;
+    this.postservice.GetReviews(this.productId, this.pageNumber, this.pageSize).subscribe({
       next: (dtos: ReviewDto[]) => {
         this.reviews = dtos.map(dto => this.mapDto(dto));
+        this.totalCount = dtos.length > 0 ? dtos[0].totalCount : 0;
       },
       error: (err) => console.error('Failed to load reviews', err)
+    });
+  }
+
+  get hasMoreReviews(): boolean {
+    return this.reviews.length < this.totalCount;
+  }
+
+  loadMoreReviews(): void {
+    if (this.loadingMore || !this.hasMoreReviews) return;
+
+    this.loadingMore = true;
+    const nextPage = this.pageNumber + 1;
+    this.postservice.GetReviews(this.productId, nextPage, this.pageSize).subscribe({
+      next: (dtos: ReviewDto[]) => {
+        this.reviews = this.reviews.concat(dtos.map(dto => this.mapDto(dto)));
+        this.pageNumber = nextPage;
+        this.loadingMore = false;
+      },
+      error: (err) => {
+        console.error('Failed to load more reviews', err);
+        this.loadingMore = false;
+      }
     });
   }
 

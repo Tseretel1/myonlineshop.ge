@@ -74,6 +74,9 @@
         <p class="review-comment" *ngIf="r.comment">{{ r.comment }}</p>
       </div>
     </div>
+    <button class="see-more-btn" *ngIf="hasMoreReviews" [disabled]="loadingMore" (click)="loadMoreReviews()">
+      {{ loadingMore ? 'იტვირთება...' : 'მეტის ნახვა' }}
+    </button>
     <!-- <p class="no-reviews" *ngIf="reviews.length === 0">შეფასებები არ არის</p> -->
   </div>
 </div>

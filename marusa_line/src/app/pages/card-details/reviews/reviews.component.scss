@@ -293,7 +293,33 @@ $font:          'DM Sans', system-ui, sans-serif;
   font-size: 14px;
   color: $text-primary;
   line-height: 1.65;
-  padding-left: 44px; 
+  padding-left: 44px;
+}
+
+.see-more-btn {
+  align-self: center;
+  margin-top: 16px;
+  padding: 9px 22px;
+  border-radius: $radius-sm;
+  border: 1px solid $border-accent;
+  background: $accent-glow;
+  color: $accent-light;
+  font-family: $font;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+
+  &:hover:not(:disabled) {
+    background: rgba(139, 92, 246, 0.22);
+    border-color: $accent;
+    color: #fff;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 }
 
 // ─── Animation ────────────────────────────────────────────────────────────────
