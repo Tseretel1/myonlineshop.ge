@@ -2,14 +2,20 @@
     <div class="header">
     <div class="header-align">
         <div class="float-logo" (click)="goTospecialRoute()">
-            <!-- <div class="logo-container">
-                <img class="logo" src="assets/icons/instagram.svg" alt="">
-            </div> -->
             <div class="logo-container">
                     <img [src]="shop.logo" class="logo">
                 </div>
-            <p class="header-title">{{shop.name}}</p>
-        </div> 
+        </div>
+        <div class="header-search-align" *ngIf="shopId">
+            <i class="fas fa-search search-icon"></i>
+            <input
+                type="text"
+                class="search-input"
+                [value]="searchTerm"
+                (input)="onSearchInput($any($event.target).value)"
+                placeholder="ძებნა პროდუქტებში..."
+            >
+        </div>
         <div class="navigation-align">
             <!-- <span [ngClass]="{'login-popup': Authorised}" class="nav-link" routerLinkActive="active-link" (click)="goTospecialRoute()"><div class="shop-logo-container" *ngIf="shop.logo"><img class="shop-logo" [src]="shop.logo" alt=""></div> <b>მთავარი</b> </span> -->
             <span [ngClass]="{'login-popup': Authorised}" *ngIf="!Authorised" class="nav-link" routerLinkActive="active-link" (click)="openAuthorization()"><b ><i class="fas fa-user-shield"></i> ავტორიზაცია</b> </span>
@@ -34,7 +40,7 @@
             <i class="fas fa-times" (click)="hideSidenav()"></i>
         </div>
         <div class="nav-center">
-            <!-- <span class="nav-link" routerLinkActive="active-link" (click)="goTospecialRoute()"><div class="shop-logo-container" *ngIf="shop.logo"><img class="shop-logo" [src]="shop.logo" alt=""></div> <b>მთავარი</b></span> -->
+            <span *ngIf="shopId" class="nav-link" routerLinkActive="active-link" (click)="goTospecialRoute();hideSidenav()"><div class="shop-logo-container" *ngIf="shop.logo"><img class="shop-logo" [src]="shop.logo" alt=""></div> <b>მაღაზია</b></span>
             <div *ngIf="Authorised" class="nav-link profile-link" [routerLink]="AppRoutes.profile"(click)="hideSidenav()" routerLinkActive="active-link"><img src="" alt="">
                 <div class="img-container">
                     <img [src]="userPhoto" class="user-image">

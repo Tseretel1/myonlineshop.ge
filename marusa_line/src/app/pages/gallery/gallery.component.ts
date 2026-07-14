@@ -4,8 +4,8 @@ import AOS from 'aos';
 import { Photo, Post, PostService, ProductObject, ProductTypes } from '../../Repositories/post.service';
 import { PhotoAlbumComponent, PhotoConfig } from '../../shared/components/photo-album/photo-album.component';
 import { DiscountMarkComponent } from '../../shared/components/discount-mark/discount-mark.component';
-import { Subject } from 'rxjs';
-import { switchMap, of } from 'rxjs';
+import { switchMap, of, distinctUntilChanged } from 'rxjs';
+import { SearchService } from '../../shared/services/SearchService';
 
 @Component({
   selector: 'app-gallery',
@@ -31,7 +31,7 @@ export class GalleryComponent implements OnInit {
     productTypeId :null,
     shopId : 0
   }
-  constructor(private postService:PostService){
+  constructor(private postService:PostService, private searchService: SearchService){
     const shopId = localStorage.getItem('shopId');
 
     if(shopId){
@@ -39,12 +39,13 @@ export class GalleryComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.getAllPosts();
     this.startBillboardTimer();
 
-    this.searchSubject.pipe(
+    this.searchService.searchTerm$.pipe(
+      distinctUntilChanged(),
       switchMap(term => {
         const trimmed = term.trim();
+        this.searchTerm = trimmed;
         if(!trimmed){
           this.isSearching = false;
           return of(null);
@@ -65,12 +66,6 @@ export class GalleryComponent implements OnInit {
 
   searchTerm: string = '';
   isSearching: boolean = false;
-  private searchSubject = new Subject<string>();
-
-  onSearchInput(value: string){
-    this.searchTerm = value;
-    this.searchSubject.next(value);
-  }
 
   private executeSearch(term: string, page: number){
     const dto: SearchProductsDto = {
@@ -175,6 +170,7 @@ scrollToStartMethod() {
   ApplyFitler(num: number|null) {
     this.isSearching = false;
     this.searchTerm = '';
+    this.searchService.setSearchTerm('');
     if(num){
       this.activeFilterNum = num;
       this.getPosts.productTypeId = num;

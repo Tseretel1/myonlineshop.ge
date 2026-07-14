@@ -8,6 +8,7 @@ import { ReloadService } from '../../shared/services/ReloadService';
 import { PostService } from '../../Repositories/post.service';
 import { Shop, ShopDto } from '../../pages/home/home.component';
 import { Input } from '@angular/core';
+import { SearchService } from '../../shared/services/SearchService';
 @Component({
   selector: 'app-header',
   imports: [RouterLink, RouterLinkActive, CommonModule],
@@ -37,7 +38,7 @@ export class HeaderComponent implements OnInit{
     isFollowed : false,
   }
   shopId:number=0;
-  constructor(private authService:AuthorizationService, private router :Router,private reloadService:ReloadService,private postService:PostService,private route: ActivatedRoute,  ){
+  constructor(private authService:AuthorizationService, private router :Router,private reloadService:ReloadService,private postService:PostService,private route: ActivatedRoute, private searchService: SearchService  ){
     const shopId = localStorage.getItem('shopId');
       if(shopId){
         this.shopId = Number(shopId);
@@ -47,6 +48,7 @@ export class HeaderComponent implements OnInit{
   }
   AuthSub!:Subscription;
   ReloadSub!:Subscription;
+  SearchSub!:Subscription;
   Authorised:boolean = false;
   ngOnInit(): void {
     this.authService.isUserAuthorised();
@@ -62,6 +64,11 @@ export class HeaderComponent implements OnInit{
         }
       }
     );
+    this.SearchSub = this.searchService.searchTerm$.subscribe(
+      (term)=>{
+        this.searchTerm = term;
+      }
+    )
     console.log('this trigered')
     this.ReloadSub= this.reloadService.alert$.subscribe(
       (e)=>{
@@ -119,6 +126,19 @@ export class HeaderComponent implements OnInit{
     setTimeout(() => {
       this.sidenavVisible =  false;
     }, 500);
+  }
+
+  searchTerm:string = '';
+  onSearchInput(value:string){
+    this.searchTerm = value;
+    this.searchService.setSearchTerm(value);
+    if(value.trim() !== '' && this.shopId){
+      const shopHome = AppRoutes.shop + this.shopId;
+      const onShopRoute = this.router.url === shopHome || this.router.url.startsWith(shopHome + '/');
+      if(!onShopRoute){
+        this.router.navigate([shopHome]);
+      }
+    }
   }
 
   goTospecialRoute(){

@@ -35,17 +35,6 @@
     </span>
   </div>
 </div> -->
-    <div class="search-and-filters-align">
-         <div class="search-bar-align">
-            <i class="fas fa-search search-icon"></i>
-            <input
-                type="text"
-                class="search-input"
-                [value]="searchTerm"
-                (input)="onSearchInput($any($event.target).value)"
-                placeholder="ძებნა პროდუქტებში..."
-            >
-         </div>
     <div class="filters-align"  #scrollToStart>
          <div class="section-filters-align">
             <!-- <b class="section-title">
@@ -86,7 +75,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <div class="photo-align"*ngIf="Cards.length>0">
         <ng-container *ngFor="let p of Cards; let index = index;">
