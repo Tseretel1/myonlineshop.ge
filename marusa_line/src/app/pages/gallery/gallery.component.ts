@@ -1,9 +1,11 @@
 import { CommonModule, NgForOf, PathLocationStrategy } from '@angular/common';
 import { Component, ElementRef, Input, OnInit, ViewChild, } from '@angular/core';
 import AOS from 'aos';
-import { Photo, Post, PostService, ProductTypes } from '../../Repositories/post.service';
+import { Photo, Post, PostService, ProductObject, ProductTypes } from '../../Repositories/post.service';
 import { PhotoAlbumComponent, PhotoConfig } from '../../shared/components/photo-album/photo-album.component';
 import { DiscountMarkComponent } from '../../shared/components/discount-mark/discount-mark.component';
+import { Subject } from 'rxjs';
+import { switchMap, of } from 'rxjs';
 
 @Component({
   selector: 'app-gallery',
@@ -39,6 +41,54 @@ export class GalleryComponent implements OnInit {
   ngOnInit(): void {
     this.getAllPosts();
     this.startBillboardTimer();
+
+    this.searchSubject.pipe(
+      switchMap(term => {
+        const trimmed = term.trim();
+        if(!trimmed){
+          this.isSearching = false;
+          return of(null);
+        }
+        this.isSearching = true;
+        this.activeFilterNum = 0;
+        this.getPosts.productTypeId = null;
+        return this.executeSearch(trimmed, 1);
+      })
+    ).subscribe(resp => {
+      if(resp === null){
+        this.getAllPosts();
+        return;
+      }
+      this.applySearchResults(resp);
+    });
+  }
+
+  searchTerm: string = '';
+  isSearching: boolean = false;
+  private searchSubject = new Subject<string>();
+
+  onSearchInput(value: string){
+    this.searchTerm = value;
+    this.searchSubject.next(value);
+  }
+
+  private executeSearch(term: string, page: number){
+    const dto: SearchProductsDto = {
+      userId: this.userId,
+      shopId: this.ShopId || Number(localStorage.getItem('shopId')) || 0,
+      searchTerm: term,
+      pageNumber: page,
+      pageSize: this.getPosts.pageSize,
+    };
+    return this.postService.searchProducts(dto);
+  }
+
+  private applySearchResults(resp: ProductObject){
+    this.Cards = resp.products;
+    this.buildBillboardGroups();
+    this.totalCount = resp.totalCount;
+    this.totalPages = Math.ceil(this.totalCount / this.getPosts.pageSize);
+    this.lastPage = Math.ceil(this.totalCount / this.getPosts.pageSize);
   }
   moveProductTypeTOFirst(){
     const TypeId = localStorage.getItem('TypeId');
@@ -77,13 +127,14 @@ scrollToStartMethod() {
 }
 
   getAllPosts() {
+    this.isSearching = false;
     const user = localStorage.getItem('user');
     if(user){
       this.user =JSON.parse(user);
       this.userId = this.user.Id
       this.getPosts.userId = this.user.Id;
     }
-    
+
     this.applyPageAndType();
     this.postService.getPosts(this.getPosts).subscribe(
       (resp)=>{
@@ -122,6 +173,8 @@ scrollToStartMethod() {
   user:any = null;
   userId:number = 0;
   ApplyFitler(num: number|null) {
+    this.isSearching = false;
+    this.searchTerm = '';
     if(num){
       this.activeFilterNum = num;
       this.getPosts.productTypeId = num;
@@ -179,15 +232,20 @@ scrollToStartMethod() {
   changePage(page: number) {
     if (page < 1 || page > this.lastPage) return;
     this.selectedPage = page;
-    this.getPosts.pageNumber = page;
     const middle = this.pageNumber + 2;
     if (page > middle) {
       this.pageNumber = page - 2;
     } else if (page < middle && this.pageNumber > 1) {
       this.pageNumber = Math.max(1, page - 2);
     }
-    localStorage.setItem('PageNum', this.selectedPage.toString());
-    this.getAllPosts();
+    if(this.isSearching){
+      this.executeSearch(this.searchTerm.trim(), page).subscribe(resp => this.applySearchResults(resp));
+    }
+    else{
+      this.getPosts.pageNumber = page;
+      localStorage.setItem('PageNum', this.selectedPage.toString());
+      this.getAllPosts();
+    }
     this.scrollToStartMethod();
   }
   totalPages:number =0;
@@ -238,5 +296,13 @@ export interface GetPostsDto{
   pageSize:number;
   userId:number;
   productTypeId:number|null;
+  shopId:number;
+}
+
+export interface SearchProductsDto{
+  pageNumber:number;
+  pageSize:number;
+  userId:number;
+  searchTerm:string;
   shopId:number;
 }

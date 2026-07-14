@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { OrderProduct } from '../pages/profile/profile.component';
 import { AppUrl } from '../shared/Url/Appurl';
 import { orderPostObj } from '../pages/order-product/order-product.component';
-import { GetPostsDto } from '../pages/gallery/gallery.component';
+import { GetPostsDto, SearchProductsDto } from '../pages/gallery/gallery.component';
 import { GetUserFilteredDto, GetusersDto } from '../pages/home/home.component';
 import { InsertReview, ReviewDto } from '../pages/card-details/reviews/reviews.component';
 @Injectable({
@@ -20,6 +20,9 @@ export class PostService {
 
   getPosts(posts:GetPostsDto): Observable<ProductObject> {
     return this.http.post<ProductObject>(this.apiUrl+`Product/get-posts`,posts);
+  }
+  searchProducts(dto:SearchProductsDto): Observable<ProductObject> {
+    return this.http.post<ProductObject>(this.apiUrl+`Product/search-products`,dto);
   }
   getUserLikedPosts(userId:number): Observable<Post[]> {
     return this.http.get<Post[]>(this.apiUrl+`Product/get-user-liked-posts?userid=${userId}`);
