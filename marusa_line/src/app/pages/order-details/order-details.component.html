@@ -21,80 +21,59 @@
               </div>
             </div>
 
-            <div class="user-information" *ngIf="order.isPaid">
-               <div class="rules-align" >
-                  <div class="title">
-                    <b>შეკვეთის სტატუსი<i class="fas fa-file-alt"></i></b>
+            <div class="paid-status-card" *ngIf="order.isPaid">
+              <div class="paid-card-title"><i class="fas fa-truck"></i> შეკვეთის სტატუსი</div>
+              <div class="status-timeline">
+                <div *ngFor="let o of orderStatuses; let last = last;" class="timeline-step">
+                  <div class="timeline-marker" [ngClass]="{'completed': o.id < order.statusId, 'current': o.id === order.statusId}"></div>
+                  <div class="timeline-line" *ngIf="!last" [ngClass]="{'completed': o.id < order.statusId}"></div>
+                  <div class="timeline-label" [ngClass]="{'completed': o.id < order.statusId, 'current': o.id === order.statusId}">
+                    {{ getStatusName(o.id) }}
                   </div>
-                  <div class="statuses-modal">
-                    <div class="detail-align">
-                      <div class="order-road">
-                        <div *ngFor="let o of orderStatuses; let last = last;" class="order-step">
-                          <div class="step-marker" [ngClass]="{'completed': o.id < order.statusId, 'current': o.id === order.statusId}"></div>
-                          <div class="step-line" *ngIf="!last" [ngClass]="{'completed': o.id < order.statusId}"></div>
-                          <div class="step-label" [ngClass]="{'completed-label': o.id < order.statusId, 'current-label': o.id === order.statusId}">
-                            {{ getStatusName(o.id) }}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                 </div>
               </div>
             </div>
-            <div class="product-details-align"   [ngClass]="{ 'pay-one-align': !order.isPaid }">
+
+            <div class="product-details-align" [ngClass]="{ 'pay-one-align': !order.isPaid }" *ngIf="!order.isPaid">
               <div class="detail-align">
                 <div
-                  class="detail info-background" style="width: 100%;"
+                  class="detail info-background to-payed" style="width: 100%;"
                   (click)="scrollToBottomMethod()"
-                  *ngIf="!order.isPaid"
-                  [ngClass]="{ 'to-payed': !order.isPaid }"
                 >
                   <p class="">გადასახდელი</p>
                   <b> {{ order.finalPrice }}₾</b>
                   <i class="fas fa-credit-card"></i>
                 </div>
-                <div
-                  class="detail info-background payed-container"
-                  *ngIf="order.isPaid"
-                  [ngClass]="{ 'is-payed': order.isPaid }"
-                >
-                  <p class="">გადახდილი</p>
-                  <b> {{ order.finalPrice }}₾</b>
-                  <i class="fas fa-credit-card"></i>
-                </div>
               </div>
-              <div class="delivery-align info-background detail"   *ngIf="order.isPaid">
-               <p style="text-align: center">რაოდენობა <b style="font-size: 18px; background-color: rgba(0, 0, 0, 0.342); border-radius: 5px; padding: 5px 10px;">{{ order.productQuantity }}</b></p>
-             </div>
-              <div class="delivery-align info-background detail" *ngIf="order.isPaid">
-                <p style="text-align: center">{{ order.deliveryType }}</p>
-              </div>
-               <div class="delivery-align info-background detail" style="flex-direction: column;" *ngIf="order.isPaid&& order.address!=''">
-                <p>მისამართი</p>
-                <p style="text-align: center" style="font-size: 18px;  background-color: rgba(0, 0, 0, 0.136); border-radius: 5px; padding: 5px 10px; word-break: break-all;">{{ order.address }}</p>
-              </div>
-              <!-- <div class="delivery-align info-background detail">
-                <p style="text-align: center">{{ order.address }}</p>
-              </div> -->
             </div>
-            <div class="comment-align user-information"  *ngIf="order.isPaid">
-              <div class="form-group">
-                <label for="" style="display: flex; gap: 20px; color: white"
-                  >კომენტარი
-                  <p style="color: gray">{{ comment.length }}/300</p>
-                </label>
-                <textarea
-                  [(ngModel)]="comment"
-                  disabled="true"
-                  class="form-control"
-                  maxlength="300"
-                  style="min-height: 100px"
-                ></textarea>
+
+            <div class="paid-summary-grid" *ngIf="order.isPaid">
+              <div class="paid-summary-card highlight">
+                <i class="fas fa-check-circle"></i>
+                <span class="paid-summary-label">გადახდილია</span>
+                <span class="paid-summary-value">{{ order.finalPrice }}₾</span>
               </div>
+              <div class="paid-summary-card">
+                <span class="paid-summary-label">რაოდენობა</span>
+                <span class="paid-summary-value">{{ order.productQuantity }}</span>
+              </div>
+              <div class="paid-summary-card">
+                <span class="paid-summary-label">მიწოდება</span>
+                <span class="paid-summary-value">{{ order.deliveryType }}</span>
+              </div>
+              <div class="paid-summary-card address" *ngIf="order.address!=''">
+                <span class="paid-summary-label">მისამართი</span>
+                <span class="paid-summary-value">{{ order.address }}</span>
+              </div>
+            </div>
+
+            <div class="paid-comment-card" *ngIf="order.isPaid && comment">
+              <div class="paid-card-title"><i class="fas fa-comment-dots"></i> კომენტარი</div>
+              <p class="paid-comment-text">{{ comment }}</p>
             </div>
           </div>
           <ng-container  *ngIf="order.isPaid ">
-            <div class="user-information" *ngIf="order.address==''">
+            <div class="paid-map-card" *ngIf="order.address==''">
               <div id="map" ></div>
             </div>
           </ng-container>

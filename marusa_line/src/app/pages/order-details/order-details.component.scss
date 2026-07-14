@@ -52,26 +52,6 @@
     gap: 10px;
     flex-direction: column;
     width: 100%;
-    .comment-align{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        padding: 20px;
-        .form-group{
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            .form-control{
-                width: 100%;
-                background-color: rgba(0, 0, 0, 0.136);
-                border: 1px solid rgba(128, 128, 128, 0.473);
-                color: white;
-                padding: 10px;
-                border-radius: 5px;
-            }
-        }
-    }
     .photo-container{
         border-radius: 5px;
         width: 100%;
@@ -94,62 +74,10 @@
         color: white;
         gap: 20px;
         border-radius: 5px;
-        .delivery-align{
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            width: 100%;
-        }
-
-        
     }
     .pay-one-align{
         grid-template-columns: repeat(1,1fr);
     }
-    .rules-align{
-        width: 100%;
-        .statuses-modal{
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        .detail-align{
-            z-index: 2;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10px;
-            border-radius: 10px;
-            animation: statusAnimPopUp 0.5s;
-            .hide-modal-align{
-                display: flex; 
-                width: 100%; 
-                justify-content: flex-end;
-                padding: 10px 0px;
-                .hide-modal-button{
-                    background-color: transparent;
-                    border: 1px solid grey; 
-                    padding: 10px; 
-                    border-radius: 5px; cursor: pointer;
-                }
-            }
-        }
-        @keyframes statusAnimPopUp {
-            0%{
-                opacity: 0.5;
-                scale: 0.7;
-            }
-            50%{
-                opacity: 1;
-                scale: 1.1;
-            }
-            100%{
-                scale: 1;
-            }
-        }
-     }
-  }
 }
 
 .user-information{
@@ -160,10 +88,6 @@
     border-radius: 10px;
     animation:fadeIn 0.5s;
     border:1px solid rgba(128, 128, 128, 0.267);
-    #map{
-        width: 100%;
-        height: 300px;
-    }
     .flex-columns{
         width: 100%;
         display: flex;
@@ -496,77 +420,186 @@ p{
         scale: 1;
     }
 }
-.order-road {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-  width: 100%;
+// ─── Paid order — refactored summary ──────────────────────────────────────
+.paid-status-card,
+.paid-comment-card,
+.paid-map-card {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(128, 128, 128, 0.267);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    animation: fadeIn 0.5s;
 }
 
-.order-step {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  width: 100%;
+.paid-card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+
+    i {
+        color: #2ecc71;
+    }
 }
 
-.step-marker {
-  position: absolute;
-  left: 0;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background-color: #555;
-  border: 2px solid #555;
-  top: 4px;
-  z-index: 2;
+.status-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
-.step-marker.completed {
-  background-color: #2ecc71; 
-  border-color: #2ecc71;
+.timeline-step {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
 }
 
-.step-marker.current {
-  background-color: #2ecc71;
-  border: 3px solid #fff;
-  box-shadow: 0 0 0 2px #2ecc71;
+.timeline-marker {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #555;
+    border: 2px solid #555;
+    z-index: 2;
+    transition: all 0.2s ease;
+
+    &.completed {
+        background-color: #2ecc71;
+        border-color: #2ecc71;
+    }
+
+    &.current {
+        background-color: #2ecc71;
+        border: 3px solid #fff;
+        box-shadow: 0 0 0 2px #2ecc71;
+    }
 }
 
-.step-line {
-  position: absolute;
-  left: 6px;
-  top: 20px;
-  width: 2px;
-  height: 35px;
-  background-color: #555;
-  z-index: 1;
+.timeline-line {
+    position: absolute;
+    left: 6px;
+    top: 20px;
+    width: 2px;
+    height: calc(100% + 2px);
+    background-color: #555;
+    z-index: 1;
+
+    &.completed {
+        background-color: #2ecc71;
+    }
 }
 
-.step-line.completed {
-  background-color: #2ecc71;
+.timeline-label {
+    margin-left: 25px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(128, 128, 128, 0.35);
+    color: #ccc;
+    font-size: 14px;
+    width: 100%;
+
+    &.completed {
+        color: #2ecc71;
+    }
+
+    &.current {
+        background: #2ecc71;
+        color: white;
+        border-color: #2ecc71;
+        font-weight: 600;
+    }
 }
 
-.step-label {
-  margin-left: 25px;
-  font-size: 15px;
-  background: #00000032;
-  border: 1px solid rgba(128, 128, 128, 0.473);
-  padding: 6px 14px;
-  border-radius: 8px;
-  color: #ccc;
-  width: 100%;
+.paid-summary-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    animation: fadeIn 0.5s;
 }
 
-.completed-label {
-  color: #2ecc71;
+.paid-summary-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background-color: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(128, 128, 128, 0.267);
+
+    &.highlight {
+        background: rgba(46, 204, 113, 0.12);
+        border-color: rgba(46, 204, 113, 0.4);
+
+        i {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            color: #2ecc71;
+            font-size: 18px;
+        }
+
+        .paid-summary-value {
+            color: #2ecc71;
+        }
+    }
+
+    &.address {
+        grid-column: span 2;
+    }
 }
 
-.current-label {
-  background: #2ecc71;
-  color: white;
+.paid-summary-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.paid-summary-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    word-break: break-word;
+}
+
+.paid-comment-text {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.paid-map-card {
+    padding: 0;
+    overflow: hidden;
+
+    #map {
+        width: 100%;
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .paid-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .paid-summary-card.address {
+        grid-column: span 1;
+    }
 }
 
 @media screen and (max-width:1200px) {
