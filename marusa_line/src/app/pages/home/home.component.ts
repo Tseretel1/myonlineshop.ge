@@ -184,6 +184,19 @@ changeFavicon(iconUrl: string) {
     hoverVisible : true,
     likeCountvisible :false,
   }
+
+  locationCopied:boolean = false;
+  copyLocation(text: string): void {
+    this.locationCopied = true;
+    navigator.clipboard.writeText(text)
+    .then(() => {
+    })
+    .catch(err => {
+    });
+    setTimeout(() => {
+      this.locationCopied = false;
+    }, 3000);
+  }
 }
 
 

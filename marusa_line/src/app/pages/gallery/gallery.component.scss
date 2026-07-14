@@ -404,8 +404,11 @@
         height: 280px;
       }
     }
-    .filters-align {
+    .search-and-filters-align{
       width: 90%;
+      .filters-align {
+        width: 100%;
+      }
     }
   }
   .center-pagenation {

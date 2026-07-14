@@ -16,12 +16,41 @@
       .shop-header{
         width: 100%;
         display: flex;
-        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: center;
+        column-gap: 50px;
+        row-gap: 20px;
         cursor: pointer;
         border-radius: 5px;
         transition: 0.3s ;
         color: white;
         position: relative;
+        .shop-location{
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 6px;
+          color: white;
+          font-size: 14px;
+          cursor: pointer;
+          max-width: 250px;
+          i{
+            color: greenyellow;
+          }
+          p{
+            text-wrap: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-width: 0;
+          }
+          .copy-icon{
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 12px;
+          }
+          .copied{
+            font-size: 12px;
+          }
+        }
         .follow-button{
           border: 1px solid white;
           border-radius: 5px;
@@ -123,7 +152,7 @@
                 gap: 5px;
                 color: white;
                 font-size: 14px;
-                
+
                 p{
                     text-wrap: nowrap;
                 }
@@ -159,9 +188,13 @@
             width: 100%;
             align-items: center;
             justify-content: center;
-              .logo-title-align{ 
+              .logo-title-align{
                 width: 100%;
                 }
+            }
+            .shop-location{
+              width: 100%;
+              max-width: 100%;
             }
           }
       }
