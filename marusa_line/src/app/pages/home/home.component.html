@@ -34,13 +34,13 @@
                     </div>
                 </div>
             </div>
-            <div class="shop-location" *ngIf="shop.location" (click)="copyLocation(shop.location)">
-                <i class="fas fa-map-marker-alt"></i>
-                <p>{{shop.location}}</p>
-                <span class="copied" *ngIf="locationCopied"> ✅</span>
-                <i class="fas fa-copy copy-icon" *ngIf="!locationCopied"></i>
-            </div>
         </div>
+    </div>
+    <div class="shop-location" *ngIf="shop.location" (click)="copyLocation(shop.location)">
+        <i class="fas fa-map-marker-alt"></i>
+        <p>{{shop.location}}</p>
+        <span class="copied" *ngIf="locationCopied"> ✅</span>
+        <i class="fas fa-copy copy-icon" *ngIf="!locationCopied"></i>
     </div>
     <div class="header-container">
     </div>
