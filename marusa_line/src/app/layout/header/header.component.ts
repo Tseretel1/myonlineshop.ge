@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AuthorizationService } from '../../pages/authorization/authorization.service';
 import { Subscription } from 'rxjs';
 import { ReloadService } from '../../shared/services/ReloadService';
-import { PostService } from '../../Repositories/post.service';
+import { ShopService } from '../../shared/services/ShopService';
 import { Shop, ShopDto } from '../../pages/home/home.component';
 import { Input } from '@angular/core';
 import { SearchService } from '../../shared/services/SearchService';
@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit{
     isFollowed : false,
   }
   shopId:number=0;
-  constructor(private authService:AuthorizationService, private router :Router,private reloadService:ReloadService,private postService:PostService,private route: ActivatedRoute, private searchService: SearchService  ){
+  constructor(private authService:AuthorizationService, private router :Router,private reloadService:ReloadService,private shopService:ShopService,private route: ActivatedRoute, private searchService: SearchService  ){
     const shopId = localStorage.getItem('shopId');
       if(shopId){
         this.shopId = Number(shopId);
@@ -154,7 +154,7 @@ export class HeaderComponent implements OnInit{
     this.scrollTotop();
   }
   loadShop(shopId: number): void {
-    this.postService.getShopById(shopId).subscribe({
+    this.shopService.getShop(shopId).subscribe({
       next: (data: any) => {
         this.shop = data.shop; 
       },

@@ -11,6 +11,7 @@ import { escapeRegExp } from '@angular/compiler';
 import { Footer, FooterComponent } from '../../layout/footer/footer.component';
 import { AuthorizationService } from '../authorization/authorization.service';
 import { ReloadService } from '../../shared/services/ReloadService';
+import { ShopService } from '../../shared/services/ShopService';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 
@@ -42,6 +43,7 @@ export class HomeComponent implements OnInit{
   private route: ActivatedRoute,
   private authService: AuthorizationService,
   private reloadService: ReloadService,
+  private shopService: ShopService,
   private titleService: Title){
     const user = localStorage.getItem('user');
     if(user){
@@ -103,7 +105,7 @@ private initShopData() {
   footer!: Footer;
   isShopFollowed:boolean = false;
   loadShop(shopId: number): void {
-    this.postService.getShopById(shopId).subscribe({
+    this.shopService.getShop(shopId).subscribe({
       next: (data: ShopDto) => {
         this.shop = { ...data.shop }; 
         this.isShopFollowed = data.isFollowed;
@@ -161,6 +163,7 @@ changeFavicon(iconUrl: string) {
           (resp)=>{
             this.isShopFollowed =true;
             this.toggleFollew();
+            this.shopService.setFollowed(true);
           }
         )
       }
