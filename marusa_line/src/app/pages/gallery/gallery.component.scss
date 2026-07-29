@@ -90,13 +90,10 @@
           }
         }
         .active-filter {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: rgb(56, 56, 73);
           color: white;
           border-color: transparent;
-
-          &:hover {
-            transform: translateY(-2px);
-          }
+          border: 1px solid grey;
         }
       }
       .filters-align:hover .filters-align::-webkit-scrollbar {
@@ -205,10 +202,6 @@
               background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
               color: white;
               border-color: transparent;
-
-              &:hover {
-                transform: translateY(-2px);
-              }
             }
           }
         }
@@ -272,8 +265,10 @@
                 padding: 12px 16px;
                 border-radius: 8px;
                 border: none;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                background: rgb(56, 56, 73);
                 color: white;
+                border-color: transparent;
+                border: 1px solid grey;
                 display: flex;
                 align-items: center;
                 cursor: pointer;
@@ -293,11 +288,6 @@
             .btn {
                 transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
                 margin: 0;
-                
-                &:hover {
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                    color: white;
-                }
             }
             
             .page-numbers-align {
@@ -314,17 +304,13 @@
                     cursor: pointer;
                     background-color: rgba(255, 255, 255, 0.1);
                     color: rgba(255, 255, 255, 0.8);
-                    
-                    &:hover {
-                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                        color: white;
-                        transform: translateY(-2px);
-                    }
                 }
                 
                 .selected {
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-                    color: white !important;
+                                    background: rgb(106, 106, 134);
+                color: white;
+                border-color: transparent;
+                border: 1px solid white; 
                 }
             }
         }
