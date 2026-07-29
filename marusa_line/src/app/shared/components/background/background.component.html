@@ -1,0 +1,10 @@
+<div
+  class="shape"
+  *ngFor="let s of shapes"
+  [ngClass]="s.type"
+  [style.left.%]="s.left"
+  [style.width.px]="s.size"
+  [style.height.px]="s.size"
+  [style.animation-duration.s]="s.duration"
+  [style.animation-delay.s]="s.delay"
+></div>

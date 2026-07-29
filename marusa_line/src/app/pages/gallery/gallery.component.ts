@@ -21,6 +21,7 @@ export class GalleryComponent implements OnInit {
     hoverVisible : true,
     navigationAvailable:true,
     likeCountvisible :false,
+    
   }
   
   @Input() ShopId!:number;

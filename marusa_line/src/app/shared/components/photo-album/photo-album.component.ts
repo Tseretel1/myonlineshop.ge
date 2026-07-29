@@ -32,7 +32,9 @@ export class PhotoAlbumComponent implements OnInit{
   postLiked:boolean = false;
   userId:number = 0;
 
-  likePost(){
+  likePost(event?:Event){
+    event?.stopPropagation();
+    event?.preventDefault();
     const user = localStorage.getItem('user');
     if(user){
       const userParsed = JSON.parse(user);

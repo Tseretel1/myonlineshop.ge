@@ -3,7 +3,58 @@
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: rgb(34, 35, 46);
   overflow: hidden;
   pointer-events: none;
+  background: radial-gradient(ellipse at bottom, #233242 0%, #11141d 100%);
+}
+
+.shape {
+  position: absolute;
+  top: 0;
+  background: rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  animation-name: fallDown;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.square {
+  border-radius: 3px;
+}
+
+.blob {
+  border-radius: 42% 58% 55% 45% / 45% 40% 60% 55%;
+}
+
+.triangle {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+@keyframes fallDown {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.3;
+  }
+  92% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(110vh) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shape {
+    animation: none;
+    opacity: 0;
+  }
 }

@@ -66,15 +66,15 @@ export class MainComponent implements OnInit, AfterViewInit,AfterViewInit{
 
 
   PhotoConfig:PhotoConfig={
-    likeVisible : false,
+    likeVisible : true,
     priceVisible :false,
     navigationAvailable : false,
     hoverVisible : false,
-    likeCountvisible :false,
+    likeCountvisible :true,
   }
 
   SmallConfig:PhotoConfig={
-    likeVisible : false,
+    likeVisible : true,
     priceVisible :false,
     navigationAvailable : false,
     hoverVisible : false,

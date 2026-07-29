@@ -47,10 +47,11 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
   flex-direction: column;
   gap: 24px;
   padding: 32px;
-  background: $bg-surface;
-  border: 1px solid $border-dim;
-  border-radius: $radius-xl;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background-color: rgba(5, 4, 8, 0.521);
   animation: fadeUp 0.35s ease both;
 }
 

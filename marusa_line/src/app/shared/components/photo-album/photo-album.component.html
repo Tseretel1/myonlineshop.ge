@@ -1,51 +1,53 @@
 <div class="photo-container desktop">
-    <app-discount-mark *ngIf="products.discountedPrice!=null&&products.discountedPrice>0 &&PhotoCongif.priceVisible" class="discount-procent" [discount]="products"></app-discount-mark>
     <div class="mobile-router" (click)="NavigateToDetails()" *ngIf="PhotoCongif.navigationAvailable"></div>
 
-  
-    <div class="heart-align">
-        <p>
-            {{products.title}}
-        </p>
+    <div class="photo-half">
+        <app-discount-mark *ngIf="products.discountedPrice!=null&&products.discountedPrice>0 &&PhotoCongif.priceVisible" class="discount-procent" [discount]="products"></app-discount-mark>
+
+        <img *ngIf="products.photos.length>0" [src]="products.photos[0].photoUrl" alt="" class="photo">
+        <img *ngIf="products.photoUrl" [src]="products.photoUrl" alt="" class="photo">
     </div>
+
+    <button type="button" class="like-button" *ngIf="PhotoCongif.likeVisible" [ngClass]="{'liked':postLiked}" (click)="likePost($event)">
+        <i class="fas fa-heart" *ngIf="postLiked"></i>
+        <i class="far fa-heart" *ngIf="!postLiked"></i>
+        <span class="like-count" *ngIf="PhotoCongif.likeCountvisible">{{LikeCount}}</span>
+    </button>
+
     <div class="discount-price-mobile" *ngIf="PhotoCongif.priceVisible" >
         <b [ngClass]="{'discounted-price': products.discountedPrice>0}" >{{products.price}}₾</b>
         <b *ngIf="products.discountedPrice>0">{{products.discountedPrice}}₾</b>
     </div>
 
-    <!-- <div class="discount-price-mobile" *ngIf="PhotoCongif.priceVisible" >
-        <b *ngIf="products.discountedPrice<=0">{{products.price}}₾</b>
-        <b *ngIf="products.discountedPrice>0">{{products.discountedPrice}}₾</b>
-    </div> -->
-
-    <img *ngIf="products.photos.length>0" [src]="products.photos[0].photoUrl" alt="" class="photo">
-    <img *ngIf="products.photoUrl" [src]="products.photoUrl" alt="" class="photo">
+    <div class="info-half" [ngClass]="{'has-badges': PhotoCongif.priceVisible || PhotoCongif.likeVisible}">
+        <p class="card-title">{{products.title}}</p>
+        <p class="card-description" *ngIf="products.description">{{products.description}}</p>
+    </div>
 </div>
 
 <div class="photo-container mobile" >
-    <!-- <div class="information-align"(click)="NavigateToDetails()" *ngIf="PhotoCongif.navigationAvailable">
-        <div class="navigate"  (click)="NavigateToDetails()" >
-        <b class="titles" >
-            {{products.title}}
-           </b>
-        </div>
-   
-    </div> -->
-    <app-discount-mark *ngIf="products.discountedPrice!=null&&products.discountedPrice>0 &&PhotoCongif.priceVisible " class="discount-procent" [discount]="products"></app-discount-mark>
-  
     <div class="mobile-router" (click)="NavigateToDetails()" *ngIf="PhotoCongif.navigationAvailable"></div>
-    
+
+    <div class="photo-half">
+        <app-discount-mark *ngIf="products.discountedPrice!=null&&products.discountedPrice>0 &&PhotoCongif.priceVisible " class="discount-procent" [discount]="products"></app-discount-mark>
+
+        <img *ngIf="products.photos.length>0" [src]="products.photos[0].photoUrl" alt="" class="photo">
+        <img *ngIf="products.photoUrl" [src]="products.photoUrl" alt="" class="photo" >
+    </div>
+
+    <button type="button" class="like-button" *ngIf="PhotoCongif.likeVisible" [ngClass]="{'liked':postLiked}" (click)="likePost($event)">
+        <i class="fas fa-heart" *ngIf="postLiked"></i>
+        <i class="far fa-heart" *ngIf="!postLiked"></i>
+        <span class="like-count" *ngIf="PhotoCongif.likeCountvisible">{{LikeCount}}</span>
+    </button>
+
     <div class="discount-price-mobile" *ngIf="PhotoCongif.priceVisible" >
         <b [ngClass]="{'discounted-price': products.discountedPrice>0}" >{{products.price}}₾</b>
         <b *ngIf="products.discountedPrice>0">{{products.discountedPrice}}₾</b>
     </div>
-    
-    <!-- <div class="discount-price-mobile" *ngIf="PhotoCongif.priceVisible" >
-        <b *ngIf="products.discountedPrice<=0">{{products.price}}₾</b>
-        <b *ngIf="products.discountedPrice>0">{{products.discountedPrice}}₾</b>
-    </div> -->
-    <div class="title"><p>{{products.title}}</p></div>
-    <img *ngIf="products.photos.length>0" [src]="products.photos[0].photoUrl" alt="" class="photo">
-    <img *ngIf="products.photoUrl" [src]="products.photoUrl" alt="" class="photo" >
-</div>
 
+    <div class="info-half" [ngClass]="{'has-badges': PhotoCongif.priceVisible || PhotoCongif.likeVisible}">
+        <p class="card-title">{{products.title}}</p>
+        <p class="card-description" *ngIf="products.description">{{products.description}}</p>
+    </div>
+</div>
