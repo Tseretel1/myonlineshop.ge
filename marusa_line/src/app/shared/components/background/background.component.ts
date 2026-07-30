@@ -21,10 +21,11 @@ export class BackgroundComponent {
   shapes: Shape[] = this.generateShapes(32);
 
   private generateShapes(count: number): Shape[] {
-    const types: ShapeType[] = ['circle', 'square', 'triangle', 'blob'];
+    const types: ShapeType[] = ['blob'];
+    // const types: ShapeType[] = ['circle', 'square', 'triangle', 'blob'];
     return Array.from({ length: count }, () => ({
       type: types[Math.floor(Math.random() * types.length)],
-      size: Math.round(10 + Math.random() * 36),
+      size: Math.round(10 + Math.random() * 56),
       left: Math.round(Math.random() * 100),
       duration: Math.round(16 + Math.random() * 22),
       delay: -Math.round(Math.random() * 30),
