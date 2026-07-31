@@ -2,8 +2,6 @@
     <div class="mobile-router" (click)="NavigateToDetails()" *ngIf="PhotoCongif.navigationAvailable"></div>
 
     <div class="photo-half">
-        <app-discount-mark *ngIf="products.discountedPrice!=null&&products.discountedPrice>0 &&PhotoCongif.priceVisible" class="discount-procent" [discount]="products"></app-discount-mark>
-
         <img *ngIf="products.photos.length>0" [src]="products.photos[0].photoUrl" alt="" class="photo">
         <img *ngIf="products.photoUrl" [src]="products.photoUrl" alt="" class="photo">
     </div>
@@ -14,14 +12,20 @@
         <span class="like-count" *ngIf="PhotoCongif.likeCountvisible">{{LikeCount}}</span>
     </button>
 
-    <div class="discount-price-mobile" *ngIf="PhotoCongif.priceVisible" >
-        <b [ngClass]="{'discounted-price': products.discountedPrice>0}" >{{products.price}}₾</b>
-        <b *ngIf="products.discountedPrice>0">{{products.discountedPrice}}₾</b>
+    <div class="badge-row" *ngIf="PhotoCongif.priceVisible">
+        <app-discount-mark *ngIf="products.discountedPrice!=null&&products.discountedPrice>0" class="discount-procent" [discount]="products"></app-discount-mark>
+
+        <div class="discount-price-mobile">
+            <b [ngClass]="{'discounted-price': products.discountedPrice>0}" >{{products.price}}₾</b>
+            <b *ngIf="products.discountedPrice>0">{{products.discountedPrice}}₾</b>
+        </div>
     </div>
 
-    <div class="info-half" [ngClass]="{'has-badges': PhotoCongif.priceVisible || PhotoCongif.likeVisible}">
+    <div class="info-half" [ngClass]="{'has-badges': PhotoCongif.likeVisible}">
         <p class="card-title">{{products.title}}</p>
-        <p class="card-description" *ngIf="products.description">{{products.description}}</p>
+        <div class="card-description-wrapper" *ngIf="products.description">
+            <p class="card-description">{{products.description}}</p>
+        </div>
     </div>
 </div>
 
@@ -29,8 +33,6 @@
     <div class="mobile-router" (click)="NavigateToDetails()" *ngIf="PhotoCongif.navigationAvailable"></div>
 
     <div class="photo-half">
-        <app-discount-mark *ngIf="products.discountedPrice!=null&&products.discountedPrice>0 &&PhotoCongif.priceVisible " class="discount-procent" [discount]="products"></app-discount-mark>
-
         <img *ngIf="products.photos.length>0" [src]="products.photos[0].photoUrl" alt="" class="photo">
         <img *ngIf="products.photoUrl" [src]="products.photoUrl" alt="" class="photo" >
     </div>
@@ -41,13 +43,19 @@
         <span class="like-count" *ngIf="PhotoCongif.likeCountvisible">{{LikeCount}}</span>
     </button>
 
-    <div class="discount-price-mobile" *ngIf="PhotoCongif.priceVisible" >
-        <b [ngClass]="{'discounted-price': products.discountedPrice>0}" >{{products.price}}₾</b>
-        <b *ngIf="products.discountedPrice>0">{{products.discountedPrice}}₾</b>
+    <div class="badge-row" *ngIf="PhotoCongif.priceVisible">
+        <app-discount-mark *ngIf="products.discountedPrice!=null&&products.discountedPrice>0" class="discount-procent" [discount]="products"></app-discount-mark>
+
+        <div class="discount-price-mobile">
+            <b [ngClass]="{'discounted-price': products.discountedPrice>0}" >{{products.price}}₾</b>
+            <b *ngIf="products.discountedPrice>0">{{products.discountedPrice}}₾</b>
+        </div>
     </div>
 
-    <div class="info-half" [ngClass]="{'has-badges': PhotoCongif.priceVisible || PhotoCongif.likeVisible}">
+    <div class="info-half" [ngClass]="{'has-badges': PhotoCongif.likeVisible}">
         <p class="card-title">{{products.title}}</p>
-        <p class="card-description" *ngIf="products.description">{{products.description}}</p>
+        <div class="card-description-wrapper" *ngIf="products.description">
+            <p class="card-description">{{products.description}}</p>
+        </div>
     </div>
 </div>

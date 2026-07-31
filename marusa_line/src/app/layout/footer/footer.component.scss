@@ -1,137 +1,115 @@
-.container{
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(5, 4, 8, 0.521);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 32px 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.shop-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+
+  .shop-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    flex-shrink: 0;
+  }
+
+  .shop-img {
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(26, 25, 25, 0.441);
+    object-fit: cover;
   }
-  .midlle{
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      padding: 20px 0px;
-  }
-  .link-align{
-    display: flex;
-    width: 80%;
-    align-items: center;
-    padding: 50px 0px;
-    gap: 20px;
-}
-a{
-    text-decoration: none;
-}
-.main-logo{
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-.shop-img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
-@media screen and (max-width: 900px){
-    .link-align{
-        flex-direction: column;
-        padding: 10px 0px;
-    }
-}
-@media screen and (max-width: 600px){
-    .link-align{
-        width: 90%;
-    }
-}
-
-  .link-button {
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 17px;
+  .shop-name {
+    font-size: 16px;
     font-weight: 500;
-    color: white;
-    text-shadow: none;
-    background: transparent;
-    cursor: pointer;
-    box-shadow: transparent;
-    border: 1px solid #ffffff80;
-    transition: 0.3s ease;
-    user-select: none;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .main-logo-name{
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        overflow: none;
-        justify-content: flex-start;
-        p{
-            text-wrap: nowrap;
-            max-width: 200px;
-        }
+    margin: 0;
+  }
+}
+
+.social-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.social-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    transform: translateY(-3px) scale(1.08);
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+
+  &.instagram:hover {
+    border-color: #dc2743;
+    box-shadow: 0 0 12px rgba(220, 39, 67, 0.5);
+  }
+
+  &.facebook:hover {
+    border-color: #1877f2;
+    box-shadow: 0 0 12px rgba(24, 119, 242, 0.5);
+  }
+
+  &.tiktok {
+    background-color: rgba(255, 255, 255, 0.85);
+  }
+
+  &.tiktok:hover {
+    background-color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .footer-content {
+    padding: 24px 16px;
+    gap: 14px;
+  }
+
+  .social-icon {
+    width: 38px;
+    height: 38px;
+
+    img {
+      width: 18px;
+      height: 18px;
     }
   }
-  .facebook{
-    background: #0087ff66;
-  }
-  .tiktok{
-    background: #ffffff80;
-    color: black;
-  }
-  .facebook:hover {
-    color: #ffffff;
-    background: #1456ab ;
-    border: 1px solid #1877F2 ;
-    box-shadow: 0 0 5px #1877F2 , 0 0 20px #1877F2 , 0 0 50px #1877F2 ,
-      0 0 100px #1877F2 ;
-  }
-  .instagram:hover{
-    color: #ffffff;
-    border: 1px solid #ff3766d3 ;
-    box-shadow: 0 0 5px #ff3766d3, 0 0 20px #ff3766d3, 0 0 50px #ff3766d3,
-      0 0 100px #ff3766d3;
-  } 
-  .tiktok:hover {
-    background: #ffffffc2;
-    border: 1px solid #ffffff80;
-    box-shadow: 0 0 5px #ffffff80, 0 0 20px #ffffff80, 0 0 50px #ffffff80,
-      0 0 100px #ffffff80;
-  }
-
-
-  .instagram {
-    background: #f09433;
-    background: -moz-linear-gradient(
-      45deg,
-      #f09433 0%,
-      #e6683c 25%,
-      #dc2743 50%,
-      #cc2366 75%,
-      #bc1888 100%
-    );
-    background: -webkit-linear-gradient(
-      45deg,
-      #f09433 0%,
-      #e6683c 25%,
-      #dc2743 50%,
-      #cc2366 75%,
-      #bc1888 100%
-    );
-    background: linear-gradient(
-      45deg,
-      #f09433 0%,
-      #e6683c 25%,
-      #dc2743 50%,
-      #cc2366 75%,
-      #bc1888 100%
-    );
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
-  }
+}

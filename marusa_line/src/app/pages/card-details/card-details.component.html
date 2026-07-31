@@ -29,8 +29,14 @@
         </div>
       </div> -->
         <app-discount-mark *ngIf="posts.discountedPrice!=null&&posts.discountedPrice>0" class="discount-procent" [discount]="posts"></app-discount-mark>
-        <p class="product-title">{{ posts.title }}</p>
-        
+        <div class="title-row">
+          <p class="product-title">{{ posts.title }}</p>
+          <button type="button" class="like-button" [ngClass]="{'liked':postLiked}" (click)="likePost($event)">
+            <i class="fas fa-heart" *ngIf="postLiked"></i>
+            <i class="far fa-heart" *ngIf="!postLiked"></i>
+          </button>
+        </div>
+
         <div class="divider"></div>
         
         <div class="info-row">

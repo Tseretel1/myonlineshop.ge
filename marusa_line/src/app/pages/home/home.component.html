@@ -35,12 +35,23 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="shop-location" *ngIf="shop.location" (click)="copyLocation(shop.location)">
-        <i class="fas fa-map-marker-alt"></i>
-        <p>{{shop.location}}</p>
-        <span class="copied" *ngIf="locationCopied"> ✅</span>
-        <i class="fas fa-copy copy-icon" *ngIf="!locationCopied"></i>
+        <div class="shop-socials" *ngIf="shop.instagram || shop.facebook || shop.titkok">
+            <a class="social-icon instagram" *ngIf="shop.instagram" [href]="shop.instagram" target="_blank" aria-label="Instagram">
+                <img src="assets/icons/instagram.svg" alt="">
+            </a>
+            <a class="social-icon facebook" *ngIf="shop.facebook" [href]="shop.facebook" target="_blank" aria-label="Facebook">
+                <img src="assets/icons/facebook.svg" alt="">
+            </a>
+            <a class="social-icon tiktok" *ngIf="shop.titkok" [href]="shop.titkok" target="_blank" aria-label="TikTok">
+                <img src="assets/icons/tiktok.svg" alt="">
+            </a>
+        </div>
+        <div class="shop-location" *ngIf="shop.location" (click)="copyLocation(shop.location)">
+            <i class="fas fa-map-marker-alt"></i>
+            <p>{{shop.location}}</p>
+            <span class="copied" *ngIf="locationCopied"> ✅</span>
+            <i class="fas fa-copy copy-icon" *ngIf="!locationCopied"></i>
+        </div>
     </div>
     <div class="header-container">
     </div>
@@ -49,7 +60,7 @@
     </div>
 </div>
 
-<app-footer class="footer" *ngIf="footer" [footer]="footer"></app-footer>
+<!-- <app-footer class="footer" *ngIf="footer" [footer]="footer"></app-footer> -->
 
 
 <div *ngIf="!shop" style="display: flex; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: fixed; top: 0; left: 0; color: white;">

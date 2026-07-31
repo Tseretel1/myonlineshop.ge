@@ -3,34 +3,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    .shop-location{
-      display: flex;
-      gap: 6px;
-      color: white;
-      font-size: 14px;
-      cursor: pointer;
-      width: 80%;
-      padding:10px;    
-      background-color: rgb(0 0 0 / 35%);
-      i{
-        color:   #ff0065;
-      }
-      p{
-        text-wrap: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        min-width: 0;
-      }
-      .copy-icon{
-        color: rgba(255, 255, 255, 0.5);
-        font-size: 12px;
-      }
-      .copied{
-        font-size: 12px;
-      }
-    }
     .shop-align{
       display: flex;
+      flex-direction: column;
+      gap: 16px;
       width: 80%;
       border-radius: 10px;
       padding:10px;
@@ -40,7 +16,72 @@
       // border: 1px solid grey;
       // border: 3px solid transparent;
       // background: linear-gradient(rgb(34, 34, 34), rgb(29, 29, 29)) padding-box, linear-gradient(45deg, #ffeb3b 18%, #ff0065, #f900ff) border-box;
-      
+
+      .shop-socials{
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        .social-icon{
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: rgba(255, 255, 255, 0.06);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+          img{
+            width: 20px;
+            height: 20px;
+          }
+          &:hover{
+            transform: translateY(-3px) scale(1.08);
+            background-color: rgba(255, 255, 255, 0.12);
+          }
+          &.instagram:hover{
+            border-color: #dc2743;
+            box-shadow: 0 0 12px rgba(220, 39, 67, 0.5);
+          }
+          &.facebook:hover{
+            border-color: #1877f2;
+            box-shadow: 0 0 12px rgba(24, 119, 242, 0.5);
+          }
+          &.tiktok{
+            background-color: rgba(255, 255, 255, 0.85);
+          }
+          &.tiktok:hover{
+            background-color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+          }
+        }
+      }
+      .shop-location{
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+        i{
+          color:   #ff0065;
+        }
+        p{
+          text-wrap: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          min-width: 0;
+        }
+        .copy-icon{
+          color: rgba(255, 255, 255, 0.5);
+          font-size: 12px;
+        }
+        .copied{
+          font-size: 12px;
+        }
+      }
+
       .shop-header{
         width: 100%;
         display: flex;
@@ -186,18 +227,14 @@
   }
   .gallery-align  {
     .shop-align  {
-        .shop-header{ 
-          .shop-title-container{ 
+        .shop-header{
+          .shop-title-container{
             width: 100%;
             align-items: center;
             justify-content: center;
               .logo-title-align{
                 width: 100%;
                 }
-            }
-            .shop-location{
-              width: 100%;
-              max-width: 100%;
             }
           }
       }

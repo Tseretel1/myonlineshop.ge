@@ -37,6 +37,7 @@ export class CardDetailsComponent implements OnInit{
     this.postService.getPostWithId(this.productId,this.userId).subscribe(
       (resp)=>{
         this.posts = resp.posts;
+        this.postLiked = this.posts.isLiked;
         this.posts.photos.forEach(item => {
           this.photosArray.push(item);
         });
@@ -119,6 +120,30 @@ export class CardDetailsComponent implements OnInit{
     }
     else if (event.key === 'Escape') {
       this.hideBigPhoto();
+    }
+  }
+
+  postLiked:boolean = false;
+  likePost(event?:Event){
+    event?.stopPropagation();
+    event?.preventDefault();
+    const user = localStorage.getItem('user');
+    if(user){
+      this.postService.likeProduct(this.userId,this.posts.id).subscribe(
+        (resp)=>{
+        }
+      );
+      if(!this.postLiked){
+        this.postLiked = true;
+        this.posts.likeCount++;
+      }
+      else{
+        this.postLiked = false;
+        this.posts.likeCount--;
+      }
+    }
+    else{
+      this.authServise.show();
     }
   }
 

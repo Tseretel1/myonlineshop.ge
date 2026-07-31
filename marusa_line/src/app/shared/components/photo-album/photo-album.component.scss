@@ -1,3 +1,9 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 @keyframes popUp {
   0%{
     opacity: 0.7;
@@ -54,12 +60,43 @@
       object-fit: cover;
       transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
+  }
+
+  .badge-row {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 6px 8px;
+    z-index: 6;
 
     .discount-procent {
-      position: absolute;
-      top: 6px;
-      left: 6px;
       z-index: 6;
+    }
+
+    .discount-price-mobile {
+      display: flex;
+      gap: 8px;
+      margin-left: auto;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.75) 100%);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: 600;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+      .discounted-price {
+        font-size: 11px;
+        color: rgb(255, 120, 120);
+        text-decoration: line-through;
+        font-style: italic;
+        opacity: 0.9;
+      }
     }
   }
 
@@ -106,36 +143,9 @@
     }
   }
 
-  .discount-price-mobile {
-    display: flex;
-    gap: 8px;
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.75) 100%);
-    color: white;
-    padding: 2px 8px;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: 600;
-    z-index: 11;
-    align-items: center;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-
-    .discounted-price {
-      font-size: 11px;
-      color: rgb(255, 120, 120);
-      text-decoration: line-through;
-      font-style: italic;
-      opacity: 0.9;
-    }
-  }
-
   .info-half {
-    flex: 1 1 50%;
-    height: 50%;
+    flex: 1 1 auto;
+    min-height: 0;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -153,9 +163,18 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      flex: 0 0 auto;
+    }
+
+    .card-description-wrapper {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
     }
 
     .card-description {
+      width: 100%;
       margin: 0;
       font-size: 13px;
       font-weight: 400;
@@ -184,5 +203,51 @@
 
   .desktop {
     display: none;
+  }
+
+  .photo-container {
+    .badge-row {
+      padding: 4px 6px;
+      gap: 4px;
+
+      .discount-price-mobile {
+        padding: 1px 6px;
+        gap: 4px;
+        font-size: 12px;
+
+        .discounted-price {
+          font-size: 9px;
+        }
+      }
+    }
+
+    .like-button {
+      padding: 4px 7px;
+      font-size: 11px;
+      bottom: 6px;
+      left: 6px;
+
+      .like-count {
+        font-size: 10px;
+      }
+    }
+
+    .info-half {
+      padding: 6px 10px;
+      gap: 2px;
+
+      &.has-badges {
+        padding-bottom: 30px;
+      }
+
+      .card-title {
+        font-size: 13px;
+      }
+
+      .card-description {
+        font-size: 11px;
+        -webkit-line-clamp: 3;
+      }
+    }
   }
 }

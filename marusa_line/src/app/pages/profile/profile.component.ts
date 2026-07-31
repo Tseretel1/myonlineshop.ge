@@ -3,7 +3,6 @@ import { AuthorizationService } from '../authorization/authorization.service';
 import { Router, RouterLink } from '@angular/router';
 import { AppRoutes } from '../../shared/AppRoutes/AppRoutes';
 import {
-  orderStatuses,
   Post,
   PostService,
 } from '../../Repositories/post.service';
@@ -51,7 +50,6 @@ export class ProfileComponent implements OnInit {
       behavior: 'smooth',
     });
     this.changeProductSource(1);
-    this.getOrderStatuses();
   }
 
   user: any = null;
@@ -107,18 +105,6 @@ export class ProfileComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  orderStatuses: orderStatuses[] = [];
-  getOrderStatuses() {
-    this.postService.getOrderStatuses().subscribe((resp) => {
-      this.orderStatuses = resp;
-    });
-  }
-
-  getStatusName(statusid: number) {
-    const name = this.orderStatuses.find((x) => x.id == statusid);
-    return name?.statusName;
-  }
-
   likesOrOrders: number = 1;
   changeProductSource(num: number) {
     this.likesOrOrders = num;
@@ -130,66 +116,6 @@ export class ProfileComponent implements OnInit {
   }
   logout() {
     this.authService.logout();
-  }
-
-  activeFilterNum: number = 0;
-  filterModalVisible: boolean = false;
-  showFilterModal() {
-    this.filterModalVisible = true;
-  }
-
-  hideModalExecute: boolean = false;
-  hideFilterModal() {
-    this.hideModalExecute = true;
-    setTimeout(() => {
-      this.filterModalVisible = false;
-      this.hideModalExecute = false;
-    }, 500);
-  }
-
-  sortNum: number = 0;
-  sortByPriceHighToLow(): void {
-    this.MyOrders = [...this.MyOrders].sort((a, b) => b.price - a.price);
-    this.sortNum = 1;
-    this.currentPage = 1;
-    this.hideFilterModal();
-  }
-  sortByPriceLowToHigh(): void {
-    this.MyOrders = [...this.MyOrders].sort((a, b) => a.price - b.price);
-    this.sortNum = 2;
-    this.currentPage = 1;
-    this.hideFilterModal();
-  }
-
-  sortByStatus(statusId: number): void {
-    this.MyOrders = [...this.MyOrders].sort((a, b) => {
-      const aMatch = a.statusId === statusId ? 0 : 1;
-      const bMatch = b.statusId === statusId ? 0 : 1;
-      return aMatch - bMatch;
-    });
-    const myOrders = this.MyOrders;
-
-    this.MyOrders = [];
-    setTimeout(() => {
-      this.MyOrders = myOrders;
-    }, 1);
-    this.sortNum = statusId + 5;
-    this.currentPage = 1;
-    this.hideFilterModal();
-  }
-
-  sortByIsPaied(paid: boolean) {
-    this.hideFilterModal();
-    this.currentPage = 1;
-    this.MyOrders.sort((a, b) => {
-      if (paid) {
-        this.sortNum = 3;
-        return (b.isPaid === true ? 1 : 0) - (a.isPaid === true ? 1 : 0);
-      } else {
-        this.sortNum = 4;
-        return (a.isPaid === true ? 1 : 0) - (b.isPaid === true ? 1 : 0);
-      }
-    });
   }
 
   navigateTodetails(orderId: Number) {

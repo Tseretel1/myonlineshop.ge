@@ -16,105 +16,20 @@
             შეკვეთები
             <i class="fas fa-receipt"></i>       
         </p>
-        <!-- <p (click)="changeProductSource(2)" [ngClass]="{'active':likesOrOrders ==2}">
+        <p (click)="changeProductSource(2)" [ngClass]="{'active':likesOrOrders ==2}">
             მოწონებული
-            <i class="fas fa-heart" ></i>   
-        </p> -->
+            <i class="fas fa-heart" ></i>
+        </p>
     </div>
 
-      <div class="filters-align" *ngIf="likesOrOrders ==1&&MyOrders.length>0">
-         <div class="section-title-align">
-            <b class="section-title">
-                <i class="fas fa-circle"></i> 
-                დაალაგე ფილტრით
-                <button class="open-filter" [ngClass]="{'active-filter': activeFilterNum == 0}" (click)="showFilterModal()"><i class="fas fa-sliders-h"></i> </button>
-            </b>
-        </div>
-        <div class="modal-align" *ngIf="filterModalVisible"> 
-            <div class="modal-background" (click)="hideFilterModal()">
-            </div>
-            <div class="modal" [ngClass]="{'hide-modal':hideModalExecute}">
-                <div class="modal-header" >
-                    <i></i>
-                    <i class="fas fa-times" (click)="hideFilterModal()"></i>
-                </div>
-                <div class="modal-body">
-                    <div class="stage-oAuth" >
-                        <button class="filter-button" [ngClass]="{'active-filter': sortNum == 3}"(click)="sortByIsPaied(true)">გადახდილი</button>
-                        <button class="filter-button" [ngClass]="{'active-filter': sortNum == 4}"(click)="sortByIsPaied(false)">გადასახდელი</button>
-                    </div>
-                    <!-- <div class="header"> 
-                        <p>სტატუსის მიხედვით</p>
-                    </div>
-                    <div class="stage-oAuth" >
-                        <button *ngFor="let i of orderStatuses" class="filter-button" [ngClass]="{'active-filter': sortNum == i.id +5}"(click)="sortByStatus(i.id)">{{i.statusName}}</button>
-                    </div> -->
-                    <!-- <div class="header"> 
-                        <p>ფასის მიხედვით</p>
-                    </div>
-                    <div class="stage-oAuth" >
-                        <button class="filter-button" [ngClass]="{'active-filter': sortNum == 1}"(click)="sortByPriceHighToLow()">კლებადობით</button>
-                        <button class="filter-button" [ngClass]="{'active-filter': sortNum == 2}"(click)="sortByPriceLowToHigh()">ზრდადობით</button>
-                    </div> -->
-                </div>
-            </div>
-        </div>
-    </div>
     <ng-container *ngIf="likesOrOrders ==1">
         <div class="photo-align orders-align" *ngIf="MyOrders.length>0">
             <div *ngFor="let p of paginatedOrders; let index = index;">
-                <div class="order-card" [ngClass]="{'payed-container':p.isPaid}">
-                        <div class="card-title-align">                         
-                            <div class="detail" >
-                                <p> 
-                                    შეკვეთა 
-                                    <b>
-                                    #
-                                    {{p.orderNumber}}
-                                    </b>
-                                </p>
-                            </div>
-                            <div class="detail detail-button" [ngClass]="{'payed':p.isPaid,'topay':!p.isPaid}" (click)="navigateTodetails(p.orderId)">
-                                დეტალურად
-                            </div>
-                        </div>
-                   <div class="order-container">
-                       <div class="order-details">
-                           <!-- <div class="detail">
-                                  {{p.title}}
-                          </div> -->
-                          <div class="detail " >
-                              <div style="display: flex; align-items: center; gap: 2px;">
-                                  {{p.title}}
-                            </div>
-                        </div>
-                        <div class="detail " *ngIf="p.isPaid">
-                            გადახდილი
-                            <div style="display: flex; align-items: center; gap: 2px;">
-                                <i class="fas fa-credit-card payed"></i>
-                                <ng-container *ngIf="p.discountedPrice>0">
-                                    {{p.discountedPrice}} <b class="">₾</b> 
-                                </ng-container>
-                                <ng-container *ngIf="p.discountedPrice<=0 ||p.discountedPrice==null">
-                                    {{p.price}} <b class="">₾</b> 
-                                </ng-container>
-                            </div>
-                        </div>
-                        <div class="detail " *ngIf="!p.isPaid">
-                            გადასახდელი
-                            <div style="display: flex; align-items: center; gap: 2px;">
-                                <i class="fas fa-credit-card topay"></i>
-                                {{p.finalPrice}}₾
-                            </div>
-                        </div>
-                        <div class="detail">
-                            {{getStatusName(p.statusId)}}
-                            <i class="fas fa-spinner topay" *ngIf="!p.isPaid"></i>
-                            <i class="fas fa-chart-line payed" *ngIf="p.isPaid"></i>
-                        </div>
-                      </div>
-                      <app-photo-album [products]="p"[PhotoCongif]="PhotoConfig" class="album"></app-photo-album>
-                   </div>
+                <div class="order-card" [ngClass]="{'payed-container':p.isPaid}" (click)="navigateTodetails(p.orderId)">
+                    <div class="order-number" [ngClass]="{'payed':p.isPaid,'topay':!p.isPaid}">
+                        შეკვეთა <b>#{{p.orderNumber}}</b>
+                    </div>
+                    <app-photo-album [products]="p" [PhotoCongif]="PhotoConfig" class="album"></app-photo-album>
                 </div>
             </div>
         </div>
