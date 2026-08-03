@@ -14,6 +14,7 @@ import { ReloadService } from '../../shared/services/ReloadService';
 import { ShopService } from '../../shared/services/ShopService';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
+import Swal from 'sweetalert2';
 
 
 
@@ -159,13 +160,27 @@ changeFavicon(iconUrl: string) {
         return;
       }
       else{
-        this.postService.followShop(this.userId, this.shopId).subscribe(
-          (resp)=>{
+        this.postService.followShop(this.userId, this.shopId).subscribe({
+          next: (resp)=>{
             this.isShopFollowed =true;
             this.toggleFollew();
             this.shopService.setFollowed(true);
+          },
+          error: (err)=>{
+            if(err?.status === 401){
+              this.authService.show();
+            } else {
+              Swal.fire({
+                icon:'error',
+                text:'გამოწერა ვერ მოხერხდა, სცადეთ თავიდან',
+                showConfirmButton:false,
+                timer:3000,
+                background:'rgb(25, 26, 25)',
+                color:'#ffffff',
+              });
+            }
           }
-        )
+        })
       }
     }
   }

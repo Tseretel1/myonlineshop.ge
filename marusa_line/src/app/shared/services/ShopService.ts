@@ -28,4 +28,9 @@ export class ShopService {
       this.cachedShopDto = { ...this.cachedShopDto, isFollowed };
     }
   }
+
+  clearCache(): void {
+    this.cachedShopId = null;
+    this.cachedShopDto = null;
+  }
 }

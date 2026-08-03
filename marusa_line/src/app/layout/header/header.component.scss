@@ -321,21 +321,25 @@
                 }
             }
             .social-icon{
-                width: 48px;
-                height: 48px;
+                width: 44px;
+                height: 44px;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 flex-shrink: 0;
                 background-color: rgba(255, 255, 255, 0.1);
-                img{
-                    width: 24px;
-                    height: 24px;
-                }
+                color: #ffffff;
+                font-size: 18px;
+            }
+            .instagram .social-icon{
+                background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+            }
+            .facebook .social-icon{
+                background-color: #1877f2;
             }
             .tiktok .social-icon{
-                background-color: rgba(255, 255, 255, 0.85);
+                background-color: #000000;
             }
         }
     }

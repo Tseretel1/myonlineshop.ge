@@ -3,12 +3,13 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import Swal from 'sweetalert2';
 import { AppRoutes } from '../../shared/AppRoutes/AppRoutes';
+import { ShopService } from '../../shared/services/ShopService';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthorizationService {
   AppRoutes = AppRoutes;
-  constructor(private router:Router) { }
+  constructor(private router:Router, private shopService: ShopService) { }
   private authorization = new BehaviorSubject<boolean>(false);
   authorization$ = this.authorization.asObservable();
   show(): void {
@@ -56,6 +57,7 @@ export class AuthorizationService {
           localStorage.removeItem('user');
           localStorage.removeItem('token');
           this.userNotAuthorized();
+          this.shopService.clearCache();
           this.router.navigate([AppRoutes.home])
         }
     });
@@ -65,6 +67,7 @@ export class AuthorizationService {
       localStorage.removeItem('user');
       localStorage.removeItem('token');
       this.userNotAuthorized();
+      this.shopService.clearCache();
       const shopId =localStorage.getItem('shopId')
       if(shopId){
         this.router.navigate([AppRoutes.shop+'/'+shopId]);

@@ -22,38 +22,36 @@
         align-items: center;
         gap: 14px;
         .social-icon{
-          width: 42px;
-          height: 42px;
+          width: 40px;
+          height: 40px;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
           background-color: rgba(255, 255, 255, 0.06);
           border: 1px solid rgba(255, 255, 255, 0.15);
+          color: rgba(255, 255, 255, 0.75);
+          font-size: 16px;
+          text-decoration: none;
           transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-          img{
-            width: 20px;
-            height: 20px;
-          }
           &:hover{
             transform: translateY(-3px) scale(1.08);
-            background-color: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
           }
           &.instagram:hover{
-            border-color: #dc2743;
-            box-shadow: 0 0 12px rgba(220, 39, 67, 0.5);
+            background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+            border-color: transparent;
+            box-shadow: 0 4px 14px rgba(214, 36, 159, 0.45);
           }
           &.facebook:hover{
-            border-color: #1877f2;
-            box-shadow: 0 0 12px rgba(24, 119, 242, 0.5);
-          }
-          &.tiktok{
-            background-color: rgba(255, 255, 255, 0.85);
+            background-color: #1877f2;
+            border-color: transparent;
+            box-shadow: 0 4px 14px rgba(24, 119, 242, 0.45);
           }
           &.tiktok:hover{
-            background-color: #ffffff;
-            border-color: rgba(255, 255, 255, 0.6);
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+            background-color: #000000;
+            border-color: transparent;
+            box-shadow: 0 4px 14px rgba(255, 255, 255, 0.25);
           }
         }
       }

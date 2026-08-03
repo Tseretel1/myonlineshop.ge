@@ -37,13 +37,13 @@
         </div>
         <div class="shop-socials" *ngIf="shop.instagram || shop.facebook || shop.titkok">
             <a class="social-icon instagram" *ngIf="shop.instagram" [href]="shop.instagram" target="_blank" aria-label="Instagram">
-                <img src="assets/icons/instagram.svg" alt="">
+                <i class="fab fa-instagram"></i>
             </a>
             <a class="social-icon facebook" *ngIf="shop.facebook" [href]="shop.facebook" target="_blank" aria-label="Facebook">
-                <img src="assets/icons/facebook.svg" alt="">
+                <i class="fab fa-facebook-f"></i>
             </a>
             <a class="social-icon tiktok" *ngIf="shop.titkok" [href]="shop.titkok" target="_blank" aria-label="TikTok">
-                <img src="assets/icons/tiktok.svg" alt="">
+                <i class="fab fa-tiktok"></i>
             </a>
         </div>
         <div class="shop-location" *ngIf="shop.location" (click)="copyLocation(shop.location)">
