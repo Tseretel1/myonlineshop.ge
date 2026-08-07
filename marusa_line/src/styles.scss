@@ -76,15 +76,31 @@
   font-feature-settings: "case" on;
 }
 
+:root {
+  --shop-bg-color: #ffffff;
+  --shop-text-color: #000000;
+  --shop-animation-color: #9ca3af;
+  --shop-overlay-rgb: 0, 0, 0;
+}
+
 a,
 span,
 div,
 body,
 tr,
-td {
+td,
+p,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "helv";
   font-weight: normal;
   font-style: normal;
+  color: var(--shop-text-color);
 }
 
 html,
@@ -93,6 +109,7 @@ body {
   padding: 0;
   margin: 0;
   overflow-x: hidden;
+  color: var(--shop-text-color);
 }
 p {
   margin: 0;

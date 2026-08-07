@@ -5,13 +5,13 @@
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
-  background: radial-gradient(ellipse at bottom, #233242 0%, #11141d 100%);
+  background-color: var(--shop-bg-color, #ffffff);
 }
 
 .shape {
   position: absolute;
   top: 0;
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--shop-animation-color, #9ca3af);
   opacity: 0;
   animation-name: fallDown;
   animation-timing-function: linear;

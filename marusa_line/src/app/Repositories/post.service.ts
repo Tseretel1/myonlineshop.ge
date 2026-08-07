@@ -73,6 +73,9 @@ export class PostService {
   getShopById(shopId:number): Observable<any> {
     return this.http.get<any>(this.apiUrl+`Product/get-shop-by-id?shopId=${shopId}`);
   }
+  getShopUiSettings(shopId:number): Observable<ShopUiSettings> {
+    return this.http.get<ShopUiSettings>(this.apiUrl+`Product/get-shop-ui-settings?shopId=${shopId}`);
+  }
   followShop(userid:number,shopId:number): Observable<any> {
     return this.http.post<any>(this.apiUrl+`Product/follow-shop?userId=${userid}&shopId=${shopId}`,{});
   }
@@ -133,4 +136,13 @@ export interface UserOptionalFields{
   id:number;
   location:string;
   phoneNumber:string;
+}
+
+export interface ShopUiSettings {
+  shopId: number;
+  backgroundColor: string;
+  textColor: string;
+  backgroundAnimationEnabled: boolean;
+  backgroundAnimationShape: 'circle' | 'square' | 'triangle' | 'blob';
+  backgroundAnimationColor: string;
 }

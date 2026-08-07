@@ -12,8 +12,9 @@
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  background-color: rgba(5, 4, 8, 0.521);
+  border: 1px solid rgba(var(--shop-overlay-rgb), 0.1);
+  background-color: rgba(var(--shop-overlay-rgb), 0.06);
+  color: var(--shop-text-color);
 }
 
 .top-section {
@@ -84,12 +85,12 @@
   }
 
   &:hover { opacity: 0.8; }
-  &.active { border-color: white; border-width: 2px; }
+  &.active { border-color: var(--shop-text-color); border-width: 2px; }
 }
 
 // ── Info card ────────────────────────────────────
 .info-card {
-  background-color: rgba(0, 0, 0, 0.35);
+  background-color: rgba(var(--shop-overlay-rgb), 0.06);
   border: 1px solid rgba(128, 128, 128, 0.25);
   border-radius: 12px;
   padding: 1.5rem;
@@ -97,7 +98,7 @@
   flex-direction: column;
   gap: 1rem;
   position: relative;
-  color: white;
+  color: var(--shop-text-color);
 }
 .discount-procent{
   position: absolute;
@@ -125,9 +126,9 @@
   align-items: center;
   gap: 4px;
   flex-shrink: 0;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.05);
-  color: #fff;
+  border: 1px solid rgba(var(--shop-overlay-rgb), 0.15);
+  background: rgba(var(--shop-overlay-rgb), 0.06);
+  color: var(--shop-text-color);
   padding: 6px 10px;
   border-radius: 20px;
   font-size: 14px;
@@ -139,7 +140,7 @@
   }
 
   &:hover {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(var(--shop-overlay-rgb), 0.14);
     transform: scale(1.05);
   }
 
@@ -184,7 +185,7 @@
 }
 
 .description-box {
-  color: white;
+  color: var(--shop-text-color);
 }
 
 .order-btn {
@@ -211,7 +212,7 @@
 .reviews-section {
   border-top: 1px solid rgba(128, 128, 128, 0.25);
   padding-top: 1.5rem;
-  background-color: rgba(5, 4, 8, 0.521);
+  background-color: rgba(var(--shop-overlay-rgb), 0.06);
   width: 100%;
   margin-top: 50px;
 }

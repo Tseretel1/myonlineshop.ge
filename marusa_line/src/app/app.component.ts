@@ -8,6 +8,7 @@ import { filter, Observable, Subscription } from 'rxjs';
 import { AuthorizationService } from './pages/authorization/authorization.service';
 import { CommonModule } from '@angular/common';
 import { BackgroundComponent } from "./shared/components/background/background.component";
+import { ThemeService } from './shared/services/ThemeService';
 
 @Component({
   selector: 'app-root',
@@ -19,9 +20,9 @@ export class AppComponent implements OnInit{
   title = 'marusa_line';
 
   shopId:number = 0;
-  constructor(private authService: AuthorizationService,private route :ActivatedRoute,private router: Router,){
+  constructor(private authService: AuthorizationService,private route :ActivatedRoute,private router: Router,private themeService: ThemeService,){
     const shopId = this.route.snapshot.paramMap.get('id');
- 
+
   }
 
   private AuthSub!: Subscription;
@@ -40,9 +41,10 @@ export class AppComponent implements OnInit{
       while (currentRoute.firstChild) {
         currentRoute = currentRoute.firstChild;
       }
-      const id = currentRoute.snapshot.paramMap.get('shopId');
+      const id = currentRoute.snapshot.paramMap.get('shopId') ?? localStorage.getItem('shopId');
       if(id!=null){
         this.shopId = Number(id);
+        this.themeService.loadForShop(this.shopId);
       }
     });
   }
