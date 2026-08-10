@@ -15,7 +15,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.288);
+        background-color: rgba(0, 0, 0, 0.35);
         animation: showModalBack 0.5s;
 
     }
@@ -26,7 +26,10 @@
         width: 90%;
         max-width: 500px;
         border-radius: 10px;
-        backdrop-filter: blur(20px);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        background-color: rgba(20, 20, 25, 0.55);
+        color: #ffffff;
         z-index: 2;
         padding: 70px 20px;
         display: flex;
@@ -35,7 +38,7 @@
         animation: modalPopup 0.5s;
         justify-content: center;
         align-items: center;
-        border: 1px solid gray;
+        border: 1px solid rgba(255, 255, 255, 0.12);
         .modal-header{
             position: absolute;
             top: 0px;
@@ -47,11 +50,11 @@
             align-items: center;
             cursor: pointer;
             .fa-times{
-                color: white;
+                color: #ffffff;
                 scale: 1.5;
             }
             .fa-arrow-left{
-                color: white;
+                color: #ffffff;
                 scale: 1.5;
             }
         }
@@ -66,8 +69,11 @@
                 width: 100%;
                 display: flex;
                 justify-content: center;
-                color: white;
+                color: #ffffff;
                 font-size: 20px;
+                * {
+                    color: inherit;
+                }
             }
             .stage-oAuth{
                 height: 100%;
@@ -81,16 +87,22 @@
                     padding: 10px 20px;
                     text-transform: uppercase;
                     border-radius: 8px;
-                    color: white;
+                    color: #ffffff;
                     text-shadow: none;
                     background: transparent;
                     cursor: pointer;
                     box-shadow: transparent;
-                    border: 1px solid #ffffff80;
+                    border: 1px solid rgba(255, 255, 255, 0.25);
                     transition: 0.3s ease;
                     width: 100%;
                     display: flex;
                     align-items: center;
+                    // Static, theme-independent: an unstyled <div> inside these
+                    // buttons would otherwise be caught by the global `div { color }`
+                    // rule (a direct rule always beats inherited color), so pin it.
+                    * {
+                        color: inherit;
+                    }
                 }
                 .google{
                     background: white;
@@ -98,6 +110,7 @@
                 }
                 .facebook{
                     background: #1456ab ;
+                    color: #ffffff;
                     border: 1px solid transparent;
                 }
                 .facebook:hover  {
@@ -149,7 +162,7 @@
 }
 @keyframes removeModalBack {
     0%{
-        background-color: rgba(0, 0, 0, 0.288);
+        background-color: rgba(0, 0, 0, 0.35);
     }
     100%{
         background-color: transparent;
@@ -160,6 +173,6 @@
         background-color: rgba(0, 0, 0, 0);
     }
     100%{
-        background-color: rgba(0, 0, 0, 0.288);
+        background-color: rgba(0, 0, 0, 0.35);
     }
 }

@@ -10,7 +10,7 @@
       width: 80%;
       border-radius: 10px;
       padding:10px;
-      background-color: rgba(var(--shop-overlay-rgb), 0.08);
+      background-color: rgba(var(--shop-overlay-rgb), calc(0.38 * var(--shop-overlay-intensity)));
       backdrop-filter: blur(3px);
       -webkit-backdrop-filter: blur(3px);
       color: var(--shop-text-color);
@@ -29,8 +29,8 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          background-color: rgba(var(--shop-overlay-rgb), 0.06);
-          border: 1px solid rgba(var(--shop-overlay-rgb), 0.15);
+          background-color: rgba(var(--shop-overlay-rgb), calc(0.56 * var(--shop-overlay-intensity)));
+          border: 1px solid rgba(var(--shop-overlay-rgb), calc(0.45 * var(--shop-overlay-intensity)));
           color: var(--shop-text-color);
           opacity: 0.75;
           font-size: 16px;

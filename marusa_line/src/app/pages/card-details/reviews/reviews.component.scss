@@ -1,8 +1,8 @@
 // ─── Tokens (keep in sync with your existing tokens) ─────────────────────────
-$bg-surface:    rgba(var(--shop-overlay-rgb), 0.06);
-$bg-card:       rgba(var(--shop-overlay-rgb), 0.06);
-$border-dim:    rgba(var(--shop-overlay-rgb), 0.08);
-$border-mid:    rgba(var(--shop-overlay-rgb), 0.15);
+$bg-surface:    rgba(var(--shop-overlay-rgb), calc(0.56 * var(--shop-overlay-intensity)));
+$bg-card:       rgba(var(--shop-overlay-rgb), calc(0.56 * var(--shop-overlay-intensity)));
+$border-dim:    rgba(var(--shop-overlay-rgb), calc(0.38 * var(--shop-overlay-intensity)));
+$border-mid:    rgba(var(--shop-overlay-rgb), calc(0.45 * var(--shop-overlay-intensity)));
 $border-accent: rgba(139,92,246,0.35);
 
 $accent:        #8b5cf6;

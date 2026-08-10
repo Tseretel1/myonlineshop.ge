@@ -1,19 +1,19 @@
 // ─── Design tokens ───────────────────────────────────────────────────────────
-$bg-base:       #0d0d0f;
-$bg-surface:    #131317;
-$bg-card:       #1a1a20;
-$bg-input:      #111115;
-$border-dim:    rgba(255,255,255,0.07);
-$border-mid:    rgba(255,255,255,0.12);
+$bg-base:       rgba(var(--shop-overlay-rgb), calc(0.56 * var(--shop-overlay-intensity)));
+$bg-surface:    rgba(var(--shop-overlay-rgb), calc(0.56 * var(--shop-overlay-intensity)));
+$bg-card:       rgba(var(--shop-overlay-rgb), calc(0.40 * var(--shop-overlay-intensity)));
+$bg-input:      rgba(var(--shop-overlay-rgb), calc(0.38 * var(--shop-overlay-intensity)));
+$border-dim:    rgba(var(--shop-overlay-rgb), calc(0.38 * var(--shop-overlay-intensity)));
+$border-mid:    rgba(var(--shop-overlay-rgb), calc(0.45 * var(--shop-overlay-intensity)));
 $border-accent: rgba(139,92,246,0.5);
 
 $accent:        #8b5cf6;
 $accent-light:  #a78bfa;
 $accent-glow:   rgba(139,92,246,0.18);
 
-$text-primary:  #f0eef8;
-$text-secondary:#9490a8;
-$text-muted:    #4f4d5c;
+$text-primary:  var(--shop-text-color);
+$text-secondary:var(--shop-text-color);
+$text-muted:    var(--shop-text-color);
 
 $success:       #22c55e;
 $danger:        #ef4444;
@@ -50,8 +50,9 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  background-color: rgba(5, 4, 8, 0.521);
+  border: 1px solid $border-dim;
+  background-color: $bg-surface;
+  color: $text-primary;
   animation: fadeUp 0.35s ease both;
 }
 
@@ -87,8 +88,6 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
   flex-direction: column;
   gap: 18px;
   transition: border-color 0.2s;
-  background-color: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(128, 128, 128, 0.25);
   &:focus-within {
     border-color: $border-accent;
   }
@@ -103,6 +102,7 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: $text-secondary;
+  opacity: 0.7;
 }
 
 .section-num {
@@ -134,6 +134,7 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
 .field-hint {
   font-size: 12px;
   color: $text-muted;
+  opacity: 0.5;
   margin: 0;
 }
 
@@ -141,6 +142,7 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
   font-size: 12px;
   font-weight: 400;
   color: $text-muted;
+  opacity: 0.5;
   margin-left: auto;
 }
 
@@ -155,10 +157,8 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
   width: 100%;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
-  background-color: rgba(0, 0, 0, 0.158);
-  border: 1px solid rgba(128, 128, 128, 0.267);
 
-  &::placeholder { color: $text-muted; }
+  &::placeholder { color: $text-muted; opacity: 0.5; }
 
   &:focus {
     border-color: $accent;
@@ -219,7 +219,7 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
   height: 36px;
   border-radius: $radius-md;
   border: 1px solid $border-mid;
-  background: white;
+  background: $bg-card;
   color: $text-secondary;
   cursor: pointer;
   transition: all 0.18s;
@@ -297,8 +297,6 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(128, 128, 128, 0.25);
 }
 
 .product-image-wrap {
@@ -361,6 +359,7 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
 .qty-label {
   font-size: 13px;
   color: $text-secondary;
+  opacity: 0.7;
   font-weight: 500;
 }
 
@@ -424,6 +423,7 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
 .price-label {
   font-size: 13px;
   color: $text-secondary;
+  opacity: 0.7;
   font-weight: 500;
 }
 

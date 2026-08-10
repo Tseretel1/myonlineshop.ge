@@ -142,6 +142,8 @@ export interface ShopUiSettings {
   shopId: number;
   backgroundColor: string;
   textColor: string;
+  surfaceColor: string;
+  surfaceOpacity: number;
   backgroundAnimationEnabled: boolean;
   backgroundAnimationShape: 'circle' | 'square' | 'triangle' | 'blob';
   backgroundAnimationColor: string;

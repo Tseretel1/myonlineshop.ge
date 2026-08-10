@@ -28,9 +28,13 @@ export class ThemeService {
     root.setProperty('--shop-bg-color', settings.backgroundColor);
     root.setProperty('--shop-text-color', settings.textColor);
     root.setProperty('--shop-animation-color', settings.backgroundAnimationColor);
-    // Surfaces (cards/panels) tint towards white on dark backgrounds and towards
-    // black on light backgrounds, so translucent overlays stay readable either way.
-    root.setProperty('--shop-overlay-rgb', this.isDarkColor(settings.backgroundColor) ? '255,255,255' : '0,0,0');
+    // Every translucent "glass" surface (cards, header, footer, modals, comment
+    // section, ...) tints towards this color. Each surface keeps its own fixed
+    // base opacity in CSS and multiplies it by this intensity, so the shop can
+    // make surfaces more or less visible without ever reaching full opacity
+    // (the backend clamps the multiplier to [0.3, 1.4]).
+    root.setProperty('--shop-overlay-rgb', this.hexToRgb(settings.surfaceColor));
+    root.setProperty('--shop-overlay-intensity', String(settings.surfaceOpacity ?? 1));
     this.settingsSubject.next(settings);
   }
 
@@ -38,13 +42,12 @@ export class ThemeService {
     this.cachedShopId = null;
   }
 
-  private isDarkColor(hex: string): boolean {
+  private hexToRgb(hex: string): string {
     const match = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex?.trim() ?? '');
     if (!match) {
-      return false;
+      return '128,128,128';
     }
     const [r, g, b] = [match[1], match[2], match[3]].map((h) => parseInt(h, 16));
-    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-    return luminance < 0.5;
+    return `${r},${g},${b}`;
   }
 }

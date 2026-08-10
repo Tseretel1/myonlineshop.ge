@@ -9,7 +9,7 @@
         display: flex;
         justify-content: center;
         backdrop-filter: blur(20px);
-        background-color: rgba(var(--shop-overlay-rgb), 0.12);
+        background-color: rgba(var(--shop-overlay-rgb), calc(0.42 * var(--shop-overlay-intensity)));
         padding: 15px 0px;
         .header-align{
             position: relative;
@@ -54,11 +54,11 @@
                 padding: 0 16px;
                 height: 42px;
                 border-radius: 999px;
-                background-color: rgba(var(--shop-overlay-rgb), 0.08);
-                border: 1px solid rgba(var(--shop-overlay-rgb), 0.15);
+                background-color: rgba(var(--shop-overlay-rgb), calc(0.38 * var(--shop-overlay-intensity)));
+                border: 1px solid rgba(var(--shop-overlay-rgb), calc(0.45 * var(--shop-overlay-intensity)));
                 transition: border-color 0.25s ease;
                 &:focus-within{
-                    border-color: rgba(var(--shop-overlay-rgb), 0.35);
+                    border-color: rgba(var(--shop-overlay-rgb), calc(0.56 * var(--shop-overlay-intensity)));
                 }
                 .search-icon{
                     color: var(--shop-text-color);
@@ -235,16 +235,16 @@
                 width: 100%;
                 padding: 12px 18px;
                 border-radius: 14px;
-                background-color: rgba(var(--shop-overlay-rgb), 0.08);
+                background-color: rgba(var(--shop-overlay-rgb), calc(0.38 * var(--shop-overlay-intensity)));
                 backdrop-filter: blur(10px);
                 -webkit-backdrop-filter: blur(10px);
-                box-shadow: 0 4px 12px rgba(var(--shop-overlay-rgb), 0.15);
+                box-shadow: 0 4px 12px rgba(var(--shop-overlay-rgb), calc(0.45 * var(--shop-overlay-intensity)));
                 font-size: 18px;
                 cursor: pointer;
                 transition: background-color 0.25s ease;
             }
             .nav-link:hover{
-                background-color: rgba(var(--shop-overlay-rgb), 0.16);
+                background-color: rgba(var(--shop-overlay-rgb), calc(0.46 * var(--shop-overlay-intensity)));
             }
             .nav-link:focus,
             .nav-link:active {
@@ -310,16 +310,16 @@
                 width: 100%;
                 padding: 12px 18px;
                 border-radius: 14px;
-                background-color: rgba(var(--shop-overlay-rgb), 0.08);
+                background-color: rgba(var(--shop-overlay-rgb), calc(0.38 * var(--shop-overlay-intensity)));
                 backdrop-filter: blur(10px);
                 -webkit-backdrop-filter: blur(10px);
-                box-shadow: 0 4px 12px rgba(var(--shop-overlay-rgb), 0.15);
+                box-shadow: 0 4px 12px rgba(var(--shop-overlay-rgb), calc(0.45 * var(--shop-overlay-intensity)));
                 color: inherit;
                 text-decoration: none;
                 font-size: 16px;
                 transition: background-color 0.25s ease;
                 &:hover{
-                    background-color: rgba(var(--shop-overlay-rgb), 0.16);
+                    background-color: rgba(var(--shop-overlay-rgb), calc(0.46 * var(--shop-overlay-intensity)));
                 }
             }
             .social-icon{

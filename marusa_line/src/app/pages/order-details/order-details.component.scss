@@ -1,5 +1,5 @@
 *{
-    color: white;
+    color: var(--shop-text-color);
 }
 .center-component{
     width: 100%;
@@ -15,9 +15,9 @@
         position: relative;
         padding:20px;
         border-radius: 10px;
-        background-color: rgba(0, 0, 0, 0.35);
+        background-color: rgba(var(--shop-overlay-rgb), calc(0.40 * var(--shop-overlay-intensity)));
         gap: 10px;
-        border:1px solid rgba(128, 128, 128, 0.267);
+        border:1px solid rgba(var(--shop-overlay-rgb), calc(0.50 * var(--shop-overlay-intensity)));
         .component{
             width: 100%;
             display: flex;
@@ -32,7 +32,7 @@
                     align-items: center;
                     width: 100%;
                     justify-content: center;
-                    color: white;
+                    color: var(--shop-text-color);
                     padding: 5px;
                 }
                 .card-information{
@@ -71,7 +71,7 @@
         width: 100%;
         display: grid;
         grid-template-columns: repeat(2,1fr);
-        color: white;
+        color: var(--shop-text-color);
         gap: 20px;
         border-radius: 5px;
     }
@@ -87,7 +87,7 @@
     gap: 25px;
     border-radius: 10px;
     animation:fadeIn 0.5s;
-    border:1px solid rgba(128, 128, 128, 0.267);
+    border:1px solid rgba(var(--shop-overlay-rgb), calc(0.50 * var(--shop-overlay-intensity)));
     .flex-columns{
         width: 100%;
         display: flex;
@@ -98,7 +98,7 @@
         flex-direction: column;
         gap: 10px;
         .form-control{
-            color: white;
+            color: var(--shop-text-color);
             padding: 10px;
             border-radius: 5px;
             width: 100%;
@@ -112,7 +112,7 @@
         display: flex;
         flex-direction: column;
         gap: 15px;
-        color: white;
+        color: var(--shop-text-color);
         .title{
             width: 100%;
             display: flex;
@@ -144,12 +144,12 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background-color: rgba(0, 0, 0, 0.136);
+                background-color: rgba(var(--shop-overlay-rgb), calc(0.56 * var(--shop-overlay-intensity)));
                 border-radius: 5px;
                 padding: 5px;
                 position: relative;
                 flex-wrap: wrap;
-                border: 1px solid rgba(128, 128, 128, 0.423);
+                border: 1px solid rgba(var(--shop-overlay-rgb), calc(0.50 * var(--shop-overlay-intensity)));
                 cursor: pointer;
                 gap: 5px;
                 row-gap: 0px;
@@ -177,11 +177,11 @@
 .copy-button{
     display: flex;
     align-items: center;
-    color: white;
+    color: var(--shop-text-color);
     padding:5px 10px;
     border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0);
-    border:1px solid rgba(128, 128, 128, 0.359);
+    background-color: transparent;
+    border:1px solid rgba(var(--shop-overlay-rgb), calc(0.52 * var(--shop-overlay-intensity)));
     position: relative;
     cursor: pointer;
     .copied{
@@ -192,6 +192,7 @@
        border-radius: 5px;
        animation: 0.3s copyPopup;
        background-color: rgb(24, 24, 24);
+       color: #fff;
        box-shadow: 0px 2px 10px black;
      }
      @keyframes copyPopup {
@@ -229,6 +230,7 @@ position: relative;
     border-radius: 5px;
     animation: 0.3s copyPopup;
     background-color: rgb(24, 24, 24);
+    color: #fff;
     box-shadow: 0px 2px 10px black;
 }
 
@@ -356,19 +358,21 @@ p{
 .info-background{
     padding: 10px ;
     border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.136);
-    border: 1px solid rgba(128, 128, 128, 0.473);
+    background-color: rgba(var(--shop-overlay-rgb), calc(0.56 * var(--shop-overlay-intensity)));
+    border: 1px solid rgba(var(--shop-overlay-rgb), calc(0.52 * var(--shop-overlay-intensity)));
 
-    color: white;
+    color: var(--shop-text-color);
     text-align: center;
     display: flex;
     justify-content: center;
 }
 .to-payed{
     background-color: rgb(255 121 0);
+    color: #fff;
 }
 .is-payed{
     background-color: #2ecc71;
+    color: #fff;
 }
 .order-num-align{
     width: 100%;
@@ -379,7 +383,7 @@ p{
     display: flex;
     align-items: center;
     gap: 10px;
-    color: white;
+    color: var(--shop-text-color);
     font-weight: bolder;
     padding: 5px;
     border-radius: 5px;
@@ -400,7 +404,7 @@ p{
        border-radius: 10px;
     }
     .body-align::-webkit-scrollbar-thumb {
-       background: rgba(0,0,0,0.4); 
+       background: rgba(var(--shop-overlay-rgb), calc(0.58 * var(--shop-overlay-intensity)));
        border-radius: 10px;
     }
     .body-align::-webkit-scrollbar-button {
@@ -425,8 +429,8 @@ p{
 .paid-comment-card,
 .paid-map-card {
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(128, 128, 128, 0.267);
+    background-color: rgba(var(--shop-overlay-rgb), calc(0.56 * var(--shop-overlay-intensity)));
+    border: 1px solid rgba(var(--shop-overlay-rgb), calc(0.50 * var(--shop-overlay-intensity)));
     border-radius: 12px;
     padding: 20px;
     display: flex;
@@ -441,7 +445,7 @@ p{
     gap: 8px;
     font-size: 15px;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--shop-text-color);
 
     i {
         color: #2ecc71;
@@ -503,19 +507,22 @@ p{
     margin-left: 25px;
     padding: 8px 16px;
     border-radius: 8px;
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(128, 128, 128, 0.35);
-    color: #ccc;
+    background: rgba(var(--shop-overlay-rgb), calc(0.56 * var(--shop-overlay-intensity)));
+    border: 1px solid rgba(var(--shop-overlay-rgb), calc(0.50 * var(--shop-overlay-intensity)));
+    color: var(--shop-text-color);
+    opacity: 0.75;
     font-size: 14px;
     width: 100%;
 
     &.completed {
         color: #2ecc71;
+        opacity: 1;
     }
 
     &.current {
         background: #2ecc71;
         color: white;
+        opacity: 1;
         border-color: #2ecc71;
         font-weight: 600;
     }
@@ -536,8 +543,8 @@ p{
     gap: 6px;
     padding: 14px 16px;
     border-radius: 12px;
-    background-color: rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(128, 128, 128, 0.267);
+    background-color: rgba(var(--shop-overlay-rgb), calc(0.56 * var(--shop-overlay-intensity)));
+    border: 1px solid rgba(var(--shop-overlay-rgb), calc(0.50 * var(--shop-overlay-intensity)));
 
     &.highlight {
         background: rgba(46, 204, 113, 0.12);
@@ -565,19 +572,21 @@ p{
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: rgba(255, 255, 255, 0.55);
+    color: var(--shop-text-color);
+    opacity: 0.55;
 }
 
 .paid-summary-value {
     font-size: 18px;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--shop-text-color);
     word-break: break-word;
 }
 
 .paid-comment-text {
     margin: 0;
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--shop-text-color);
+    opacity: 0.85;
     line-height: 1.6;
     white-space: pre-wrap;
 }

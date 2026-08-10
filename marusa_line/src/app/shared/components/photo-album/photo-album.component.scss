@@ -24,14 +24,14 @@
   position: relative;
   border-radius: 12px;
   cursor: pointer;
-  background-color: rgba(var(--shop-overlay-rgb), 0.07);
+  background-color: rgba(var(--shop-overlay-rgb), calc(0.36 * var(--shop-overlay-intensity)));
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
-  border: 1px solid rgba(var(--shop-overlay-rgb), 0.1);
+  border: 1px solid rgba(var(--shop-overlay-rgb), calc(0.40 * var(--shop-overlay-intensity)));
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    border-color: rgba(var(--shop-overlay-rgb), 0.2);
+    border-color: rgba(var(--shop-overlay-rgb), calc(0.50 * var(--shop-overlay-intensity)));
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
 
     .photo-half .photo {
