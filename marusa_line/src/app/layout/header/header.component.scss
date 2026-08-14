@@ -55,10 +55,10 @@
                 height: 42px;
                 border-radius: 999px;
                 background-color: rgba(var(--shop-overlay-rgb), calc(0.38 * var(--shop-overlay-intensity)));
-                border: 1px solid rgba(var(--shop-overlay-rgb), calc(0.45 * var(--shop-overlay-intensity)));
+                border: 1px solid rgba(160, 160, 160, 0.55);
                 transition: border-color 0.25s ease;
                 &:focus-within{
-                    border-color: rgba(var(--shop-overlay-rgb), calc(0.56 * var(--shop-overlay-intensity)));
+                    border-color: rgba(160, 160, 160, 0.9);
                 }
                 .search-icon{
                     color: var(--shop-text-color);
