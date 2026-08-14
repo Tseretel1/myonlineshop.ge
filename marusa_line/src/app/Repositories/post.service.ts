@@ -141,6 +141,7 @@ export interface UserOptionalFields{
 export interface ShopUiSettings {
   shopId: number;
   backgroundColor: string;
+  backgroundOpacity?: number;
   textColor: string;
   surfaceColor: string;
   surfaceOpacity: number;

@@ -1,3 +1,8 @@
+// Fixed, fully-opaque dark background for the inner info card — independent of
+// the user-configurable shop overlay color so title/price/description stay
+// legible no matter what the outer .page-window background is set to.
+$bg-section: #121212;
+
 .page {
   display: flex;
   flex-direction: column;
@@ -90,7 +95,7 @@
 
 // ── Info card ────────────────────────────────────
 .info-card {
-  background-color: rgba(var(--shop-overlay-rgb), calc(0.56 * var(--shop-overlay-intensity)));
+  background-color: $bg-section;
   border: 1px solid rgba(128, 128, 128, 0.25);
   border-radius: 12px;
   padding: 1.5rem;

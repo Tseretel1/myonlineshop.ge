@@ -21,8 +21,14 @@ export class AppComponent implements OnInit{
 
   shopId:number = 0;
   constructor(private authService: AuthorizationService,private route :ActivatedRoute,private router: Router,private themeService: ThemeService,){
-    const shopId = this.route.snapshot.paramMap.get('id');
-
+    // Applied synchronously, before the first render, so a returning visitor's
+    // last-known shop shows its real colors immediately instead of a white
+    // flash while loadForShop's fetch (triggered below on NavigationEnd) is
+    // still in flight.
+    const shopId = this.route.snapshot.paramMap.get('shopId') ?? localStorage.getItem('shopId');
+    if (shopId != null) {
+      this.themeService.applyStoredTheme(Number(shopId));
+    }
   }
 
   private AuthSub!: Subscription;

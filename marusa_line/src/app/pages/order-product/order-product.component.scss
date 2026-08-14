@@ -3,6 +3,11 @@ $bg-base:       rgba(var(--shop-overlay-rgb), calc(0.56 * var(--shop-overlay-int
 $bg-surface:    rgba(var(--shop-overlay-rgb), calc(0.56 * var(--shop-overlay-intensity)));
 $bg-card:       rgba(var(--shop-overlay-rgb), calc(0.40 * var(--shop-overlay-intensity)));
 $bg-input:      rgba(var(--shop-overlay-rgb), calc(0.38 * var(--shop-overlay-intensity)));
+
+// Fixed, fully-opaque dark background for inner sections — independent of the
+// user-configurable shop overlay color so they stay legible no matter what the
+// outer .order-window background is set to.
+$bg-section:    #121212;
 $border-dim:    rgba(var(--shop-overlay-rgb), calc(0.38 * var(--shop-overlay-intensity)));
 $border-mid:    rgba(var(--shop-overlay-rgb), calc(0.45 * var(--shop-overlay-intensity)));
 $border-accent: rgba(139,92,246,0.5);
@@ -80,7 +85,7 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
 }
 
 .form-section {
-  background: $bg-surface;
+  background: $bg-section;
   border: 1px solid $border-dim;
   border-radius: $radius-lg;
   padding: 24px;
@@ -291,7 +296,7 @@ $font-display:  'DM Sans', 'SF Pro Display', system-ui, sans-serif;
 
 // ─── Product card ─────────────────────────────────────────────────────────────
 .product-card {
-  background: $bg-surface;
+  background: $bg-section;
   border: 1px solid $border-dim;
   border-radius: $radius-xl;
   overflow: hidden;
