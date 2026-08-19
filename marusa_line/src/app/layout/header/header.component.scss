@@ -10,6 +10,7 @@
         justify-content: center;
         backdrop-filter: blur(20px);
         background-color: rgba(var(--shop-overlay-rgb), calc(0.42 * var(--shop-overlay-intensity)));
+        box-shadow: 0px 2px 2px black;
         padding: 15px 0px;
         .header-align{
             position: relative;
